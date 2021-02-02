@@ -3,40 +3,41 @@ console.log(
 );
 
 /*
+  Explicação
   13195 / 29 = 455
   455 / 13 = 35
   35 / 7 = 5
   5 / 5 = 1
 
-  Como resolver?
-
-  1. Calcular uma lista de números primos?
-
-  2. Usar lógica descrita em https://www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
+  Foi usada a lógica descrita em https://www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
 */
 
 const findLargestPrime = (number) => {
-  // While number is divisible by 2...
+  // While number is divisible by 2, divide by 2.
   // In the end you have 1 or another odd number
-  while (number % 2 === 0) {
-    console.log(`2 `);
-    number = number / 2;
-  }
+  let firstIterCounter = 0;
+  let secondIterCounter = 0;
+  let thirdIterCounter = 0;
+  let inputNumber = number;
 
-  console.log(`number after first while = ${number}`);
+  while (number % 2 === 0) {
+    number = number / 2;
+    firstIterCounter++;
+  }
 
   for (i = 3; i <= Math.sqrt(number); i += 2) {
     while (number % i === 0) {
-      console.log(`${i} `);
       number = number / i;
+      secondIterCounter++;
     }
-    console.log(
-      `i after second while = ${i}\nnumber after second while = ${number}`
-    );
+    thirdIterCounter++;
   }
 
+  // Se número for maior que 2, finaliza o loop
   if (number > 2) {
-    console.log(`number = ${number}`);
+    console.log(
+      `End of loop. Largest prime factor of ${inputNumber} = ${number}\nIterations in 1st loop - ${firstIterCounter}\nIterations in 2nd loop - ${secondIterCounter}\nIterations in 3rd loop - ${thirdIterCounter}`
+    );
   }
 };
 

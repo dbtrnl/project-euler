@@ -29,7 +29,7 @@ const findIfEvenlyDivisibleByEveryNumberInInterval = (
 /* 
   Resolução do problema, escolher um número-limite para calcular
 */
-let maxNumber = 999999999;
+let maxNumber = 99999999;
 
 for (k = 1; k < maxNumber; k++) {
   findIfEvenlyDivisibleByEveryNumberInInterval(k, 1, 20);

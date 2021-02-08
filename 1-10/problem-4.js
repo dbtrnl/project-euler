@@ -19,16 +19,14 @@ const reverseNumberFunction = (num) => {
 
 const checkIfNumberIsPalindrome = (number) => {
   let reverseNumber = reverseNumberFunction(number);
-  // console.log(`number=${number}---reverse=${reverseNumber}`);
-  // console.log(`number=${typeof number}---reverse=${typeof reverseNumber}`);
-  let largestPalindromeFound;
 
   if (number == reverseNumber) {
-    if (reverseNumber.length > 5) {
-      console.log(`Number ${number} is a palindrome`);
-    }
+    return true;
   }
+  return false;
 };
+
+let largestPalindromeFound = 0;
 
 for (i = 100; i < 1000; i++) {
   // console.log(`i = ${i}`);
@@ -36,9 +34,13 @@ for (i = 100; i < 1000; i++) {
     // console.log(`j = ${j}`);
     let number = i * j;
     // console.log(`number is ${i} * ${j} = ${number}`);
-    checkIfNumberIsPalindrome(number);
+    if (checkIfNumberIsPalindrome(number)) {
+      console.log(`${number} is a palindrome`);
+
+      if (largestPalindromeFound < number) {
+        largestPalindromeFound = number;
+      }
+    }
   }
-  // for (j = 0; j < 10; j++) {
-  //   console.log(`j = ${j}`)
-  // }
 }
+console.log(`largestPalindromeFound = ${largestPalindromeFound}`);

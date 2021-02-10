@@ -20,20 +20,24 @@ for (j = 1; j <= 10000; j++) {
 }
 */
 
-let arrayWithTenthousandAndOnePrimes = [];
-let iterator = 1;
-let index = 10001;
+const arrayWithTenthousAndAndOnePrimes = [];
+const desiredPrime = 10001;
 
-while (arrayWithTenthousandAndOnePrimes.length < 10002) {
+// Beginning at 2 since 1 isn't a prime number
+let iterator = 2;
+
+while (arrayWithTenthousAndAndOnePrimes.length < desiredPrime + 1) {
   let prime = findIfNumberIsPrime(iterator);
   iterator++;
 
   if (prime !== false) {
     // console.log(prime);
-    arrayWithTenthousandAndOnePrimes.push(prime);
+    arrayWithTenthousAndAndOnePrimes.push(prime);
   }
 }
 
 console.log(
-  `The ${index} prime number is ${arrayWithTenthousandAndOnePrimes[index]}`
+  `The ${desiredPrime} prime number is ${
+    arrayWithTenthousAndAndOnePrimes[desiredPrime - 1]
+  }`
 );

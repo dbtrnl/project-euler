@@ -8,36 +8,27 @@ const findIfNumberIsPrime = (number) => {
       return false;
     }
   }
-  // console.log(`Number ${number} is prime`);
+  console.log(`Number ${number} is prime`);
   return number;
 };
 
-/*
-  To test the function
-
-for (j = 1; j <= 10000; j++) {
-  findIfNumberIsPrime(j);
-}
-*/
-
-const arrayWithTenthousAndAndOnePrimes = [];
+const primeNumberArray = [];
 const desiredPrime = 10001;
 
 // Beginning at 2 since 1 isn't a prime number
 let iterator = 2;
 
-while (arrayWithTenthousAndAndOnePrimes.length < desiredPrime + 1) {
+while (primeNumberArray.length < desiredPrime + 1) {
   let prime = findIfNumberIsPrime(iterator);
   iterator++;
 
   if (prime !== false) {
-    // console.log(prime);
-    arrayWithTenthousAndAndOnePrimes.push(prime);
+    primeNumberArray.push(prime);
   }
 }
 
 console.log(
   `The ${desiredPrime} prime number is ${
-    arrayWithTenthousAndAndOnePrimes[desiredPrime - 1]
+    primeNumberArray[desiredPrime - 1]
   }`
 );

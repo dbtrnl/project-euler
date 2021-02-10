@@ -8,7 +8,8 @@ const findSumOfSquaresOfInterval = (lower, upper) => {
   for (i = lower; i <= upper; i++) {
     result += Math.pow(i, 2);
   }
-  console.log(`The sum of the squares of ${lower} to ${upper} is ${result}`);
+  // console.log(`The sum of the squares of ${lower} to ${upper} is ${result}`);
+  return result;
 };
 
 const findSquareOfSumOfInterval = (lower, upper) => {
@@ -16,13 +17,17 @@ const findSquareOfSumOfInterval = (lower, upper) => {
   for (i = lower; i <= upper; i++) {
     result += i;
   }
-  console.log(
-    `The square of sum of interval ${lower} to ${upper} is ${Math.pow(
-      result,
-      2
-    )}`
-  );
+  // console.log(`The square of sum of interval ${lower} to ${upper} is ${Math.pow(result, 2)}`);
+  return Math.pow(result, 2);
 };
 
-findSumOfSquaresOfInterval(1, 10);
-findSquareOfSumOfInterval(1, 10);
+const findDifferenceBetweenSquareOfSumAndSumOfSquares = () => {
+  const sumOfSquares = findSumOfSquaresOfInterval(1, 100);
+  const squareOfSum = findSquareOfSumOfInterval(1, 100);
+
+  const solution = squareOfSum - sumOfSquares;
+
+  console.log(`The solution of problem 6 is ${solution}`);
+};
+
+findDifferenceBetweenSquareOfSumAndSumOfSquares();

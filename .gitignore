@@ -1,1 +1,5 @@
-*.teste.js
+# Folders
+/utils
+
+# File extensions
+*.test.js

@@ -10,9 +10,10 @@ var problemInput =
  */
 
 let row = 0;
-let column = 0;
+let col = 0;
 let number = '';
 
+// Creating 20 arrays (with different memory addresses) inside the array
 let matrix = [...new Array(20)].map(() => {
   return new Array(20);
 });
@@ -21,13 +22,13 @@ let matrix = [...new Array(20)].map(() => {
 for (let i = 0; i <= problemInput.length - 1; i = i + 3) {
   number = problemInput.substring(i, i + 3).trim();
 
-  // console.log(`pushing ${number} to matrix[${column}][${row}]`);
+  // console.log(`pushing ${number} to matrix[${col}][${row}]`);
 
-  matrix[row][column] = number;
-  column++;
+  matrix[row][col] = number;
+  col++;
 
-  if (column >= 20) {
-    column = 0;
+  if (col >= 20) {
+    col = 0;
     row++;
   }
 
@@ -36,31 +37,143 @@ for (let i = 0; i <= problemInput.length - 1; i = i + 3) {
   }
 }
 
-const returnProductOfFourNumbersInSameColumn = (column, row) => {
+const returnProductOfFourNumbersInSameCol = (row, col) => {
   let result =
-    matrix[row][column] *
-    matrix[row + 1][column] *
-    matrix[row + 2][column] *
-    matrix[row + 3][column];
-  console.log(
-    `${matrix[row][column]}*${matrix[row + 1][column]}*${
-      matrix[row + 2][column]
-    }*${matrix[row + 3][column]} = ${result}`
-  );
+    matrix[row][col] *
+    matrix[row + 1][col] *
+    matrix[row + 2][col] *
+    matrix[row + 3][col];
+  return [
+    result,
+    matrix[row][col],
+    matrix[row + 1][col],
+    matrix[row + 2][col],
+    matrix[row + 3][col],
+  ];
 };
 
-const returnProductOfFourNumbersInSameRow = (column, row) => {
+const returnProductOfFourNumbersInSameRow = (row, col) => {
   let result =
-    matrix[row][column] *
-    matrix[row][column + 1] *
-    matrix[row][column + 2] *
-    matrix[row][column + 3];
-  console.log(
-    `${matrix[row][column]}*${matrix[row][column + 1]}*${
-      matrix[row][column + 2]
-    }*${matrix[row][column + 3]} = ${result}`
-  );
+    matrix[row][col] *
+    matrix[row][col + 1] *
+    matrix[row][col + 2] *
+    matrix[row][col + 3];
+  return [
+    result,
+    matrix[row][col],
+    matrix[row][col + 1],
+    matrix[row][col + 2],
+    matrix[row][col + 3],
+  ];
 };
 
-returnProductOfFourNumbersInSameColumn(0, 0);
-returnProductOfFourNumbersInSameRow(0, 0);
+const returnProductOfFourNumbersInDiagonal = (row, col) => {
+  let result =
+    matrix[row][col] *
+    matrix[row + 1][col + 1] *
+    matrix[row + 2][col + 2] *
+    matrix[row + 3][col + 3];
+  return [
+    result,
+    matrix[row][col],
+    matrix[row + 1][col + 1],
+    matrix[row + 2][col + 2],
+    matrix[row + 3][col + 3],
+  ];
+};
+
+const returnProductOfFourNumbersInInverseDiagonal = (row, col) => {
+  let result =
+    matrix[row][col] *
+    matrix[row - 1][col - 1] *
+    matrix[row - 2][col - 2] *
+    matrix[row - 3][col - 3];
+  return [
+    result,
+    matrix[row][col],
+    matrix[row - 1][col - 1],
+    matrix[row - 2][col - 2],
+    matrix[row - 3][col - 3],
+  ];
+};
+
+// Calculating the products of every series of 4 consecutive numbers in all columns
+
+const calculateAllCols = () => {
+  for (let j = 0; j < matrix.length; j++) {
+    for (let i = 0; i < matrix.length - 3; i++) {
+      let temp = returnProductOfFourNumbersInSameCol(i, j);
+
+      if (temp[0] > greatestProductFound[0]) {
+        greatestProductFound = temp;
+      }
+    }
+    if (j == matrix.length - 1) {
+      // console.log('----\nFinished Columns\n----');
+    } else {
+      // console.log(`\nIterating column ${j + 2}...\n`);
+    }
+  }
+};
+
+const calculateAllRows = () => {
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length - 3; j++) {
+      let temp = returnProductOfFourNumbersInSameRow(i, j);
+
+      if (temp[0] > greatestProductFound[0]) {
+        greatestProductFound = temp;
+      }
+    }
+    if (i == matrix.length - 1) {
+      // console.log('----\nFinished Rows\n----');
+    } else {
+      // console.log(`\nIterating row ${i + 2}...\n`);
+    }
+  }
+};
+
+const calculateAllDiagonals = () => {
+  for (let i = 0; i < matrix.length - 3; i++) {
+    for (let j = 0; j < matrix.length - 3; j++) {
+      let temp = returnProductOfFourNumbersInDiagonal(i, j);
+
+      if (temp[0] > greatestProductFound[0]) {
+        greatestProductFound = temp;
+      }
+    }
+    if (i == matrix.length - 1) {
+      // console.log('----\nFinished Rows\n----');
+    } else {
+      // console.log(`\nIterating row ${i + 2}...\n`);
+    }
+  }
+};
+
+const calculateAllInverseDiagonals = () => {
+  for (let i = matrix.length - 1; i >= 3; i--) {
+    for (let j = matrix.length - 1; j >= 3; j--) {
+      let temp = returnProductOfFourNumbersInInverseDiagonal(i, j);
+
+      if (temp[0] > greatestProductFound[0]) {
+        greatestProductFound = temp;
+      }
+    }
+    if (i == matrix.length - 1) {
+      // console.log('----\nFinished Rows\n----');
+    } else {
+      // console.log(`\nIterating row ${i + 2}...\n`);
+    }
+  }
+};
+
+let greatestProductFound = [0, 0, 0, 0, 0];
+
+calculateAllDiagonals();
+console.log(`Greatest Product found so far: ${greatestProductFound}`);
+calculateAllInverseDiagonals();
+console.log(`Greatest Product found so far: ${greatestProductFound}`);
+calculateAllRows();
+console.log(`Greatest Product found so far: ${greatestProductFound}`);
+calculateAllCols();
+console.log(`Greatest Product found so far: ${greatestProductFound}`);

@@ -12,6 +12,8 @@ var problemInput =
 let row = 0;
 let col = 0;
 let number = '';
+// let iterator = [0, 0, 0, 0, 0];
+let iterator = { product: 0, numbers: [0, 0, 0, 0] };
 
 // Creating 20 arrays (with different memory addresses) inside the array
 let matrix = [...new Array(20)].map(() => {
@@ -43,13 +45,20 @@ const returnProductOfFourNumbersInSameCol = (row, col) => {
     matrix[row + 1][col] *
     matrix[row + 2][col] *
     matrix[row + 3][col];
-  return [
-    result,
-    matrix[row][col],
-    matrix[row + 1][col],
-    matrix[row + 2][col],
-    matrix[row + 3][col],
-  ];
+  // console.log(
+  //   `${matrix[row][col]}*${matrix[row + 1][col]}*${matrix[row + 2][col]}*${
+  //     matrix[row + 3][col]
+  //   } = ${result}`
+  // );
+  return {
+    product: result,
+    numbers: [
+      matrix[row][col],
+      matrix[row + 1][col],
+      matrix[row + 2][col],
+      matrix[row + 3][col],
+    ],
+  };
 };
 
 const returnProductOfFourNumbersInSameRow = (row, col) => {
@@ -58,13 +67,20 @@ const returnProductOfFourNumbersInSameRow = (row, col) => {
     matrix[row][col + 1] *
     matrix[row][col + 2] *
     matrix[row][col + 3];
-  return [
-    result,
-    matrix[row][col],
-    matrix[row][col + 1],
-    matrix[row][col + 2],
-    matrix[row][col + 3],
-  ];
+  // console.log(
+  //   `${matrix[row][col]}*${matrix[row][col + 1]}*${matrix[row][col + 2]}*${
+  //     matrix[row][col + 3]
+  //   } = ${result}`
+  // );
+  return {
+    product: result,
+    numbers: [
+      matrix[row][col],
+      matrix[row][col + 1],
+      matrix[row][col + 2],
+      matrix[row][col + 3],
+    ],
+  };
 };
 
 const returnProductOfFourNumbersInDiagonal = (row, col) => {
@@ -73,28 +89,42 @@ const returnProductOfFourNumbersInDiagonal = (row, col) => {
     matrix[row + 1][col + 1] *
     matrix[row + 2][col + 2] *
     matrix[row + 3][col + 3];
-  return [
-    result,
-    matrix[row][col],
-    matrix[row + 1][col + 1],
-    matrix[row + 2][col + 2],
-    matrix[row + 3][col + 3],
-  ];
+  // console.log(
+  //   `${matrix[row][col]}*${matrix[row + 1][col + 1]}*${
+  //     matrix[row + 2][col + 2]
+  //   }*${matrix[row + 3][col + 3]} = ${result}`
+  // );
+  return {
+    product: result,
+    numbers: [
+      matrix[row][col],
+      matrix[row + 1][col + 1],
+      matrix[row + 2][col + 2],
+      matrix[row + 3][col + 3],
+    ],
+  };
 };
 
 const returnProductOfFourNumbersInInverseDiagonal = (row, col) => {
   let result =
     matrix[row][col] *
-    matrix[row - 1][col - 1] *
-    matrix[row - 2][col - 2] *
-    matrix[row - 3][col - 3];
-  return [
-    result,
-    matrix[row][col],
-    matrix[row - 1][col - 1],
-    matrix[row - 2][col - 2],
-    matrix[row - 3][col - 3],
-  ];
+    matrix[row + 1][col - 1] *
+    matrix[row + 2][col - 2] *
+    matrix[row + 3][col - 3];
+  // console.log(
+  //   `${matrix[row][col]}*${matrix[row + 1][col - 1]}*${
+  //     matrix[row + 2][col - 2]
+  //   }*${matrix[row + 3][col - 3]} = ${result}`
+  // );
+  return {
+    product: result,
+    numbers: [
+      matrix[row][col],
+      matrix[row + 1][col - 1],
+      matrix[row + 2][col - 2],
+      matrix[row + 3][col - 3],
+    ],
+  };
 };
 
 // Calculating the products of every series of 4 consecutive numbers in all columns
@@ -104,8 +134,8 @@ const calculateAllCols = () => {
     for (let i = 0; i < matrix.length - 3; i++) {
       let temp = returnProductOfFourNumbersInSameCol(i, j);
 
-      if (temp[0] > greatestProductFound[0]) {
-        greatestProductFound = temp;
+      if (temp.product > iterator.product) {
+        iterator = temp;
       }
     }
     if (j == matrix.length - 1) {
@@ -121,8 +151,8 @@ const calculateAllRows = () => {
     for (let j = 0; j < matrix.length - 3; j++) {
       let temp = returnProductOfFourNumbersInSameRow(i, j);
 
-      if (temp[0] > greatestProductFound[0]) {
-        greatestProductFound = temp;
+      if (temp.product > iterator.product) {
+        iterator = temp;
       }
     }
     if (i == matrix.length - 1) {
@@ -138,8 +168,8 @@ const calculateAllDiagonals = () => {
     for (let j = 0; j < matrix.length - 3; j++) {
       let temp = returnProductOfFourNumbersInDiagonal(i, j);
 
-      if (temp[0] > greatestProductFound[0]) {
-        greatestProductFound = temp;
+      if (temp.product > iterator.product) {
+        iterator = temp;
       }
     }
     if (i == matrix.length - 1) {
@@ -152,11 +182,11 @@ const calculateAllDiagonals = () => {
 
 const calculateAllInverseDiagonals = () => {
   for (let i = matrix.length - 1; i >= 3; i--) {
-    for (let j = matrix.length - 1; j >= 3; j--) {
-      let temp = returnProductOfFourNumbersInInverseDiagonal(i, j);
+    for (let j = 0; j < matrix.length - 3; j++) {
+      let temp = returnProductOfFourNumbersInInverseDiagonal(j, i);
 
-      if (temp[0] > greatestProductFound[0]) {
-        greatestProductFound = temp;
+      if (temp.product > iterator.product) {
+        iterator = temp;
       }
     }
     if (i == matrix.length - 1) {
@@ -167,13 +197,29 @@ const calculateAllInverseDiagonals = () => {
   }
 };
 
-let greatestProductFound = [0, 0, 0, 0, 0];
+const main = () => {
+  console.log(`calculating diagonals...`);
+  calculateAllDiagonals();
+  console.log(
+    `Greatest Product found so far: ${iterator.product}, numbers = ${iterator.numbers}\n`
+  );
+  console.log(`calculating rows...`);
+  calculateAllRows();
+  console.log(
+    `Greatest Product found so far: ${iterator.product}, numbers = ${iterator.numbers}\n`
+  );
+  console.log(`calculating columns...`);
+  calculateAllCols();
+  console.log(
+    `Greatest Product found so far: ${iterator.product}, numbers = ${iterator.numbers}\n`
+  );
+  console.log(`calculating inverse diagonals...`);
+  calculateAllInverseDiagonals();
+  console.log(
+    `Greatest Product found so far: ${iterator.product}, numbers = ${iterator.numbers}\n`
+  );
 
-calculateAllDiagonals();
-console.log(`Greatest Product found so far: ${greatestProductFound}`);
-calculateAllInverseDiagonals();
-console.log(`Greatest Product found so far: ${greatestProductFound}`);
-calculateAllRows();
-console.log(`Greatest Product found so far: ${greatestProductFound}`);
-calculateAllCols();
-console.log(`Greatest Product found so far: ${greatestProductFound}`);
+  console.log(`----\nThe answer is: ${iterator.product}\n----\n`);
+};
+
+main();

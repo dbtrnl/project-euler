@@ -15,21 +15,39 @@ const generateTriangleNumbersSequence = (sequenceSize) => {
     }
     iterator += i;
     sequence.push(iterator);
+    let divisors = findDivisorsOfNumber(iterator);
+    if (divisors.length >= 500) {
+      break;
+    }
   }
   return sequence;
 };
 
 const findDivisorsOfNumber = (number) => {
   let divisors = [];
+  /* 
+  // Brute force approach - Takes O(n) - not viable
   for (let i = number; i >= 1; i--) {
     if (number % i == 0) {
       divisors.push(i);
     }
   }
+  */
+
+  // O(sqrt(n)) approach
+  for (let i = 1; i <= Math.sqrt(number); i++) {
+    if (number % i == 0) {
+      if (number / i == i) {
+        divisors.push(i);
+      } else {
+        divisors.push(i);
+        divisors.push(number / i);
+      }
+    }
+  }
+
   return divisors;
 };
 
-const sequence = generateTriangleNumbersSequence(100000);
-console.log(sequence[sequence.length - 1]);
-const divisors = findDivisorsOfNumber(sequence[sequence.length - 1]);
-console.log(divisors.length);
+const sequence = generateTriangleNumbersSequence(9999999);
+console.log(`The answer is ${sequence[sequence.length - 1]}`);

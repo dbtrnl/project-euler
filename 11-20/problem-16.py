@@ -5,6 +5,6 @@ problemInput = str(pow(base, power))
 answer = 0
 
 for num in problemInput:
-  answer += int(num);
+  answer += int(num)
 
-print("The sum of all digits in", base, "^", power, "is", answer)
+print(f'The sum of all digits in {base}^{power} is {answer}')

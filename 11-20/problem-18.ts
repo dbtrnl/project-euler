@@ -19,43 +19,60 @@ let problemInput = `75
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 `;
 
-type Triangle = Array<string>;
+type Triangle = Int8Array[];
 
 const extractString = (inputString: string): string => {
   return inputString.substring(0, inputString.indexOf('\n'));
 };
 
-const assembleTriangle = (input: string): Array<string> => {
+const assembleTriangle = (input: string): Array<Int8Array> => {
   let str: string;
   let splitStr: any;
   let strArr: Int8Array;
-  let triangle = [];
+  let triangle: Array<Int8Array> = [];
 
   for (let i = 0; i < 15; i++) {
+    // Extracting and splitting each string row
     str = extractString(input);
     splitStr = str.split(' ');
 
-    // console.log(splitStr);
+    // Creating the number array
     strArr = new Int8Array([...splitStr]);
-    console.log(strArr);
     triangle.push(strArr);
 
+    // Replacing the input to loop to the next string row
     input = input.replace(input.substring(0, input.indexOf('\n') + 1), '');
   }
   return triangle;
 };
 
+const returnBiggestNumber = (arrayInput: Int8Array): number => {
+  let biggestNumber: number = 0;
+
+  arrayInput.filter((num: number): number => {
+    if (num > biggestNumber) biggestNumber = num;
+    return biggestNumber;
+  })
+
+  return biggestNumber;
+}
+
 const maximumPathSum = (triangle: Triangle): number => {
-  let sum: number;
+  let sum: number = 0;
   let iterator: number = 0;
   for (let i = 0; i < triangle.length; i++) {
-
+    iterator = returnBiggestNumber(triangle[i]);
+    console.log(`Summing ${sum} + ${iterator}`)
+    sum += iterator;
   }
   return sum;
 }
 
 const main = (): void => {
   const triangle = assembleTriangle(problemInput);
+  const answer = maximumPathSum(triangle);
+
+  console.log(`The answer is ${answer}`)
 };
 
 main();

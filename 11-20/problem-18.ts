@@ -1,6 +1,8 @@
 console.log(
-  '-----\nBy starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.\n\n3\n7 4\n 2 4 6\n8 5 9 3\n\nThat is, 3 + 7 + 4 + 9 = 23.\nFind the maximum total from top to bottom of the triangle below:\nNOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)\n-----\n'
+  '-----\nBy starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.\n\n3\n7 4\n2 4 6\n8 5 9 3\n\nThat is, 3 + 7 + 4 + 9 = 23.\nFind the maximum total from top to bottom of the triangle below:\nNOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)\n-----\n'
 );
+
+// import problem67Input from ('../assets/problem67-input');
 
 let problemInput = `75
 95 64
@@ -19,7 +21,19 @@ let problemInput = `75
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
 `;
 
+let testInput = `3
+7 4
+2 4 6
+8 5 9 3
+`
+
 type Triangle = Int8Array[];
+type TriangleRow = Int8Array;
+
+interface BiggestNumberObject {
+  number: number;
+  prevIndex: number;
+}
 
 const extractString = (inputString: string): string => {
   return inputString.substring(0, inputString.indexOf('\n'));
@@ -30,8 +44,9 @@ const assembleTriangle = (input: string): Array<Int8Array> => {
   let splitStr: any;
   let strArr: Int8Array;
   let triangle: Array<Int8Array> = [];
+  let numberOfRows: number = 15;
 
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < numberOfRows; i++) {
     // Extracting and splitting each string row
     str = extractString(input);
     splitStr = str.split(' ');
@@ -45,25 +60,71 @@ const assembleTriangle = (input: string): Array<Int8Array> => {
   }
   return triangle;
 };
+/* 
+// Top down solutions
 
-const returnBiggestNumber = (arrayInput: Int8Array): number => {
-  let biggestNumber: number = 0;
+// 1 - calculate prevIndex or prevIndex + 1
+// This one returns 1064
+const returnBiggestNumber = (input: TriangleRow, prevIndex: number): BiggestNumberObject => {
+  let largestNum: number = 0;
 
-  arrayInput.filter((num: number): number => {
-    if (num > biggestNumber) biggestNumber = num;
-    return biggestNumber;
-  })
+  // If it's the first row of the triangle
+  if (input.length == 1) return { number: input[0], prevIndex: 0 }
 
-  return biggestNumber;
+  // console.log(`${input[prevIndex]} > ${input[prevIndex + 1]} ? (${input[prevIndex] > input[prevIndex + 1]})`)
+  if (input[prevIndex + 1] > input[prevIndex]) {
+    largestNum = input[prevIndex + 1]
+    // console.log(`returning ${largestNum} on index ${prevIndex + 1}\n`)
+    return { number: largestNum, prevIndex: prevIndex + 1 };
+  } else {
+    largestNum = input[prevIndex];
+    // console.log(`returning ${largestNum} on index ${prevIndex}\n`)
+    return { number: largestNum, prevIndex: prevIndex };
+  }
 }
+
+// 2 - calculation prevIndex, prevIndex+1 and prevIndex-1 (every iteration has 3 possibilities)
+// This one returns 1088
+const returnBiggestNumber = (input: TriangleRow, prevIndex: number): BiggestNumberObject => {
+  let largestNum: number = 0;
+  let currentIndex: number = 0;
+
+  // If it's the first row of the triangle
+  if (input.length == 1) return { number: input[0], prevIndex: 0 }
+
+  // Search the adjacent numbers of the next row (index-1, index, and index+1)
+  for (let i = prevIndex - 1; i <= prevIndex + 1; i++) {
+    if (input[i] > largestNum) {
+      largestNum = input[i];
+      currentIndex = i;
+    }
+  }
+  return { number: largestNum, prevIndex: currentIndex };
+}
+ */
+
+const returnBiggestNumber = (input: TriangleRow, prevIndex: number): BiggestNumberObject => {
+  let largestNum: number = 0;
+  let currentIndex: number = 0;
+
+  // If it's the first row of the triangle
+  if (input.length == 1) return { number: input[0], prevIndex: 0 }
+
+  return { number: largestNum, prevIndex: currentIndex };
+}
+
 
 const maximumPathSum = (triangle: Triangle): number => {
   let sum: number = 0;
-  let iterator: number = 0;
+  let biggestNumber: BiggestNumberObject = {
+    number: 0,
+    prevIndex: 0
+  };
+
   for (let i = 0; i < triangle.length; i++) {
-    iterator = returnBiggestNumber(triangle[i]);
-    console.log(`Summing ${sum} + ${iterator}`)
-    sum += iterator;
+    biggestNumber = returnBiggestNumber(triangle[i], biggestNumber.prevIndex);
+    console.log(`Summing ${sum} + ${biggestNumber.number} (index ${biggestNumber.prevIndex})`)
+    sum += biggestNumber.number;
   }
   return sum;
 }

@@ -3,18 +3,19 @@ print(
 )
 
 import math
-import sys
+# import sys
 
+# This recursive algorithm is too slow, and is only good until ~ Fib(30)
 def fibonacci(num):
   if num == 1 or num == 2:
     return 1
   else:
     return (fibonacci(num - 1) + fibonacci(num - 2))
 
-total_iterations = 10
+total_iterations = 100
 
-# for i in range(total_iterations):
-#   print(fibonacci(i))
+for i in range(1, total_iterations + 1):
+  print(f'Fib({i}) is {fibonacci(i)}')
 
 # Printing the recursion limit (1000)
-print (sys.getrecursionlimit())
+# print (sys.getrecursionlimit())

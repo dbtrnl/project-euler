@@ -4,14 +4,12 @@ console.log(
 
 let answer = 0;
 let problemInput = Math.pow(2, 1000);
+problemInput = BigInt(problemInput);
 
 problemInput = problemInput.toString();
-problemInput = problemInput
-  .replace('.', '')
-  .replace(problemInput.substr(problemInput.indexOf('e')), '');
 
 for (let i = 0; i < problemInput.length; i++) {
   answer += parseInt(problemInput[i]);
 }
 
-console.log(answer);
+console.log(`The answer is ${answer}`);

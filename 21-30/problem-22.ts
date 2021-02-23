@@ -2,40 +2,41 @@
 
 import { readFileSync } from 'fs';
 
-const FILE_PATH = './assets/p022_names.txt';
-const problemInput = readFileSync(FILE_PATH).toString('utf-8');
-const testStringLower = 'abcdefghijklmnopqrstuvwxyz'
-const testStringUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-const namesArray = problemInput.replace(/"/g, '').split(',');
-
-const sortedNamesArray = namesArray.sort();
+const assembleSortedNamesArray = (input: string): string[] => {
+  const problemInput = readFileSync(input).toString('utf-8');
+  const namesArray = problemInput.replace(/"/g, '').split(',');
+  return namesArray.sort();
+}
 
 const findNameScore = (name: string): number => {
-  // let score = [];
-  let splitName = [];
-  splitName = name.split('');
+  let nameScore: number = 0;
+  let iterator: number = 0;
+  let nameArray = [];
+  nameArray = name.split('');
 
-  // parseInt in Base 36 returns the numeric code
-  splitName.forEach(char => {
-    console.log(`parsing ${char} to ${(parseInt(char, 36) - 9)}`)
-    return (parseInt(char, 36) - 9)
+  nameArray.forEach(char => {
+    iterator = parseInt(char, 36) - 9;
+    nameScore += iterator;
+    return;
   });
-
-  return 1;
+  return nameScore;
 }
 
 const main = (): void => {
   let position;
-  let score: number;
+  let finalScore: number = 0;
+  const FILE_PATH = './data/p022_names.txt';
 
-  findNameScore(testStringLower);
-  findNameScore(testStringUpper);
+  console.time();
+  const sortedNamesArray = assembleSortedNamesArray(FILE_PATH);
 
-  // for (let i = 0; i <= sortedNamesArray.length - 1; i++) {
-  //   position = i + 1;
-  //   findNameScore(sortedNamesArray[i])
-  // }
+  for (let i = 0; i <= sortedNamesArray.length - 1; i++) {
+    position = i + 1;
+    finalScore += (position * findNameScore(sortedNamesArray[i]));
+  }
+
+  console.timeEnd();
+  console.log(`Final score is ${finalScore}`);
 }
 
 main();

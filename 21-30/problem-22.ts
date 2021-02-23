@@ -3,29 +3,29 @@
 import { readFileSync } from 'fs';
 
 const assembleSortedNamesArray = (input: string): string[] => {
-  const problemInput = readFileSync(input).toString('utf-8');
-  const namesArray = problemInput.replace(/"/g, '').split(',');
+  const inputToString: string = readFileSync(input).toString('utf-8');
+  const namesArray: string[] = inputToString.replace(/"/g, '').split(',');
+
   return namesArray.sort();
 }
 
 const findNameScore = (name: string): number => {
   let nameScore: number = 0;
-  let iterator: number = 0;
-  let nameArray = [];
-  nameArray = name.split('');
+  let nameArray: string[] = name.split('');
 
   nameArray.forEach(char => {
-    iterator = parseInt(char, 36) - 9;
-    nameScore += iterator;
+    nameScore += (parseInt(char, 36) - 9)
     return;
   });
+
   return nameScore;
 }
 
 const main = (): void => {
-  let position;
+  const FILE_PATH: string = './data/p022_names.txt';
+
+  let position: number;
   let finalScore: number = 0;
-  const FILE_PATH = './data/p022_names.txt';
 
   console.time();
   const sortedNamesArray = assembleSortedNamesArray(FILE_PATH);
@@ -34,8 +34,8 @@ const main = (): void => {
     position = i + 1;
     finalScore += (position * findNameScore(sortedNamesArray[i]));
   }
-
   console.timeEnd();
+
   console.log(`Final score is ${finalScore}`);
 }
 

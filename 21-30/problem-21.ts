@@ -9,3 +9,47 @@
 
   Evaluate the sum of all the amicable numbers under 10000.
 */
+import { findAllDivisors } from '../utils';
+
+interface divisorObject {
+  divisors: Array<number>;
+  sum: number;
+}
+
+const sumOfDivisors = (divisorsArray: Array<number>): number => {
+  let result = 0;
+  for (let i = 0; i < divisorsArray.length; i++) {
+    result += divisorsArray[i];
+  }
+  return result;
+}
+
+const findAmicableNumberPairs = (number: number): void => {
+  let divisors = findAllDivisors(number);
+  let sum = sumOfDivisors(divisors);
+
+  let divisorsOfSum = findAllDivisors(sum);
+
+  if (number != sum && sumOfDivisors(divisorsOfSum) == number) {
+    console.log(`${number} and ${sum} are amicable numbers!`);
+  } else {
+    // console.log(`${number} and ${sum} are NOT amicable numbers!`);
+  }
+}
+
+const main = () => {
+  let amicableNumbersArray: Array<number> = [];
+
+  for (let i = 0; i < 10000; i++) {
+
+    // If i is present in array, don't execute this iteration
+    if (amicableNumbersArray.includes(i)) {
+      continue;
+    }
+
+    // console.log(`executing ${i}...`)
+    findAmicableNumberPairs(i);
+  }
+}
+
+main();

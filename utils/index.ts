@@ -28,6 +28,7 @@ const permutation = (n: number, k: number): number => {
   return factorial(n) / factorial(n - k);
 };
 
+// O(n) - need to refactor
 const findAllDivisors = (number: number): Array<number> => {
   let divisors: Array<number> = [];
 
@@ -38,10 +39,27 @@ const findAllDivisors = (number: number): Array<number> => {
   return divisors
 }
 
+// O(n) - need to refactor
+const findAndSumAllDivisors = (number: number): number => {
+  let divisors: Array<number> = [];
+  let sum: number = 0;
+
+  for (let i = 1; i < number; i++) {
+    if (number % i == 0) divisors.push(i);
+  }
+
+  divisors.forEach(number => {
+    sum += number;
+  })
+
+  return sum
+}
+
 export {
   factorial,
   combinationGeneral,
   combination,
   permutation,
-  findAllDivisors
+  findAllDivisors,
+  findAndSumAllDivisors
 };

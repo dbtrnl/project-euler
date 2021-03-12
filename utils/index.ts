@@ -28,4 +28,20 @@ const permutation = (n: number, k: number): number => {
   return factorial(n) / factorial(n - k);
 };
 
-export { factorial, combinationGeneral, combination, permutation };
+const findAllDivisors = (number: number): Array<number> => {
+  let divisors: Array<number> = [];
+
+  for (let i = 1; i < number; i++) {
+    if (number % i == 0) divisors.push(i);
+  }
+
+  return divisors
+}
+
+export {
+  factorial,
+  combinationGeneral,
+  combination,
+  permutation,
+  findAllDivisors
+};

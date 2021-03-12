@@ -4,3 +4,5 @@ node_modules
 
 # File extensions
 *.test.js
+*.test.ts
+*.test.py

@@ -10,31 +10,23 @@
   Evaluate the sum of all the amicable numbers under 10000.
 */
 
-import { findAllDivisors } from '../utils';
+import { findAndSumAllDivisors } from '../utils';
 
 interface amicableNumberInterface {
   isAmicable: boolean;
   pair: number[] | null;
 }
 
-const sumOfDivisors = (divisorsArray: number[]): number => {
-  let sum = 0;
-  for (let i = 0; i < divisorsArray.length; i++) {
-    sum += divisorsArray[i];
-  }
-  return sum;
-}
+const isAmicableNumber = (inputNum: number): amicableNumberInterface => {
 
-const isAmicableNumber = (number: number): amicableNumberInterface => {
-  let divisors = findAllDivisors(number);
-  let sum = sumOfDivisors(divisors);
+  let firstNum = findAndSumAllDivisors(inputNum);
+  let secondNum = findAndSumAllDivisors(firstNum);
 
-  let divisorsOfSum = findAllDivisors(sum);
-
-  if (number != sum && sumOfDivisors(divisorsOfSum) == number) {
+  // If amicable number pair was found
+  if (inputNum != firstNum && secondNum == inputNum) {
     return {
       isAmicable: true,
-      pair: [number, sum]
+      pair: [inputNum, firstNum]
     }
   } else {
     return {
@@ -44,26 +36,29 @@ const isAmicableNumber = (number: number): amicableNumberInterface => {
   }
 }
 
-const main = () => {
-  let amicableNumbersArray: number[] = [];
-  let answer: number = 0;
+const findAmicableNumbersUnder = (maxLimit: number): Array<number> => {
+  let array: number[] = [];
 
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < maxLimit; i++) {
 
     // If i was already calculated, skip this iteration;
-    if (amicableNumbersArray.includes(i)) continue;
+    if (array.includes(i)) continue;
 
     let iterator = isAmicableNumber(i);
 
     // If an amicable number pair was found
     if (iterator.isAmicable) {
       iterator.pair?.forEach(number => {
-        amicableNumbersArray.push(number);
+        array.push(number);
       });
     }
   }
+  return array;
+}
 
-  console.log(`Amicable Numbers found: ${amicableNumbersArray}`)
+const main = (): void => {
+  const amicableNumbersArray = findAmicableNumbersUnder(10000);
+  let answer: number = 0;
 
   // Summing everything
   amicableNumbersArray.forEach(number => {

@@ -9,47 +9,68 @@
 
   Evaluate the sum of all the amicable numbers under 10000.
 */
+
 import { findAllDivisors } from '../utils';
 
-interface divisorObject {
-  divisors: Array<number>;
-  sum: number;
+interface amicableNumberInterface {
+  isAmicable: boolean;
+  pair: number[] | null;
 }
 
-const sumOfDivisors = (divisorsArray: Array<number>): number => {
-  let result = 0;
+const sumOfDivisors = (divisorsArray: number[]): number => {
+  let sum = 0;
   for (let i = 0; i < divisorsArray.length; i++) {
-    result += divisorsArray[i];
+    sum += divisorsArray[i];
   }
-  return result;
+  return sum;
 }
 
-const findAmicableNumberPairs = (number: number): void => {
+const isAmicableNumber = (number: number): amicableNumberInterface => {
   let divisors = findAllDivisors(number);
   let sum = sumOfDivisors(divisors);
 
   let divisorsOfSum = findAllDivisors(sum);
 
   if (number != sum && sumOfDivisors(divisorsOfSum) == number) {
-    console.log(`${number} and ${sum} are amicable numbers!`);
+    return {
+      isAmicable: true,
+      pair: [number, sum]
+    }
   } else {
-    // console.log(`${number} and ${sum} are NOT amicable numbers!`);
+    return {
+      isAmicable: false,
+      pair: null
+    }
   }
 }
 
 const main = () => {
-  let amicableNumbersArray: Array<number> = [];
+  let amicableNumbersArray: number[] = [];
+  let answer: number = 0;
 
   for (let i = 0; i < 10000; i++) {
 
-    // If i is present in array, don't execute this iteration
-    if (amicableNumbersArray.includes(i)) {
-      continue;
-    }
+    // If i was already calculated, skip this iteration;
+    if (amicableNumbersArray.includes(i)) continue;
 
-    // console.log(`executing ${i}...`)
-    findAmicableNumberPairs(i);
+    let iterator = isAmicableNumber(i);
+
+    // If an amicable number pair was found
+    if (iterator.isAmicable) {
+      iterator.pair?.forEach(number => {
+        amicableNumbersArray.push(number);
+      });
+    }
   }
+
+  console.log(`Amicable Numbers found: ${amicableNumbersArray}`)
+
+  // Summing everything
+  amicableNumbersArray.forEach(number => {
+    answer += number;
+  });
+
+  console.log(`The answer is ${answer}`);
 }
 
 main();

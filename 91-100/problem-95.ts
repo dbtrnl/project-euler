@@ -17,7 +17,10 @@
   Find the smallest member of the longest amicable chain with no element exceeding one million.
 */
 
-import { findAndSumAllDivisors } from '../utils'
+import {
+  findAndSumAllDivisors,
+  findAndSumAllDivisorsSqrt
+} from '../utils'
 
 interface amicableChainObject {
   number: number;
@@ -27,11 +30,11 @@ interface amicableChainObject {
 
 const findAmicableChain = (number: number, limit: number): amicableChainObject => {
   let amicableChain: number[] = [number];
-  let currentNum: number = findAndSumAllDivisors(number);
+  let currentNum: number = findAndSumAllDivisorsSqrt(number);
 
   while (!amicableChain.includes(currentNum) && currentNum <= limit) {
     amicableChain.push(currentNum)
-    currentNum = findAndSumAllDivisors(currentNum);
+    currentNum = findAndSumAllDivisorsSqrt(currentNum);
   }
 
   return {
@@ -42,7 +45,7 @@ const findAmicableChain = (number: number, limit: number): amicableChainObject =
 }
 
 const main = () => {
-  console.time('Main() total execution time');
+  console.time('Loop total execution time');
   let longestChain: amicableChainObject = {
     number: 0,
     chain: [],
@@ -51,14 +54,36 @@ const main = () => {
 
   // Longest chain below 10.000 = 3594 - 87 numbers
 
-  for (let i = 1; i < 10000; i++) {
+  for (let i = 1; i < 203035; i++) {
     let iterator = findAmicableChain(i, 1000000);
     if (iterator.chainLength > longestChain.chainLength) {
       longestChain = iterator;
-      console.log(`Longest chain so far: ${longestChain.chainLength}, number ${longestChain.number}`);
+      // console.log(longestChain)
+      console.log(`Longest chain so far: ${longestChain.chainLength}, for number ${longestChain.number}`);
     }
   }
-  console.timeEnd('Main() total execution time')
+  console.timeEnd('Loop total execution time')
+
+  console.log(longestChain)
+  console.log(longestChain.chain[longestChain.chainLength - 2]);
 }
 
-main();
+// main();
+
+// (() => {
+//   for (let i = 1; i <= 220; i++) {
+//     let teste = findAndSumAllDivisorsSqrt(i);
+//     console.log(`Sum of divisors of ${i} - ${teste}`);
+//   }
+// })()
+
+// (() => {
+//   let i = 220;
+//   let teste = findAndSumAllDivisorsSqrt(i);
+//   console.log(`Sum of divisors of ${i} - ${teste}`);
+// })()
+
+(() => {
+  let teste = findAmicableChain(12496, 1000000);
+  console.log(teste);
+})()

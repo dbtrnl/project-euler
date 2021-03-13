@@ -19,20 +19,46 @@
 
 import { findAndSumAllDivisors } from '../utils'
 
-(() => {
-  const findAmicableChain = (number: number, limit: number) => {
-    let amicableChain: number[] = [number];
-    let currentNum: number = findAndSumAllDivisors(number);
+interface amicableChainObject {
+  number: number;
+  chain: number[];
+  chainLength: number
+}
 
-    while (!amicableChain.includes(currentNum) && currentNum <= limit) {
-      amicableChain.push(currentNum)
-      currentNum = findAndSumAllDivisors(currentNum);
-    }
+const findAmicableChain = (number: number, limit: number): amicableChainObject => {
+  let amicableChain: number[] = [number];
+  let currentNum: number = findAndSumAllDivisors(number);
 
-    console.log(`Amicable chain length for ${number}: ${amicableChain.length}\n`);
+  while (!amicableChain.includes(currentNum) && currentNum <= limit) {
+    amicableChain.push(currentNum)
+    currentNum = findAndSumAllDivisors(currentNum);
   }
+
+  return {
+    number: number,
+    chain: amicableChain,
+    chainLength: amicableChain.length
+  }
+}
+
+const main = () => {
+  console.time('Main() total execution time');
+  let longestChain: amicableChainObject = {
+    number: 0,
+    chain: [],
+    chainLength: 0
+  };
+
+  // Longest chain below 10.000 = 3594 - 87 numbers
 
   for (let i = 1; i < 10000; i++) {
-    findAmicableChain(i, 1000000);
+    let iterator = findAmicableChain(i, 1000000);
+    if (iterator.chainLength > longestChain.chainLength) {
+      longestChain = iterator;
+      console.log(`Longest chain so far: ${longestChain.chainLength}, number ${longestChain.number}`);
+    }
   }
-})()
+  console.timeEnd('Main() total execution time')
+}
+
+main();

@@ -7,6 +7,7 @@
   - Or try [different approaches](https://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/)
 - **Problem 18/67** - It uses Dynamic Programming (breaking problem into subproblems)
   - See [these approaches](https://www.mathblog.dk/project-euler-18/), also see [optimal substructures](https://en.wikipedia.org/wiki/Optimal_substructure), graph theory and greedy algorithms.
+- **Problem 21** - [Amicable numbers](https://primes.utm.edu/glossary/page.php?sort=AmicableNumber)
 - **Problem 22** - Using [Base36](https://en.wikipedia.org/wiki/Base36) to find the numeric position of each char.
 
 #### Notes

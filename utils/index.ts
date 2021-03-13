@@ -35,7 +35,18 @@ const findAllDivisors = (number: number): Array<number> => {
   for (let i = 1; i < number; i++) {
     if (number % i == 0) divisors.push(i);
   }
+  return divisors
+}
 
+const findAllDivisorsSqrt = (number: number): Array<number> => {
+  let divisors: Array<number> = [];
+
+  for (let i = 1; i < Math.sqrt(number); i++) {
+    if (number % i == 0) {
+      divisors.push(i);
+      divisors.push(number / i);
+    }
+  }
   return divisors
 }
 
@@ -51,6 +62,29 @@ const findAndSumAllDivisors = (number: number): number => {
   divisors.forEach(number => {
     sum += number;
   })
+  return sum
+}
+
+const findAndSumAllDivisorsSqrt = (number: number): number => {
+  let divisors: Array<number> = [];
+  let sum: number = 0;
+
+  if (number == 1) return 1;
+
+  for (let i = 1; i < Math.sqrt(number); i++) {
+
+    // If i = 1, doesn't push number itself to divisors array
+    if (number % i == 0 && i == 1) {
+      divisors.push(i);
+    } else if (number % i == 0) {
+      divisors.push(i);
+      divisors.push(number / i);
+    }
+  }
+
+  divisors.forEach(number => {
+    sum += number;
+  });
 
   return sum
 }
@@ -61,5 +95,7 @@ export {
   combination,
   permutation,
   findAllDivisors,
-  findAndSumAllDivisors
+  findAllDivisorsSqrt,
+  findAndSumAllDivisors,
+  findAndSumAllDivisorsSqrt
 };

@@ -116,6 +116,27 @@ const isPrime = (num: number): number | boolean => {
   return num;
 };
 
+const isNumberPalindrome = (input: number): number | boolean => {
+
+  let num: string = input.toString();
+  let inverseNum: string[] = [];
+  let register: string = '';
+  let revNum: string = '';
+
+  let numArr: string[] = [...num];
+
+  for (let k = 0; k <= num.length - 1; k++) {
+    register = numArr.pop()!;
+    inverseNum.push(register);
+  }
+
+  revNum = inverseNum.join(',').replace(/,/g, '');
+
+  if (num == revNum) return true;
+  
+  return false;
+};
+
 export {
   factorial,
   combinationGeneral,
@@ -126,5 +147,6 @@ export {
   findAndSumAllDivisors,
   findAndSumAllDivisorsSqrt,
   findAllPrimesSmallerThan,
-  isPrime
+  isPrime,
+  isNumberPalindrome
 };

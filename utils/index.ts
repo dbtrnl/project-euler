@@ -89,6 +89,33 @@ const findAndSumAllDivisorsSqrt = (number: number): number => {
   return sum
 }
 
+const findAllPrimesSmallerThan = (limit: number): Array<number> => {
+  let iterator: number = 0;
+  let primeArray: number[] = [];
+
+  while (iterator < limit) {
+    if (isPrime(iterator)) primeArray.push(iterator);
+    iterator++;
+  }
+  return primeArray;
+}
+
+const isPrime = (num: number): number | boolean => {
+  if (num <= 1) return false;
+
+  // 2 and 3 are both primes
+  if (num <= 3) return num;
+
+  // Research this property of primes... Every prime is odd, but what about %3?
+  if (num % 2 == 0 || num % 3 == 0) return false;
+
+  for (let i = 5; i * i <= num; i = i + 6) {
+    if (num % i == 0 || num % (i + 2) == 0) return false;
+  }
+  // console.log(`Number ${num} is prime`);
+  return num;
+};
+
 export {
   factorial,
   combinationGeneral,
@@ -97,5 +124,7 @@ export {
   findAllDivisors,
   findAllDivisorsSqrt,
   findAndSumAllDivisors,
-  findAndSumAllDivisorsSqrt
+  findAndSumAllDivisorsSqrt,
+  findAllPrimesSmallerThan,
+  isPrime
 };

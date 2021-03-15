@@ -100,6 +100,17 @@ const findAllPrimesSmallerThan = (limit: number): Array<number> => {
   return primeArray;
 }
 
+const findNthPrime = (nthPrime: number): number => {
+  let iterator: number = 0;
+  let primeArray: number[] = [];
+
+  while (primeArray.length < nthPrime) {
+    if (isPrime(iterator)) primeArray.push(iterator);
+    iterator++;
+  }
+  return primeArray[nthPrime - 1];
+}
+
 const isPrime = (num: number): number | boolean => {
   if (num <= 1) return false;
 
@@ -133,7 +144,7 @@ const isNumberPalindrome = (input: number): number | boolean => {
   revNum = inverseNum.join(',').replace(/,/g, '');
 
   if (num == revNum) return true;
-  
+
   return false;
 };
 
@@ -147,6 +158,7 @@ export {
   findAndSumAllDivisors,
   findAndSumAllDivisorsSqrt,
   findAllPrimesSmallerThan,
+  findNthPrime,
   isPrime,
   isNumberPalindrome
 };

@@ -1,13 +1,6 @@
-console.log(
-  '-----\nThe sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.\nFind the sum of all the primes below two million.\n-----\n'
-);
-
-/* 
-  Research
-  Source - https://byjus.com/maths/prime-numbers/
-    - Except 2, all other prime numbers are odd. In other words, we can say that 2 is the only even prime number.
-  Optimization
-  See - https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr
+/*
+  Problem 10 - Summation of primes
+  The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.\nFind the sum of all the primes below two million
 */
 
 /* 
@@ -37,7 +30,7 @@ const func2 = (number) => {
 */
 
 /*
-**Performance**
+**Performance for prime-checking algorithm**
 
 Original (func1 above)
   Takes ~51s to execute to 200 thousand primes
@@ -51,7 +44,10 @@ With check of %2 and %3 (func 2 above)
     2:26.069min - 200 million
 */
 
-const findIfNumberIsPrime = (number) => {
+/*
+  // Func 3 - not optimized, takes a long time to calculate
+
+const findIfNumberIsPrime = (number: number) => {
   if (number <= 1) return false;
   if (number <= 3) {
     // console.log(`Number ${number} is prime`);
@@ -60,7 +56,7 @@ const findIfNumberIsPrime = (number) => {
   // Research this property of primes... Every prime is odd, but what about %3?
   if (number % 2 == 0 || number % 3 == 0) return false;
 
-  for (i = 5; i * i <= number; i = i + 6) {
+  for (let i = 5; i * i <= number; i = i + 6) {
     if (number % i == 0 || number % (i + 2) == 0) return false;
   }
   // console.log(`Number ${number} is prime`);
@@ -84,3 +80,25 @@ while (iterator < 200000000) {
 }
 console.timeEnd('time elapsed iterating');
 console.log(primeNumberSum);
+ */
+
+/* 
+  func 4 - Last optimization
+*/
+
+import { findAllPrimesSmallerThan } from '../utils';
+
+(() => {
+  const main = (): void => {
+    console.time('Main execution time:');
+    const MAX_PRIME_VALUE = 2000000;
+    const primeArr = findAllPrimesSmallerThan(MAX_PRIME_VALUE);
+
+    const answer = primeArr.reduce((sum, number) => {
+      return sum += number;
+    });
+    console.timeEnd('Main execution time:');
+    console.log(`The sum of all primes below ${MAX_PRIME_VALUE} is ${answer}`);
+  }
+  main();
+})()

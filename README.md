@@ -2,6 +2,8 @@
 
 #### Further reading
 
+
+- **Problem 10** - About [primes](https://byjus.com/maths/prime-numbers/). Also on how to [optimize](https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr)
 - **Problem 14** (Collatz Problem) - [The Collatz Conjecture](https://medium.com/cantors-paradise/the-collatz-conjecture-some-shocking-results-from-180-000-iterations-7fea130d0377)
 - **Problem 15** - Try different approaches such as [Pascal Triangle](https://researchideas.ca/wmt/c6b3.html)
   - Or try [different approaches](https://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/)

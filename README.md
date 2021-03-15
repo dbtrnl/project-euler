@@ -18,6 +18,10 @@
 
 #### Benchmarking
 
+- Problem 7
+  - First solution takes ~11 seconds to execute
+  - Refactored code takes ~10 miliseconds (~1000 times faster)
+
 - Problem 25 (with typescript):
   - Calculating the first Fibonacci Number to have N digits.
   ```bash

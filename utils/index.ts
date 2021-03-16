@@ -28,8 +28,30 @@ const permutation = (n: number, k: number): number => {
   return factorial(n) / factorial(n - k);
 };
 
-// O(n) - need to refactor
+/* 
+  Takes O(sqrt(n)) to execute
+*/
 const findAllDivisors = (number: number): Array<number> => {
+  // console.log(`Calculating divisors of ${number}...`);
+  let divisors: Array<number> = [];
+
+  for (let i = 1; i <= Math.sqrt(number); i++) {
+    if (number % i == 0) {
+      if (number / i == i) divisors.push(i);
+      else {
+        divisors.push(i);
+        divisors.push(number / i);
+      }
+    }
+  }
+  return divisors
+}
+
+/* 
+  Takes O(n) to execute
+*/
+const findAllDivisorsLinearComplexity = (number: number): Array<number> => {
+  // console.log(`Calculating divisors of ${number}...`);
   let divisors: Array<number> = [];
 
   for (let i = 1; i < number; i++) {
@@ -154,6 +176,7 @@ export {
   combination,
   permutation,
   findAllDivisors,
+  findAllDivisorsLinearComplexity,
   findAllDivisorsSqrt,
   findAndSumAllDivisors,
   findAndSumAllDivisorsSqrt,

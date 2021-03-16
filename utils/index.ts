@@ -5,17 +5,12 @@ interface CollatzSequenceObject {
 
 export const factorial = (number: number): number => {
   let result = 0;
-
-  if (number == 1) {
-    return 1;
-  }
+  if (number == 1) return 1;
+  if (number == 2) return 2;
 
   for (let i = number; i > 1; i--) {
-    if (i == number) {
-      result += i * (i - 1);
-    } else {
-      result *= i - 1;
-    }
+    if (i == number) result += i * (i - 1);
+    else result *= i - 1;
   }
   return result;
 };
@@ -38,24 +33,37 @@ export const permutation = (n: number, k: number): number => {
 */
 export const findAllDivisors = (number: number): Array<number> => {
   // console.log(`Calculating divisors of ${number}...`);
-  let divisors: Array<number> = [];
+  let divisors: Array<number> = [1];
+
+  if (number == 1) return divisors;
 
   for (let i = 1; i <= Math.sqrt(number); i++) {
     if (number % i == 0) {
-      if (number / i == i) divisors.push(i);
+      if (number / i == i || i == 1) divisors.push(i);
       else {
         divisors.push(i);
         divisors.push(number / i);
       }
     }
   }
+  // console.log(`divisors for ${number}`, divisors);
   return divisors
+}
+
+export const findAndSumAllDivisors = (number: number): number => {
+
+  let sum: number = findAllDivisors(number)
+    .reduce((total, number) => {
+      return total += number;
+    });
+
+  return sum
 }
 
 /* 
   Takes O(n) to execute
 */
-export const findAllDivisorsLinearComplexity = (number: number): Array<number> => {
+export const findAllDivisorsLinear = (number: number): Array<number> => {
   // console.log(`Calculating divisors of ${number}...`);
   let divisors: Array<number> = [];
 
@@ -65,54 +73,22 @@ export const findAllDivisorsLinearComplexity = (number: number): Array<number> =
   return divisors
 }
 
-export const findAllDivisorsSqrt = (number: number): Array<number> => {
-  let divisors: Array<number> = [];
+/* 
+  Takes O(n) to execute
+*/
 
-  for (let i = 1; i < Math.sqrt(number); i++) {
-    if (number % i == 0) {
-      divisors.push(i);
-      divisors.push(number / i);
-    }
-  }
-  return divisors
-}
-
-// O(n) - need to refactor
-export const findAndSumAllDivisors = (number: number): number => {
-  let divisors: Array<number> = [];
-  let sum: number = 0;
-
-  for (let i = 1; i < number; i++) {
-    if (number % i == 0) divisors.push(i);
-  }
-
-  divisors.forEach(number => {
-    sum += number;
-  })
-  return sum
-}
-
-export const findAndSumAllDivisorsSqrt = (number: number): number => {
+export const findAndSumAllDivisorsLinear = (number: number): number => {
   let divisors: Array<number> = [];
   let sum: number = 0;
 
   if (number == 1) return 1;
 
-  for (let i = 1; i < Math.sqrt(number); i++) {
-
-    // If i = 1, doesn't push number itself to divisors array
-    if (number % i == 0 && i == 1) {
-      divisors.push(i);
-    } else if (number % i == 0) {
-      divisors.push(i);
-      divisors.push(number / i);
-    }
+  for (let i = 1; i < number; i++) {
+    if (number % i == 0) divisors.push(i);
   }
-
   divisors.forEach(number => {
     sum += number;
   });
-
   return sum
 }
 

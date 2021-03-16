@@ -1,4 +1,9 @@
-const factorial = (number: number): number => {
+interface CollatzSequenceObject {
+  number: number;
+  sequence: number[];
+}
+
+export const factorial = (number: number): number => {
   let result = 0;
 
   if (number == 1) {
@@ -16,22 +21,22 @@ const factorial = (number: number): number => {
 };
 
 // See https://betterexplained.com/articles/easy-permutations-and-combinations/
-const combinationGeneral = (n: number, k: number): number => {
+export const combinationGeneral = (n: number, k: number): number => {
   return factorial(n) / (factorial(n - k) * factorial(k));
 };
 
-const combination = (n: number, k: number): number => {
+export const combination = (n: number, k: number): number => {
   return permutation(n, k) / factorial(k);
 };
 
-const permutation = (n: number, k: number): number => {
+export const permutation = (n: number, k: number): number => {
   return factorial(n) / factorial(n - k);
 };
 
 /* 
   Takes O(sqrt(n)) to execute
 */
-const findAllDivisors = (number: number): Array<number> => {
+export const findAllDivisors = (number: number): Array<number> => {
   // console.log(`Calculating divisors of ${number}...`);
   let divisors: Array<number> = [];
 
@@ -50,7 +55,7 @@ const findAllDivisors = (number: number): Array<number> => {
 /* 
   Takes O(n) to execute
 */
-const findAllDivisorsLinearComplexity = (number: number): Array<number> => {
+export const findAllDivisorsLinearComplexity = (number: number): Array<number> => {
   // console.log(`Calculating divisors of ${number}...`);
   let divisors: Array<number> = [];
 
@@ -60,7 +65,7 @@ const findAllDivisorsLinearComplexity = (number: number): Array<number> => {
   return divisors
 }
 
-const findAllDivisorsSqrt = (number: number): Array<number> => {
+export const findAllDivisorsSqrt = (number: number): Array<number> => {
   let divisors: Array<number> = [];
 
   for (let i = 1; i < Math.sqrt(number); i++) {
@@ -73,7 +78,7 @@ const findAllDivisorsSqrt = (number: number): Array<number> => {
 }
 
 // O(n) - need to refactor
-const findAndSumAllDivisors = (number: number): number => {
+export const findAndSumAllDivisors = (number: number): number => {
   let divisors: Array<number> = [];
   let sum: number = 0;
 
@@ -87,7 +92,7 @@ const findAndSumAllDivisors = (number: number): number => {
   return sum
 }
 
-const findAndSumAllDivisorsSqrt = (number: number): number => {
+export const findAndSumAllDivisorsSqrt = (number: number): number => {
   let divisors: Array<number> = [];
   let sum: number = 0;
 
@@ -111,7 +116,7 @@ const findAndSumAllDivisorsSqrt = (number: number): number => {
   return sum
 }
 
-const findAllPrimesSmallerThan = (limit: number): Array<number> => {
+export const findAllPrimesSmallerThan = (limit: number): Array<number> => {
   let iterator: number = 0;
   let primeArray: number[] = [];
 
@@ -122,7 +127,7 @@ const findAllPrimesSmallerThan = (limit: number): Array<number> => {
   return primeArray;
 }
 
-const findNthPrime = (nthPrime: number): number => {
+export const findNthPrime = (nthPrime: number): number => {
   let iterator: number = 0;
   let primeArray: number[] = [];
 
@@ -133,7 +138,39 @@ const findNthPrime = (nthPrime: number): number => {
   return primeArray[nthPrime - 1];
 }
 
-const isPrime = (num: number): number | boolean => {
+export const findCollatzSequenceOf = (startNumber: number): CollatzSequenceObject => {
+  let sequence = [startNumber];
+  let number = startNumber;
+
+  while (number > 1) {
+    if (number % 2 == 0) number = number / 2;
+    else number = 3 * number + 1;
+    sequence.push(number);
+  }
+
+  return {
+    number: startNumber,
+    sequence: sequence,
+  };
+};
+
+export const findLongestCollatzSequenceUnder = (limit: number): CollatzSequenceObject => {
+  let longestSequence: CollatzSequenceObject = {
+    number: 0,
+    sequence: [],
+  }
+
+  for (let i = 1; i < limit; i++) {
+    let currentSequence = findCollatzSequenceOf(i);
+    if (currentSequence.sequence.length > longestSequence.sequence.length) {
+      longestSequence = currentSequence;
+      console.log(`Longest Collatz sequence so far: ${longestSequence.sequence.length} terms, starting at number ${longestSequence.number}`);
+    }
+  }
+  return longestSequence;
+}
+
+export const isPrime = (num: number): number | boolean => {
   if (num <= 1) return false;
 
   // 2 and 3 are both primes
@@ -149,7 +186,7 @@ const isPrime = (num: number): number | boolean => {
   return num;
 };
 
-const isNumberPalindrome = (input: number): number | boolean => {
+export const isNumberPalindrome = (input: number): number | boolean => {
 
   let num: string = input.toString();
   let inverseNum: string[] = [];
@@ -168,20 +205,4 @@ const isNumberPalindrome = (input: number): number | boolean => {
   if (num == revNum) return true;
 
   return false;
-};
-
-export {
-  factorial,
-  combinationGeneral,
-  combination,
-  permutation,
-  findAllDivisors,
-  findAllDivisorsLinearComplexity,
-  findAllDivisorsSqrt,
-  findAndSumAllDivisors,
-  findAndSumAllDivisorsSqrt,
-  findAllPrimesSmallerThan,
-  findNthPrime,
-  isPrime,
-  isNumberPalindrome
 };

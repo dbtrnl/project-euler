@@ -37,7 +37,7 @@ export const findAllDivisors = (number: number): Array<number> => {
 
   if (number == 1) return divisors;
 
-  for (let i = 1; i <= Math.sqrt(number); i++) {
+  for (let i = 2; i <= Math.sqrt(number); i++) {
     if (number % i == 0) {
       if (number / i == i || i == 1) divisors.push(i);
       else {

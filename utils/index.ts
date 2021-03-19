@@ -31,7 +31,7 @@ export const permutation = (n: number, k: number): number => {
 /* 
   Takes O(sqrt(n)) to execute
 */
-export const findAllDivisors = (number: number): Array<number> => {
+export const findAllProperDivisors = (number: number): Array<number> => {
   // console.log(`Calculating divisors of ${number}...`);
   let divisors: Array<number> = [1];
 
@@ -50,9 +50,9 @@ export const findAllDivisors = (number: number): Array<number> => {
   return divisors
 }
 
-export const findAndSumAllDivisors = (number: number): number => {
+export const findAndSumAllProperDivisors = (number: number): number => {
 
-  let sum: number = findAllDivisors(number)
+  let sum: number = findAllProperDivisors(number)
     .reduce((total, number) => {
       return total += number;
     });

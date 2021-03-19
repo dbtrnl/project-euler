@@ -10,7 +10,7 @@
   Evaluate the sum of all the amicable numbers under 10000.
 */
 
-import { findAndSumAllDivisors } from '../utils';
+import { findAndSumAllProperDivisors } from '../utils';
 
 interface amicableNumberObject {
   isAmicable: boolean;
@@ -20,8 +20,8 @@ interface amicableNumberObject {
 (() => {
   const isAmicableNumber = (inputNum: number): amicableNumberObject => {
 
-    let firstNum = findAndSumAllDivisors(inputNum);
-    let secondNum = findAndSumAllDivisors(firstNum);
+    let firstNum = findAndSumAllProperDivisors(inputNum);
+    let secondNum = findAndSumAllProperDivisors(firstNum);
 
     // If amicable number pair was found
     if (inputNum != firstNum && secondNum == inputNum) {

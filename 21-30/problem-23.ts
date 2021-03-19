@@ -13,3 +13,35 @@
 
   Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 */
+
+import { findAndSumAllProperDivisors, findAllProperDivisors } from '../utils';
+
+(() => {
+
+  const isNumberDeficientPerfectOrAbundant = (number: number) => {
+    let sumOfDivisors = findAndSumAllProperDivisors(number);
+
+    if (sumOfDivisors === number) return 'perfect';
+    if (sumOfDivisors > number) return 'abundant';
+    if (sumOfDivisors < number) return 'deficient';
+  }
+
+  const findAbundantNumbersUntil = (upperLimit: number): number[] => {
+    let abundantNumbersArray: number[] = [];
+
+    for (let i = 1; i <= upperLimit; i++) {
+      if (isNumberDeficientPerfectOrAbundant(i) === 'abundant') abundantNumbersArray.push(i);
+    }
+    return abundantNumbersArray;
+  }
+
+  const main = () => {
+    const UPPER_LIMIT = 28123;
+
+    const array = findAbundantNumbersUntil(UPPER_LIMIT);
+
+    // 6965 abundant numbers <= 28123
+    console.log(array.length);
+  }
+  main();
+})()

@@ -14,10 +14,9 @@
   Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 */
 
-import { findAndSumAllProperDivisors, findAllProperDivisors } from '../utils';
+import { findAndSumAllProperDivisors } from '../utils';
 
 (() => {
-
   const isNumberDeficientPerfectOrAbundant = (number: number) => {
     let sumOfDivisors = findAndSumAllProperDivisors(number);
 
@@ -35,23 +34,23 @@ import { findAndSumAllProperDivisors, findAllProperDivisors } from '../utils';
     return abundantNumbersArray;
   }
 
-  const returnAllSumsOfTwoAbundantNumbers = (abundantNumberArray: number[]): number[] => {
-    console.time('abundant numbers map');
-
+  const returnAllSumsOfTwoAbundantNumbers = (abundantNumberArray: number[], upperLimit: number): number[] => {
     let finalArray: number[] = [];
 
     abundantNumberArray.map(number => {
+      let currentNum = 0;
+
       for (let i = 0; i < abundantNumberArray.length - 1; i++) {
-        // console.log(`summing ${number} + ${abundantNumberArray[i]}`);
-        let currentNum = number + abundantNumberArray[i];
-        if (currentNum > 28123) continue;
+        currentNum = number + abundantNumberArray[i];
+        
+        if (currentNum > upperLimit) continue;
+
         if (!finalArray.includes(currentNum)) {
           console.log(`${currentNum} is not in the array`);
           finalArray.push(currentNum);
         }
       }
     });
-    console.timeEnd('abundant numbers map');
     return finalArray;
   }
 
@@ -59,21 +58,23 @@ import { findAndSumAllProperDivisors, findAllProperDivisors } from '../utils';
     const UPPER_LIMIT = 28123;
 
     const abundantNumbers = findAbundantNumbersUntil(UPPER_LIMIT);
-    /* 
-      let unevenAbundantNumbers = abundantNumbers.filter(number => {
-        if (number % 2 != 0) return number;
-        else return;
-      });
-    
-      // Only 62 uneven numbers out of 6965 abundant numbers <= 28123
-      console.log('uneven abundant numbers:', unevenAbundantNumbers);
-    */
-    const sums = returnAllSumsOfTwoAbundantNumbers(abundantNumbers);
-    console.log(sums.length);
 
-    // 6965 abundant numbers <= 28123
-    // console.log('abundant numbers:', abundantNumbers);
-    console.log(findAllProperDivisors(24))
+    console.time('time elapsed summing abundant numbers');
+    const sums = returnAllSumsOfTwoAbundantNumbers(abundantNumbers, UPPER_LIMIT);
+    console.timeEnd('time elapsed summing abundant numbers');
+
+    let numbersNotWrittenAsSumOfTwoAbundantNumbers: number[] = [];
+
+    for (let i = 0; i < sums.length - 1; i++) {
+      if (!sums.includes(i)) {
+        console.log(`${i}`);
+        numbersNotWrittenAsSumOfTwoAbundantNumbers.push(i);
+      }
+    }
+    let answer = numbersNotWrittenAsSumOfTwoAbundantNumbers.reduce((sum, number) => {
+      return sum += number;
+    });
+    console.log(`Answer is ${answer}`);
   }
   main();
 })()

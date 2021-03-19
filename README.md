@@ -25,6 +25,8 @@
 
 - Some exercises used typescript/ts-node, hence the packages.json
 - Some JS/TS files use IIFEs (Immediately Invoked Function Expression) to avoid function and variable collision
+- **Problem 23**
+  - There are 6965 abundant numbers <= 28123, of which only 62 are uneven
 
 ---
 
@@ -33,6 +35,10 @@
 - Problem 7
   - First solution takes ~11 seconds to execute
   - Refactored code takes ~10 miliseconds (~1000 times faster)
+
+- Problem 23
+  - There were no significant performance chances using indexOf or includes() to iterate a large array
+  - Took ~4 min to return 26667 abundant number sums from 48.511.255 possible combinations (6965 x 6965)
 
 - Problem 25 (with typescript):
   - Calculating the first Fibonacci Number to have N digits.

@@ -14,11 +14,12 @@
 ---
 
 #### Glossary
-- **Proper Divisor** = Positive divisor of a number N, excluding N itself ([source](https://mathworld.wolfram.com/ProperDivisor.html))
+- **Proper Divisor** - Positive divisor of a number N, excluding N itself ([source](https://mathworld.wolfram.com/ProperDivisor.html))
   ```plaintext
   Positive divisors of 3 = [1]
   Positive divisors of 8 = [1, 2, 4]
   ```
+- **Identity** - An identity is a mathematical relationship equating one quantity to another (which may initially appear to be different). ([source](https://mathworld.wolfram.com/Identity.html))
 ---
 
 #### Notes

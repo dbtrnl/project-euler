@@ -11,6 +11,10 @@
 - **Problem 21** - [Amicable numbers](https://primes.utm.edu/glossary/page.php?sort=AmicableNumber)
 - **Problem 22** - Using [Base36](https://en.wikipedia.org/wiki/Base36) to find the numeric position of each char.
 
+**Primes**
+[Polinomial expressions that generate primes](https://www.ime.unicamp.br/~ftorres/ENSINO/MONOGRAFIAS/Antonio_TN17M1.pdf)
+[A005846 on OEIS](https://oeis.org/A005846) (See problem 27).
+
 ---
 
 #### Glossary

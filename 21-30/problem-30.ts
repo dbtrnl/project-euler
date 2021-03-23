@@ -19,16 +19,32 @@ Find the sum of all the numbers that can be written as the sum of fifth powers o
   const isNumberWrittenAsSumOfNPowerOfItsDigits = (number: number, power: number): boolean => {
     const numStr = number.toString().split('');
     let sum: number = 0;
+    let currentDigit: number = 0;
 
-    for (let digit in numStr) {
-      sum += Math.pow(parseInt(digit), power);
+    for (let i = 0; i < numStr.length; i++) {
+      currentDigit = parseInt(numStr[i]);
+      sum += Math.pow(currentDigit, power);
     }
+
     if (sum === number) return true;
     else return false;
   }
+
   const main = () => {
-    let teste = isNumberWrittenAsSumOfNPowerOfItsDigits(1634, 4);
-    console.log(teste);
+    const MAX_VALUE = 9999999;
+    let iterator: boolean;
+    let sum: number = 0;
+
+    for (let i = 2; i <= MAX_VALUE; i++) {
+      iterator = isNumberWrittenAsSumOfNPowerOfItsDigits(i, 5);
+      if (iterator) {
+        sum += i;
+        console.log(`Number ${i} fulfills the conditions`);
+      }
+    }
+    console.log(`The answer is ${sum}`);
   }
+  // console.time('Time elapsed on main()');
   main();
+  // console.timeEnd('Time elapsed on main()');
 })()

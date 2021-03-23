@@ -15,3 +15,20 @@ The sum of these numbers is 1634 + 8208 + 9474 = 19316.
 Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
 
 */
+(() => {
+  const isNumberWrittenAsSumOfNPowerOfItsDigits = (number: number, power: number): boolean => {
+    const numStr = number.toString().split('');
+    let sum: number = 0;
+
+    for (let digit in numStr) {
+      sum += Math.pow(parseInt(digit), power);
+    }
+    if (sum === number) return true;
+    else return false;
+  }
+  const main = () => {
+    let teste = isNumberWrittenAsSumOfNPowerOfItsDigits(1634, 4);
+    console.log(teste);
+  }
+  main();
+})()

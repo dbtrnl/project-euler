@@ -27,3 +27,27 @@
   starting with n = 0
 
 */
+
+import { isPrime } from '../utils';
+
+(() => {
+  function quadraticFormula(n: number): number {
+    // 0 <= N <= 39
+    const number = (n ** 2) + n + 41;
+    return number;
+  }
+
+  function polinomialPrimeFormula(n: number): number {
+    // 0 <= N <= 79
+    const number = (n ** 2) - (79 * n) + 1601;
+    return number;
+  }
+
+  const main = () => {
+    for (let i = 0; i <= 79; i++) {
+      const number = polinomialPrimeFormula(i);
+      console.log(`For i = ${i}, ${number} is prime ? ${isPrime(number)}`);
+    }
+  };
+  main();
+})();

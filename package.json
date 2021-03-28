@@ -36,7 +36,8 @@
             "@typescript-eslint"
         ],
         "rules": {
-            "@typescript-eslint/rule-name": "error",
+            "arrow-body-style": "off",
+            "arrow-parens": "warn",
             "max-len": "off",
             "no-console": "off",
             "no-continue": "off",

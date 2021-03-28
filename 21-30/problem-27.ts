@@ -31,23 +31,40 @@
 import { isPrime } from '../utils';
 
 (() => {
-  function quadraticFormula(n: number): number {
-    // 0 <= N <= 39
-    const number = (n ** 2) + n + 41;
-    return number;
-  }
-
-  function polinomialPrimeFormula(n: number): number {
-    // 0 <= N <= 79
-    const number = (n ** 2) - (79 * n) + 1601;
-    return number;
+  function problemPolinomialPrimeFormula(n: number, a: number, b: number): number {
+    return (n ** 2) + (a * n) + b;
   }
 
   const main = () => {
-    for (let i = 0; i <= 79; i++) {
-      const number = polinomialPrimeFormula(i);
-      console.log(`For i = ${i}, ${number} is prime ? ${isPrime(number)}`);
+    const MIN_A = -999;
+    const MAX_A = 999;
+
+    const MIN_B = -1000;
+    const MAX_B = 1000;
+
+    const object = {
+      a: 0,
+      b: 0,
+      SequenceSize: 0,
+    };
+
+    for (let a = MIN_A; a <= MAX_A; a++) {
+      for (let b = MIN_B; b <= MAX_B; b++) {
+        let n = 0;
+        while (isPrime(problemPolinomialPrimeFormula(n, a, b))) {
+          n++;
+        }
+        if (n > object.SequenceSize) {
+          object.a = a;
+          object.b = b;
+          object.SequenceSize = n;
+          console.log(`n^2 + ${a}n + ${b} polynome produces a sequence of size ${n}`);
+        }
+      }
     }
+
+    const answer = object.a * object.b;
+    console.log(`The answer is ${answer}`);
   };
   main();
 })();

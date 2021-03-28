@@ -182,3 +182,15 @@ export const isNumberPalindrome = (input: number): number | boolean => {
 
   return false;
 };
+
+export function polinomialPrimeFormula1One(n: number): number {
+  // 0 <= N <= 39
+  const number = (n ** 2) + n + 41;
+  return number;
+}
+
+export function polinomialPrimeFormulaTwo(n: number): number {
+  // 0 <= N <= 79
+  const number = (n ** 2) - (79 * n) + 1601;
+  return number;
+}

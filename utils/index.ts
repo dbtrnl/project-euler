@@ -1,6 +1,6 @@
 interface CollatzSequenceObject {
   number: number;
-  sequence: number[];
+  sequence: Array<number>;
 }
 
 export function factorial(number: number): number {
@@ -104,7 +104,7 @@ export function findAndSumAllDivisorsLinear(number: number): number {
 }
 
 export function findAllPrimesSmallerThan(limit: number): Array<number> {
-  const primeArray: number[] = [];
+  const primeArray: Array<number> = [];
   let iterator = 0;
 
   while (iterator < limit) {
@@ -115,7 +115,7 @@ export function findAllPrimesSmallerThan(limit: number): Array<number> {
 }
 
 export function findNthPrime(nthPrime: number): number {
-  const primeArray: number[] = [];
+  const primeArray: Array<number> = [];
   let iterator = 0;
 
   while (primeArray.length < nthPrime) {
@@ -123,6 +123,24 @@ export function findNthPrime(nthPrime: number): number {
     iterator++;
   }
   return primeArray[nthPrime - 1];
+}
+
+export function findPrimesWithNDigits(digits: number): Array<number> {
+  const primeArray: Array<number> = [];
+  let upperLimitNum: string | number = '';
+  let iterator = 0;
+
+  // Defining the Max number dynamically (999 for 3 digits, etc)
+  for (let i = 0; i < digits; i++) {
+    upperLimitNum += '9';
+  }
+  upperLimitNum = parseInt(upperLimitNum, 10);
+
+  while (iterator < upperLimitNum) {
+    if (isPrime(iterator) && iterator.toString().length === digits) primeArray.push(iterator);
+    iterator++;
+  }
+  return primeArray;
 }
 
 export function findCollatzSequenceOf(startNumber: number): CollatzSequenceObject {

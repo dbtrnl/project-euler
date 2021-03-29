@@ -174,6 +174,20 @@ export function findLongestCollatzSequenceUnder(limit: number): CollatzSequenceO
   return longestSequence;
 }
 
+export function isNumberPermutationOfAnother(firstNum: number, secondNum: number): boolean {
+  const firstNumArr = firstNum.toString().split('');
+  const secondNumArr = secondNum.toString().split('');
+  let includes = true;
+
+  if (firstNumArr.length !== secondNumArr.length) return false;
+
+  firstNumArr.forEach((digit) => {
+    if (!secondNumArr.includes(digit)) includes = false;
+  });
+
+  return includes;
+}
+
 export function isNumberPalindrome(input: number): number | boolean {
   const num: string = input.toString();
   const numArr: string[] = [...num];

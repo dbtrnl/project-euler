@@ -3,6 +3,11 @@ interface CollatzSequenceObject {
   sequence: Array<number>;
 }
 
+interface PermutationObject {
+  number: number;
+  permutations: Array<number>;
+}
+
 export function factorial(number: number): number {
   let result = 0;
   if (number === 1) return 1;
@@ -178,14 +183,41 @@ export function isNumberPermutationOfAnother(firstNum: number, secondNum: number
   const firstNumArr = firstNum.toString().split('');
   const secondNumArr = secondNum.toString().split('');
   let includes = true;
+  // console.log(`firstNumArr: ${firstNumArr}, secondNumArr: ${secondNumArr}`);
 
   if (firstNumArr.length !== secondNumArr.length) return false;
 
+  // Try a for loop + break to see impact in performance
   firstNumArr.forEach((digit) => {
     if (!secondNumArr.includes(digit)) includes = false;
   });
 
+  secondNumArr.forEach((digit) => {
+    if (!firstNumArr.includes(digit)) includes = false;
+  });
+
   return includes;
+}
+
+export function findPermutationsOfNumber(number: number, numberArray: Array<number>): PermutationObject {
+  const permutations = [];
+
+  for (let i = 0; i < numberArray.length - 1; i++) {
+    const numIterator = numberArray[i];
+
+    if (number === numIterator) continue;
+
+    const isPerm = isNumberPermutationOfAnother(number, numIterator);
+
+    if (isPerm) {
+      console.log(`${number}, ${numIterator}`);
+      permutations.push(numIterator);
+    }
+  }
+  return {
+    number,
+    permutations,
+  };
 }
 
 export function isNumberPalindrome(input: number): number | boolean {

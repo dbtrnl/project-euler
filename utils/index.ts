@@ -199,6 +199,62 @@ export function isNumberPermutationOfAnother(firstNum: number, secondNum: number
   return includes;
 }
 
+// This algorithm has viritually the same performance as the HEAP ALGORITHM below
+// Took ~2.5s for number 1234567890
+export function findAllPermutationsOfNumberRecursive(string: string): string | Array<string> {
+  if (!string || typeof string !== 'string') {
+    return 'Please enter a string';
+  }
+  if (string.length < 2) return string;
+
+  const permutationsArray = [];
+
+  for (let i = 0; i < string.length; i++) {
+    const char = string[i];
+
+    const remainingChars = string.slice(0, i) + string.slice(i + 1, string.length);
+
+    for (const perm of findAllPermutationsOfNumberRecursive(remainingChars)) {
+      permutationsArray.push(char + perm);
+    }
+  }
+  return permutationsArray;
+}
+
+// Uses HEAP'S ALGORITHM
+// Taken from https://stackoverflow.com/a/37580979/13289772
+export function findAllPermutationsOfNumber(inputNumber: number): Array<number> {
+  const numArr = inputNumber.toString().split('');
+
+  const { length } = numArr;
+  const result = [numArr.slice()];
+  const zeroArr = new Array(length).fill(0);
+  let iterator = 1;
+  let registerOne;
+  let registerTwo;
+
+  while (iterator < length) {
+    if (zeroArr[iterator] < iterator) {
+      registerOne = iterator % 2 && zeroArr[iterator];
+      registerTwo = numArr[iterator];
+
+      numArr[iterator] = numArr[registerOne];
+      numArr[registerOne] = registerTwo;
+
+      ++zeroArr[iterator];
+      iterator = 1;
+
+      result.push(numArr.slice());
+    } else {
+      zeroArr[iterator] = 0;
+      ++iterator;
+    }
+  }
+  return result.map((numberArray) => {
+    return parseInt(numberArray.join(''), 10);
+  });
+}
+
 export function findPermutationsOfNumber(number: number, numberArray: Array<number>): PermutationObject {
   const permutations = [];
 
@@ -210,7 +266,6 @@ export function findPermutationsOfNumber(number: number, numberArray: Array<numb
     const isPerm = isNumberPermutationOfAnother(number, numIterator);
 
     if (isPerm) {
-      console.log(`${number}, ${numIterator}`);
       permutations.push(numIterator);
     }
   }

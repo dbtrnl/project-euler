@@ -3,11 +3,6 @@ interface CollatzSequenceObject {
   sequence: Array<number>;
 }
 
-interface PermutationObject {
-  number: number;
-  permutations: Array<number>;
-}
-
 export function factorial(number: number): number {
   let result = 0;
   if (number === 1) return 1;
@@ -201,10 +196,10 @@ export function isNumberPermutationOfAnother(firstNum: number, secondNum: number
 
 // This algorithm has viritually the same performance as the HEAP ALGORITHM below
 // Took ~2.5s for number 1234567890
-export function findAllPermutationsOfNumberRecursive(string: string): string | Array<string> {
-  if (!string || typeof string !== 'string') {
-    return 'Please enter a string';
-  }
+// Taken from https://levelup.gitconnected.com/find-all-permutations-of-a-string-in-javascript-af41bfe072d2
+export function findAllPermutationsOfString(string: string): string | Set<string> {
+  if (!string || typeof string !== 'string') throw new Error('Please enter a string');
+
   if (string.length < 2) return string;
 
   const permutationsArray = [];
@@ -214,11 +209,12 @@ export function findAllPermutationsOfNumberRecursive(string: string): string | A
 
     const remainingChars = string.slice(0, i) + string.slice(i + 1, string.length);
 
-    for (const perm of findAllPermutationsOfNumberRecursive(remainingChars)) {
+    for (const perm of findAllPermutationsOfString(remainingChars)) {
       permutationsArray.push(char + perm);
     }
   }
-  return permutationsArray;
+  // Return a Set to eliminate duplicate permutations
+  return new Set(permutationsArray);
 }
 
 // Uses HEAP'S ALGORITHM
@@ -253,26 +249,6 @@ export function findAllPermutationsOfNumber(inputNumber: number): Array<number> 
   return result.map((numberArray) => {
     return parseInt(numberArray.join(''), 10);
   });
-}
-
-export function findPermutationsOfNumber(number: number, numberArray: Array<number>): PermutationObject {
-  const permutations = [];
-
-  for (let i = 0; i < numberArray.length - 1; i++) {
-    const numIterator = numberArray[i];
-
-    if (number === numIterator) continue;
-
-    const isPerm = isNumberPermutationOfAnother(number, numIterator);
-
-    if (isPerm) {
-      permutations.push(numIterator);
-    }
-  }
-  return {
-    number,
-    permutations,
-  };
 }
 
 export function isNumberPalindrome(input: number): number | boolean {

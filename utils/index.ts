@@ -197,10 +197,10 @@ export function isNumberPermutationOfAnother(firstNum: number, secondNum: number
 // This algorithm has viritually the same performance as the HEAP ALGORITHM below
 // Took ~2.5s for number 1234567890
 // Taken from https://levelup.gitconnected.com/find-all-permutations-of-a-string-in-javascript-af41bfe072d2
-export function findAllPermutationsOfString(string: string): string | Set<string> {
+export function findAllPermutationsOfString(string: string): Set<string> {
   if (!string || typeof string !== 'string') throw new Error('Please enter a string');
 
-  if (string.length < 2) return string;
+  if (string.length < 2) return new Set(string);
 
   const permutationsArray = [];
 

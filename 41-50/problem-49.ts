@@ -9,12 +9,27 @@
 
   What 12-digit number do you form by concatenating the three terms in this sequence?
 */
-import { findPrimesWithNDigits } from '../utils';
+import {
+  findPrimesWithNDigits,
+  findAllPermutationsOfString,
+  isPrime,
+} from '../utils';
 
 (() => {
   function main(): void {
     const allPrimesWithFourDigits = findPrimesWithNDigits(4);
-    console.log(allPrimesWithFourDigits.length);
+    for (let i = 0; i <= 1; i++) {
+      const string = allPrimesWithFourDigits[i].toString();
+      const possiblePermutations = findAllPermutationsOfString(string);
+
+      if (typeof possiblePermutations === 'object') {
+        possiblePermutations.forEach((permutation) => {
+          if (!isPrime(parseInt(permutation, 10))) possiblePermutations.delete(permutation);
+        });
+      }
+
+      console.log(possiblePermutations);
+    }
   }
   main();
 })();

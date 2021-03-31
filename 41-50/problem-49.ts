@@ -18,18 +18,34 @@ import {
 (() => {
   function main(): void {
     const allPrimesWithFourDigits = findPrimesWithNDigits(4);
-    for (let i = 0; i <= 1; i++) {
-      const string = allPrimesWithFourDigits[i].toString();
-      const possiblePermutations = findAllPermutationsOfString(string);
+    const possiblePermutationsOfThrees: Set<string> = new Set();
 
-      if (typeof possiblePermutations === 'object') {
-        possiblePermutations.forEach((permutation) => {
-          if (!isPrime(parseInt(permutation, 10))) possiblePermutations.delete(permutation);
-        });
+    for (let i = 0; i <= allPrimesWithFourDigits.length - 1; i++) {
+      const currentNum = allPrimesWithFourDigits[i].toString();
+      const possiblePermutations: string | Set<string> = findAllPermutationsOfString(currentNum);
+
+      possiblePermutations.forEach((permutation) => {
+        if (permutation[0] === '0' || permutation[1] === '0') {
+          possiblePermutations.delete(permutation);
+          return;
+        }
+
+        const permutationInt = parseInt(permutation, 10);
+        if (!isPrime(permutationInt)) possiblePermutations.delete(permutation);
+      });
+
+      if (possiblePermutations.size === 3) {
+        // console.log(`${currentNum} has THREE four digit permutations that are prime`);
+        possiblePermutationsOfThrees.add(currentNum);
       }
 
-      console.log(possiblePermutations);
+      // if (possiblePermutations.size === 0) console.log(`${currentNum} has no four digit permutations that are prime`);
+      // if (possiblePermutations.size === 3) console.log(`${currentNum} has THREE four digit permutations that are prime`);
+      // if (possiblePermutations.size >= 3) console.log(`${currentNum} has ${possiblePermutations.size} 4-digit permutations that are prime`);
+      // else console.log(`${currentNum} has ${possiblePermutations.size} 4-digit permutations that are prime`);
     }
+    // Set with 123 numbers each with three permutations
+    console.log(possiblePermutationsOfThrees);
   }
   main();
 })();

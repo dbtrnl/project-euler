@@ -3,6 +3,18 @@ interface CollatzSequenceObject {
   sequence: Array<number>;
 }
 
+/*
+  An alternative to this function is to use template string:
+  const length = `${number}`.length;
+
+  (for floating point numbers, the dot is included in this count...)
+*/
+export function numberLength(number: number): number {
+  const num = number;
+  const length = Math.ceil(Math.log10(num + 1));
+  return length;
+}
+
 export function factorial(number: number): number {
   let result = 0;
   if (number === 1) return 1;
@@ -209,8 +221,8 @@ export function findAllPermutationsOfString(string: string): Set<string> {
 
     const remainingChars = string.slice(0, i) + string.slice(i + 1, string.length);
 
-    for (const perm of findAllPermutationsOfString(remainingChars)) {
-      permutationsArray.push(char + perm);
+    for (const permut of findAllPermutationsOfString(remainingChars)) {
+      permutationsArray.push(char + permut);
     }
   }
   // Return a Set to eliminate duplicate permutations
@@ -219,36 +231,52 @@ export function findAllPermutationsOfString(string: string): Set<string> {
 
 // Uses HEAP'S ALGORITHM
 // Taken from https://stackoverflow.com/a/37580979/13289772
-export function findAllPermutationsOfNumber(inputNumber: number): Array<number> {
-  const numArr = inputNumber.toString().split('');
+export function findAllPermutationsOfNumber(inputNumber: number): Set<number> {
+  const inputNumberLength = numberLength(inputNumber);
 
-  const { length } = numArr;
-  const result = [numArr.slice()];
-  const zeroArr = new Array(length).fill(0);
+  const numArray = inputNumber.toString().split('');
+  const numbersMatrix = [numArray.slice()];
+
+  const numArrayLength = numArray.length;
+  const zeroesArray = new Array(numArrayLength).fill(0);
+
   let iterator = 1;
   let registerOne;
   let registerTwo;
 
-  while (iterator < length) {
-    if (zeroArr[iterator] < iterator) {
-      registerOne = iterator % 2 && zeroArr[iterator];
-      registerTwo = numArr[iterator];
+  while (iterator < numArrayLength) {
+    if (zeroesArray[iterator] < iterator) {
+      registerOne = iterator % 2 && zeroesArray[iterator];
+      registerTwo = numArray[iterator];
 
-      numArr[iterator] = numArr[registerOne];
-      numArr[registerOne] = registerTwo;
+      numArray[iterator] = numArray[registerOne];
+      numArray[registerOne] = registerTwo;
 
-      ++zeroArr[iterator];
+      ++zeroesArray[iterator];
       iterator = 1;
 
-      result.push(numArr.slice());
+      numbersMatrix.push(numArray.slice());
     } else {
-      zeroArr[iterator] = 0;
+      zeroesArray[iterator] = 0;
       ++iterator;
     }
   }
-  return result.map((numberArray) => {
-    return parseInt(numberArray.join(''), 10);
-  });
+  /*
+    map() to assemble the numbers from digit arrays
+    Then filter() numbers with length smaller than the inputNumber
+    (e.g. 0010 when input is 1000)
+   */
+  const permutationsArray = numbersMatrix
+    .map((digitArray) => {
+      return parseInt(digitArray.join(''), 10);
+    })
+    .filter((number) => {
+      if (numberLength(number) !== inputNumberLength) {
+        return false;
+      }
+      return true;
+    });
+  return new Set(permutationsArray.sort());
 }
 
 export function isNumberPalindrome(input: number): number | boolean {

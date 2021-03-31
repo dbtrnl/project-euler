@@ -11,41 +11,30 @@
 */
 import {
   findPrimesWithNDigits,
-  findAllPermutationsOfString,
+  findAllPermutationsOfNumber,
   isPrime,
 } from '../utils';
 
 (() => {
   function main(): void {
     const allPrimesWithFourDigits = findPrimesWithNDigits(4);
-    const possiblePermutationsOfThrees: Set<string> = new Set();
+    const allPermutationsArray: Array<number[]> = [];
 
     for (let i = 0; i <= allPrimesWithFourDigits.length - 1; i++) {
-      const currentNum = allPrimesWithFourDigits[i].toString();
-      const possiblePermutations: string | Set<string> = findAllPermutationsOfString(currentNum);
+      const currNum = allPrimesWithFourDigits[i];
+      const currNumPermSet: Set<number> = findAllPermutationsOfNumber(currNum);
 
-      possiblePermutations.forEach((permutation) => {
-        if (permutation[0] === '0' || permutation[1] === '0') {
-          possiblePermutations.delete(permutation);
-          return;
-        }
-
-        const permutationInt = parseInt(permutation, 10);
-        if (!isPrime(permutationInt)) possiblePermutations.delete(permutation);
+      // Delete permutations that aren't primes
+      currNumPermSet.forEach((permutation) => {
+        if (!isPrime(permutation)) currNumPermSet.delete(permutation);
       });
 
-      if (possiblePermutations.size === 3) {
-        // console.log(`${currentNum} has THREE four digit permutations that are prime`);
-        possiblePermutationsOfThrees.add(currentNum);
-      }
+      const currNumPermArr = [...currNumPermSet];
 
-      // if (possiblePermutations.size === 0) console.log(`${currentNum} has no four digit permutations that are prime`);
-      // if (possiblePermutations.size === 3) console.log(`${currentNum} has THREE four digit permutations that are prime`);
-      // if (possiblePermutations.size >= 3) console.log(`${currentNum} has ${possiblePermutations.size} 4-digit permutations that are prime`);
-      // else console.log(`${currentNum} has ${possiblePermutations.size} 4-digit permutations that are prime`);
+      allPermutationsArray.push(currNumPermArr);
     }
-    // Set with 123 numbers each with three permutations
-    console.log(possiblePermutationsOfThrees);
+    // 1000+ arrays of permutations to check...
+    console.log(allPermutationsArray);
   }
   main();
 })();

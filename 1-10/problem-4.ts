@@ -8,21 +8,25 @@
 
 import { isNumberPalindrome } from '../utils';
 
-(() => {
-  const main = (): void => {
-    let largestPalindrome: number = 0;
+const problem4 = ((): number => {
+  const main = (): number => {
+    let largestPalindrome = 0;
 
     for (let i = 100; i < 1000; i++) {
       for (let j = 100; j < 1000; j++) {
-        let currentNumber = i * j;
+        const currentNumber = i * j;
 
         if (isNumberPalindrome(currentNumber)) {
-          // console.log(`${currentNumber} is a palindrome`);
           if (largestPalindrome < currentNumber) largestPalindrome = currentNumber;
         }
       }
     }
     console.log(`largestPalindrome = ${largestPalindrome}`);
-  }
-  main();
-})()
+    return largestPalindrome;
+  };
+
+  const result = main();
+  return result;
+});
+
+export default problem4;

@@ -15,36 +15,13 @@
   https://www.mathsisfun.com/prime-factorization.html
 */
 
-(() => {
-  const findLargestPrimeFactor = (num: number) => {
-    /*
-      While number is divisible by 2, divide by 2.
-      In the end you have 1 or another odd number
-    */
+import { findLargestPrimeFactor } from '../utils';
 
-    let firstIterCounter = 0;
-    let secondIterCounter = 0;
-    let thirdIterCounter = 0;
-    let originalNumber = num;
+const problem3 = ((): number => {
+  const PROBLEM_INPUT = 600851475143;
 
-    while (num % 2 === 0) {
-      num = num / 2;
-      firstIterCounter++;
-    }
+  const result = findLargestPrimeFactor(PROBLEM_INPUT);
+  return result;
+});
 
-    for (let i = 3; i <= Math.sqrt(num); i += 2) {
-      while (num % i === 0) {
-        num = num / i;
-        secondIterCounter++;
-      }
-      thirdIterCounter++;
-    }
-
-    if (num > 2) {
-      console.log(
-        `Largest prime factor of ${originalNumber} = ${num}\nIterations in 1st loop - ${firstIterCounter}\nIterations in 2nd loop - ${secondIterCounter}\nIterations in 3rd loop - ${thirdIterCounter}`
-      );
-    }
-  };
-  findLargestPrimeFactor(600851475143);
-})()
+export default problem3;

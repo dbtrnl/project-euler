@@ -3,6 +3,12 @@ interface CollatzSequenceObject {
   sequence: Array<number>;
 }
 
+interface TripletSetObject {
+  a: number;
+  b: number;
+  c: number;
+}
+
 /*
   An alternative to this function is to use template string:
   const length = `${number}`.length;
@@ -303,8 +309,8 @@ export function findAllPermutationsOfNumber(inputNumber: number): Set<number> {
   return new Set(permutationsArray.sort());
 }
 
-export function isNumberPalindrome(input: number): number | boolean {
-  const num: string = input.toString();
+export function isNumberPalindrome(inputNumber: number): boolean {
+  const num: string = inputNumber.toString();
   const numArr: string[] = [...num];
   const inverseNum: string[] = [];
 
@@ -319,6 +325,18 @@ export function isNumberPalindrome(input: number): number | boolean {
   revNum = inverseNum.join(',').replace(/,/g, '');
 
   if (num === revNum) return true;
+  return false;
+}
+
+export function isSetPythagoreanTriplet(inputSet: TripletSetObject): boolean {
+  if (inputSet.a > inputSet.b || inputSet.a > inputSet.c) throw new Error('a must not be greater than b or c');
+  if (inputSet.b > inputSet.c) throw new Error('b must not be greater than c');
+
+  const aSquared = inputSet.a ** 2;
+  const bSquared = inputSet.a ** 2;
+  const cSquared = inputSet.a ** 2;
+
+  if (aSquared + bSquared === cSquared) return true;
   return false;
 }
 

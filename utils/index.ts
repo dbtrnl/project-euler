@@ -322,6 +322,27 @@ export function isNumberPalindrome(input: number): number | boolean {
   return false;
 }
 
+export function isEvenlyDivisibleByEveryNumberInInterval(
+  inputNumber: number,
+  [intervalStart, intervalEnd]: number[],
+): boolean {
+  const number = inputNumber;
+  let result = false;
+  let iterator = intervalStart;
+
+  if (intervalStart > intervalEnd) throw new Error('Interval start must not be greater than interval end');
+
+  while (iterator <= intervalEnd) {
+    if (iterator === intervalEnd && number % iterator === 0) {
+      result = true;
+      break;
+    }
+    if (number % iterator !== 0) break;
+    iterator++;
+  }
+  return result;
+}
+
 export function polinomialPrimeFormula1One(n: number): number {
   // 0 <= N <= 39
   const number = (n ** 2) + n + 41;

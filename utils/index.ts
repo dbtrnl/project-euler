@@ -155,6 +155,30 @@ export function findPrimesWithNDigits(digits: number): Array<number> {
   return primeArray;
 }
 
+export function findLargestPrimeFactor(inputNumber: number): number {
+  /*
+    While number is divisible by 2, divide by 2.
+    In the end you have 1 or another odd number
+  */
+
+  let number = inputNumber;
+
+  while (number % 2 === 0) {
+    number /= 2;
+  }
+
+  for (let i = 3; i <= Math.sqrt(number); i += 2) {
+    while (number % i === 0) {
+      number /= i;
+    }
+  }
+
+  if (number > 2) {
+    console.log(`Largest prime factor of ${inputNumber} = ${number}`);
+  }
+  return number;
+}
+
 export function findCollatzSequenceOf(startNumber: number): CollatzSequenceObject {
   const sequence = [startNumber];
   let number = startNumber;

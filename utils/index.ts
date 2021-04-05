@@ -216,6 +216,20 @@ export function findLongestCollatzSequenceUnder(limit: number): CollatzSequenceO
   return longestSequence;
 }
 
+export function findSumOfNumberIntervalSquares(intervalStart: number, intervalEnd: number): number {
+  let result = 0;
+  for (let i = intervalStart; i <= intervalEnd; i++) result += i ** 2;
+
+  return result;
+}
+
+export function findSquareOfNumberIntervalSum(intervalStart: number, intervalEnd: number): number {
+  let result = 0;
+  for (let i = intervalStart; i <= intervalEnd; i++) result += i;
+
+  return result ** 2;
+}
+
 export function isNumberPermutationOfAnother(firstNum: number, secondNum: number): boolean {
   const firstNumArr = firstNum.toString().split('');
   const secondNumArr = secondNum.toString().split('');

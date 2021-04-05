@@ -11,31 +11,21 @@
   Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 */
 
-(() => {
-  const findSumOfSquaresOfInterval = (lower: number, upper: number): number => {
-    let result = 0;
-    for (let i = lower; i <= upper; i++) {
-      result += Math.pow(i, 2);
-    }
-    return result;
-  };
+import { findSumOfNumberIntervalSquares, findSquareOfNumberIntervalSum } from '../utils';
 
-  const findSquareOfSumOfInterval = (lower: number, upper: number): number => {
-    let result = 0;
-    for (let i = lower; i <= upper; i++) {
-      result += i;
-    }
-    return Math.pow(result, 2);
-  };
-
-  const main = (): void => {
-    const sumOfSquares = findSumOfSquaresOfInterval(1, 100);
-    const squareOfSum = findSquareOfSumOfInterval(1, 100);
+const problem6 = ((): number => {
+  const main = (): number => {
+    const sumOfSquares = findSumOfNumberIntervalSquares(1, 100);
+    const squareOfSum = findSquareOfNumberIntervalSum(1, 100);
 
     const answer = squareOfSum - sumOfSquares;
 
     console.log(`The answer is ${answer}`);
+    return answer;
   };
 
-  main();
-})()
+  const result = main();
+  return result;
+});
+
+export default problem6;

@@ -3,7 +3,7 @@
   The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.\nFind the sum of all the primes below two million
 */
 
-/* 
+/*
 const func1 = (number) => {
   for (i = number - 1; i > 1; i--) {
     if (number % i == 0) {
@@ -16,7 +16,7 @@ const func1 = (number) => {
 
 const func2 = (number) => {
   for (i = number - 1; i > 1; i--) {
-    
+
     // What prperty of prime numbers is this?
     if (number % 2 == 0 || number % 3 == 0) return false;
 
@@ -82,23 +82,27 @@ console.timeEnd('time elapsed iterating');
 console.log(primeNumberSum);
  */
 
-/* 
+/*
   func 4 - Last optimization
 */
 
 import { findAllPrimesSmallerThan } from '../utils';
 
-(() => {
-  const main = (): void => {
-    console.time('Main execution time:');
+const problem10 = ((): number => {
+  const main = (): number => {
     const MAX_PRIME_VALUE = 2000000;
-    const primeArr = findAllPrimesSmallerThan(MAX_PRIME_VALUE);
+    const primesArray = findAllPrimesSmallerThan(MAX_PRIME_VALUE);
 
-    const answer = primeArr.reduce((sum, number) => {
-      return sum += number;
-    });
-    console.timeEnd('Main execution time:');
+    const answer = primesArray
+      .reduce((sum, number) => {
+        return sum + number;
+      });
+
     console.log(`The sum of all primes below ${MAX_PRIME_VALUE} is ${answer}`);
-  }
-  main();
-})()
+    return answer;
+  };
+  const result = main();
+  return result;
+});
+
+export default problem10;

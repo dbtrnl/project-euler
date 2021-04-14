@@ -180,7 +180,7 @@ export function findLargestPrimeFactor(inputNumber: number): number {
   }
 
   if (number > 2) {
-    console.log(`Largest prime factor of ${inputNumber} = ${number}`);
+    // console.log(`Largest prime factor of ${inputNumber} = ${number}`);
   }
   return number;
 }
@@ -210,7 +210,7 @@ export function findLongestCollatzSequenceUnder(limit: number): CollatzSequenceO
     const currentSequence = findCollatzSequenceOf(i);
     if (currentSequence.sequence.length > longestSequence.sequence.length) {
       longestSequence = currentSequence;
-      console.log(`Longest Collatz sequence so far: ${longestSequence.sequence.length} terms, starting at number ${longestSequence.number}`);
+      // console.log(`Longest Collatz sequence so far: ${longestSequence.sequence.length} terms, starting at number ${longestSequence.number}`);
     }
   }
   return longestSequence;

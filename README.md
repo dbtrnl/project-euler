@@ -12,9 +12,10 @@ Mainly in Typescript, sometimes in Python.
 
 #### Usage
 
-Clone this repo; 
-`$ yarn install` to install dependencies; 
-`$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
+- Clone this repo;
+- `$ yarn install` to install dependencies; 
+- `$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
+- Currently only problems 1-10 have tests.
 
 #### Further reading
 

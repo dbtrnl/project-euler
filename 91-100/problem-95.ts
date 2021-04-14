@@ -18,8 +18,7 @@
 */
 
 import {
-  findAndSumAllDivisors,
-  findAndSumAllDivisorsSqrt
+  findAndSumAllDivisors
 } from '../utils'
 
 interface amicableChainObject {
@@ -30,11 +29,11 @@ interface amicableChainObject {
 
 const findAmicableChain = (number: number, limit: number): amicableChainObject => {
   let amicableChain: number[] = [number];
-  let currentNum: number = findAndSumAllDivisorsSqrt(number);
+  let currentNum: number = findAndSumAllDivisors(number);
 
   while (!amicableChain.includes(currentNum) && currentNum <= limit) {
     amicableChain.push(currentNum)
-    currentNum = findAndSumAllDivisorsSqrt(currentNum);
+    currentNum = findAndSumAllDivisors(currentNum);
   }
 
   return {
@@ -72,14 +71,14 @@ const main = () => {
 
 // (() => {
 //   for (let i = 1; i <= 220; i++) {
-//     let teste = findAndSumAllDivisorsSqrt(i);
+//     let teste = findAndSumAllDivisors(i);
 //     console.log(`Sum of divisors of ${i} - ${teste}`);
 //   }
 // })()
 
 // (() => {
 //   let i = 220;
-//   let teste = findAndSumAllDivisorsSqrt(i);
+//   let teste = findAndSumAllDivisors(i);
 //   console.log(`Sum of divisors of ${i} - ${teste}`);
 // })()
 

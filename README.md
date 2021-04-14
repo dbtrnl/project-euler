@@ -10,6 +10,12 @@ Mainly in Typescript, sometimes in Python.
 
 ---
 
+#### Usage
+
+Clone this repo; 
+`$ yarn install` to install dependencies; 
+`$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
+
 #### Further reading
 
 - **Problem 10** - About [primes](https://byjus.com/maths/prime-numbers/). Also on how to [optimize](https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr)

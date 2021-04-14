@@ -1,5 +1,15 @@
 ### Project Euler solutions
 
+Solutions for problems 1 to ~100.
+Mainly in Typescript, sometimes in Python.
+
+---
+
+[![Typescript](https://img.shields.io/badge/-Typescript-blue?style=flat-square&logo=Typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Python](https://img.shields.io/badge/-Python3-yellow?style=flat-square&logo=Python&logoColor=white)](https://www.python.org/)
+
+---
+
 #### Further reading
 
 - **Problem 10** - About [primes](https://byjus.com/maths/prime-numbers/). Also on how to [optimize](https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr)

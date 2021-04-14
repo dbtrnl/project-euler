@@ -15,7 +15,6 @@ const problem7 = ((): number => {
     const nth = 10001;
     const nthPrime = findNthPrime(nth);
 
-    console.log(`The ${nth} prime is: ${nthPrime}`);
     return nthPrime;
   };
 

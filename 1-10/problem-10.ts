@@ -98,7 +98,6 @@ const problem10 = ((): number => {
         return sum + number;
       });
 
-    console.log(`The sum of all primes below ${MAX_PRIME_VALUE} is ${answer}`);
     return answer;
   };
   const result = main();

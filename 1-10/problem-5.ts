@@ -19,7 +19,6 @@ const problem5 = ((): number => {
       if (isDivisible) break;
       currentNumber++;
     }
-    console.log(`First number equally divisible by every number in interval ${MIN_DIVISOR} to ${MAX_DIVISOR} is ${currentNumber}`);
     return currentNumber;
   };
   const result = main();

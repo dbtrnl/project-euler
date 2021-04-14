@@ -20,7 +20,6 @@ const problem6 = ((): number => {
 
     const answer = squareOfSum - sumOfSquares;
 
-    console.log(`The answer is ${answer}`);
     return answer;
   };
 

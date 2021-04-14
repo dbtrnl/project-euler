@@ -13,13 +13,9 @@ const problem1 = ((): number => {
       if (i % 3 === 0 || i % 5 === 0) multiplesOfThreeOrFive.push(i);
     }
 
-    console.log(`Multiples of 3 or 5 under ${LIMIT}: ${multiplesOfThreeOrFive.length}`);
-
     const finalCount = multiplesOfThreeOrFive.reduce((sum, number) => {
       return sum + number;
     });
-
-    console.log(`Final Count = ${finalCount}`);
     return finalCount;
   };
 

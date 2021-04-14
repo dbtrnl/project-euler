@@ -1,3 +1,5 @@
+import assert from 'assert';
+
 import problem1 from './problem-1';
 import problem2 from './problem-2';
 import problem3 from './problem-3';
@@ -13,10 +15,17 @@ const projectEulerProblems1to10 = [
   problem1, problem2, problem3, problem4, problem5,
   problem6, problem7, problem8, problem9, problem10,
 ];
-let counter = 1;
+let counter = 0;
+
+const projectEulerProblems1to10Answers = [
+  233168, 4613732, 6857, 906609, 232792560,
+  25164150, 104743, 23514624000, null, 142913828922,
+];
 
 projectEulerProblems1to10.forEach((problem) => {
-  console.log(`----------\nProblem ${counter}`);
+  const currentProblemAsnwer = problem();
+  console.log(`problem ${counter + 1} answer = `, currentProblemAsnwer);
+  console.assert(currentProblemAsnwer === projectEulerProblems1to10Answers[counter]);
   counter++;
-  problem();
+  console.log('\n');
 });

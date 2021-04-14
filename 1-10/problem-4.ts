@@ -21,7 +21,6 @@ const problem4 = ((): number => {
         }
       }
     }
-    console.log(`largestPalindrome = ${largestPalindrome}`);
     return largestPalindrome;
   };
 

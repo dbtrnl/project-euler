@@ -34,7 +34,6 @@ const problem8 = ((): number => {
         // console.log(`greatest product so far: ${greatestProduct} on iteration ${j}`);
       }
     }
-    console.log(`The greatest product of ${SERIES_SIZE} number series in the provided number is ${greatestProduct}`);
     return greatestProduct;
   };
   const result = main();

@@ -30,8 +30,6 @@ const problem2 = ((): number => {
     }).reduce((sum, number) => {
       return sum + number;
     });
-
-    console.log(`The answer is: ${answer}`);
     return answer;
   };
 

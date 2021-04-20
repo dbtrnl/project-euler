@@ -1,4 +1,4 @@
-### Project Euler solutions
+# Project Euler solutions
 
 Solutions for problems 1 to ~100.
 Mainly in Typescript, sometimes in Python.
@@ -10,31 +10,33 @@ Mainly in Typescript, sometimes in Python.
 
 ---
 
-#### Usage
+## Usage
 
 - Clone this repo;
-- `$ yarn install` to install dependencies; 
-- `$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
-- Currently only problems 1-10 have tests.
+- `$ yarn install` to install dependencies;
+- Run the code for the desired problem  
+  OR
+- Run `$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
+  + Currently only problems 1-10 have tests.
 
-#### Further reading
+## Further reading
 
-- **Problem 10** - About [primes](https://byjus.com/maths/prime-numbers/). Also on how to [optimize](https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr)
-- **Problem 14** (Collatz Problem) - [The Collatz Conjecture](https://medium.com/cantors-paradise/the-collatz-conjecture-some-shocking-results-from-180-000-iterations-7fea130d0377)
-- **Problem 15** - Try different approaches such as [Pascal Triangle](https://researchideas.ca/wmt/c6b3.html)
-  - Or try [different approaches](https://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/)
-- **Problem 18/67** - It uses Dynamic Programming (breaking problem into subproblems)
-  - See [these approaches](https://www.mathblog.dk/project-euler-18/), also see [optimal substructures](https://en.wikipedia.org/wiki/Optimal_substructure), graph theory and greedy algorithms.
-- **Problem 21** - [Amicable numbers](https://primes.utm.edu/glossary/page.php?sort=AmicableNumber)
-- **Problem 22** - Using [Base36](https://en.wikipedia.org/wiki/Base36) to find the numeric position of each char.
+- Problem 10 - About [primes](https://byjus.com/maths/prime-numbers/). Also on how to [optimize](https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr)
+- Problem 14 (Collatz Problem) - [The Collatz Conjecture](https://medium.com/cantors-paradise/the-collatz-conjecture-some-shocking-results-from-180-000-iterations-7fea130d0377)
+- Problem 15 - Try different approaches such as [Pascal Triangle](https://researchideas.ca/wmt/c6b3.html)
+  + Or try [different approaches](https://betterexplained.com/articles/navigate-a-grid-using-combinations-and-permutations/)
+- Problem 18/67 - It uses Dynamic Programming (breaking problem into subproblems)
+  + See [these approaches](https://www.mathblog.dk/project-euler-18/), also see [optimal substructures](https://en.wikipedia.org/wiki/Optimal_substructure), graph theory and greedy algorithms.
+- Problem 21 - [Amicable numbers](https://primes.utm.edu/glossary/page.php?sort=AmicableNumber)
+- Problem 22 - Using [Base36](https://en.wikipedia.org/wiki/Base36) to find the numeric position of each char.
 
-**Primes**
-[Polinomial expressions that generate primes](https://www.ime.unicamp.br/~ftorres/ENSINO/MONOGRAFIAS/Antonio_TN17M1.pdf)
-[A005846 on OEIS](https://oeis.org/A005846) (See problem 27).
+**Prime numbers**
+  + [Polinomial expressions that generate primes](https://www.ime.unicamp.br/~ftorres/ENSINO/MONOGRAFIAS/Antonio_TN17M1.pdf)
+  + [A005846 on OEIS](https://oeis.org/A005846) (See problem 27).
 
 ---
 
-#### Glossary
+## Glossary
 - **Proper Divisor** - Positive divisor of a number N, excluding N itself ([source](https://mathworld.wolfram.com/ProperDivisor.html))
   ```plaintext
   Positive divisors of 3 = [1]
@@ -43,7 +45,7 @@ Mainly in Typescript, sometimes in Python.
 - **Identity** - An identity is a mathematical relationship equating one quantity to another (which may initially appear to be different). ([source](https://mathworld.wolfram.com/Identity.html))
 ---
 
-#### Notes
+## Notes
 
 - Some exercises used typescript/ts-node, hence the packages.json
 - Some JS/TS files use IIFEs (Immediately Invoked Function Expression) to avoid function and variable collision
@@ -52,7 +54,8 @@ Mainly in Typescript, sometimes in Python.
 
 ---
 
-#### Benchmarking
+## Benchmarking
+Just benchmarking data for possible optimization of algorithms.
 
 - Problem 7
   - First solution takes ~11 seconds to execute

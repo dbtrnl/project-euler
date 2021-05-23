@@ -7,18 +7,19 @@ Using Typescript, Golang and Python.
 
 [![Typescript](https://img.shields.io/badge/-Typescript-blue?style=flat-square&logo=Typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/-Python3-yellow?style=flat-square&logo=Python&logoColor=white)](https://www.python.org/)
-[![Golang](https://img.shields.io/badge/-Golang-darkblue?style=flat-square&logo=Golang&logoColor=white)](https://golang.org/)
+[![Golang](https://img.shields.io/badge/-Golang-darkblue?style=flat-square&logo=Go&logoColor=white)](https://golang.org/)
 
 ---
 
 ## Usage
 
-- Clone this repo;
-- `$ yarn install` to install dependencies;
-- Run the code for the desired problem  
-  OR
-- Run `$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
-  + Currently only problems 1-10 have tests.
+- Typescript:
+  * Clone this repo;
+  * `$ yarn install` to install dependencies;
+  * Run the code for the desired problem  
+    OR
+  * Run `$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
+    + Currently only problems 1-10 have tests.
 
 ## Further reading
 

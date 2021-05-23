@@ -1,12 +1,13 @@
 # Project Euler solutions
 
 Solutions for problems 1 to ~100.
-Mainly in Typescript, sometimes in Python.
+Using Typescript, Golang and Python.
 
 ---
 
 [![Typescript](https://img.shields.io/badge/-Typescript-blue?style=flat-square&logo=Typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/-Python3-yellow?style=flat-square&logo=Python&logoColor=white)](https://www.python.org/)
+[![Golang](https://img.shields.io/badge/-Golang-darkblue?style=flat-square&logo=Golang&logoColor=white](https://golang.org/)
 
 ---
 

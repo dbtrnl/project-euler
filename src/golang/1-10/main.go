@@ -4,11 +4,15 @@ import "fmt"
 
 func main() {
 	const ARR_SIZE int = 1000
-	var arr [ARR_SIZE]int
+	var (
+		bufferArrSlice []int
+		bufferArr      [ARR_SIZE]int
+	)
 
-	arr = findAllMultiplesOfThreeOrFiveUnder(ARR_SIZE, arr)
+	bufferArr = findAllMultiplesOfThreeOrFiveUnder(ARR_SIZE, bufferArr)
+	bufferArrSlice = bufferArr[0:100]
 
-	fmt.Println(arr)
+	fmt.Println(bufferArrSlice)
 }
 
 func findAllMultiplesOfThreeOrFiveUnder(arrSize int, arr [1000]int) [1000]int {

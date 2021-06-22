@@ -15,7 +15,7 @@ func main() {
 		mutiplesOfThreeandFive []int
 	)
 
-	bufferArray, max_size = findAllMultiplesOfThreeOrFiveUnder(maxArraySize, bufferArray)
+	bufferArray, max_size = findAllMultiplesOfThreeOrFiveUnder(bufferArray)
 	mutiplesOfThreeandFive = bufferArray[0:max_size]
 
 	for i := 0; i < len(mutiplesOfThreeandFive); i++ {
@@ -24,12 +24,14 @@ func main() {
 	fmt.Println("The answer is:", answer)
 }
 
-func findAllMultiplesOfThreeOrFiveUnder(arrSize int, arr [533]int) ([533]int, int) {
+func findAllMultiplesOfThreeOrFiveUnder(bufferArray [533]int) ([533]int, int) {
 	var currentIndex int = 0
 	var max int = 0
-	var multiplesArray = arr
+	var multiplesArray = bufferArray
 
+	// Filling up the array
 	for i := 0; i < 1000; i++ {
+
 		// If i is 0, skip iteration
 		if i == 0 { continue }
 
@@ -37,11 +39,12 @@ func findAllMultiplesOfThreeOrFiveUnder(arrSize int, arr [533]int) ([533]int, in
 		if i%3 == 0 || i%5 == 0 {
 			multiplesArray[currentIndex] = i
 			currentIndex++
-			}
 		}
+	}
 
+	// Getting the size of the array without zero-values
 	for i, number := range multiplesArray {
-		if number == 0 { max = i; break }
+		if number == 0 { max = int(i); break }
 	}
 	return multiplesArray, max
 }

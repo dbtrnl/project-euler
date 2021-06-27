@@ -15,13 +15,11 @@
   https://www.mathsisfun.com/prime-factorization.html
 */
 
-import { findLargestPrimeFactor } from '../utils';
+import { findLargestPrimeFactor } from '../utils'
 
-const problem3 = ((): number => {
-  const PROBLEM_INPUT = 600851475143;
+export default function problem3(): number {
+  const PROBLEM_INPUT = 600851475143
 
-  const result = findLargestPrimeFactor(PROBLEM_INPUT);
-  return result;
-});
-
-export default problem3;
+  const result = findLargestPrimeFactor(PROBLEM_INPUT)
+  return result
+}

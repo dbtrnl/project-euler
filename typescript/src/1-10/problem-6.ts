@@ -11,20 +11,18 @@
   Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 */
 
-import { findSumOfNumberIntervalSquares, findSquareOfNumberIntervalSum } from '../utils';
+import { findSumOfNumberIntervalSquares, findSquareOfNumberIntervalSum } from '../utils'
 
-const problem6 = ((): number => {
+export default function problem6(): number {
   const main = (): number => {
-    const sumOfSquares = findSumOfNumberIntervalSquares(1, 100);
-    const squareOfSum = findSquareOfNumberIntervalSum(1, 100);
+    const sumOfSquares = findSumOfNumberIntervalSquares(1, 100)
+    const squareOfSum = findSquareOfNumberIntervalSum(1, 100)
 
-    const answer = squareOfSum - sumOfSquares;
+    const answer = squareOfSum - sumOfSquares
 
-    return answer;
-  };
+    return answer
+  }
 
-  const result = main();
-  return result;
-});
-
-export default problem6;
+  const result = main()
+  return result
+}

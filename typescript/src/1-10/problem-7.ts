@@ -6,23 +6,21 @@
   What is the 10.001st prime number?
 */
 
-import { findNthPrime } from '../utils';
+import { findNthPrime } from '../utils'
 /*
   Execution time: ~10 miliseconds
 */
-const problem7 = ((): number => {
+export default function problem7(): number {
   const main = (): number => {
-    const nth = 10001;
-    const nthPrime = findNthPrime(nth);
+    const nth = 10001
+    const nthPrime = findNthPrime(nth)
 
-    return nthPrime;
-  };
+    return nthPrime
+  }
 
-  const result = main();
-  return result;
-});
-
-export default problem7;
+  const result = main()
+  return result
+}
 
 /*
   First solution

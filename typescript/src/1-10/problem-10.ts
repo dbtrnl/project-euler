@@ -86,22 +86,20 @@ console.log(primeNumberSum);
   func 4 - Last optimization
 */
 
-import { findAllPrimesSmallerThan } from '../utils';
+import { findAllPrimesSmallerThan } from '../utils'
 
-const problem10 = ((): number => {
+export default function problem10(): number {
   const main = (): number => {
-    const MAX_PRIME_VALUE = 2000000;
-    const primesArray = findAllPrimesSmallerThan(MAX_PRIME_VALUE);
+    const MAX_PRIME_VALUE = 2000000
+    const primesArray = findAllPrimesSmallerThan(MAX_PRIME_VALUE)
 
     const answer = primesArray
       .reduce((sum, number) => {
-        return sum + number;
-      });
+        return sum + number
+      })
 
-    return answer;
-  };
-  const result = main();
-  return result;
-});
-
-export default problem10;
+    return answer
+  }
+  const result = main()
+  return result
+}

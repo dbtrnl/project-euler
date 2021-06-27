@@ -7,13 +7,11 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
  */
 
-const problem9 = ((): number => {
+export default function problem9(): number {
   const main = (): number => {
-    return 0;
-  };
+    return 0
+  }
 
-  const result = main();
-  return result;
-});
-
-export default problem9;
+  const result = main()
+  return result
+}

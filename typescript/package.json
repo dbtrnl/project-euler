@@ -4,17 +4,24 @@
     "repository": "https://github.com/dnbtr/project-euler.git",
     "author": "dnbtr <daniel.bittar@alumni.usp.br>",
     "license": "MIT",
-    "type": "module",
+    "type": "commonjs",
+    "scripts": {
+        "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register '**/*.test.ts' -t=60000 -s=0"
+    },
     "devDependencies": {
+        "@types/chai": "^4.2.19",
         "@types/eslint": "^7.2.13",
+        "@types/mocha": "^8.2.2",
         "@types/node": "^15.12.2",
         "@typescript-eslint/eslint-plugin": "^4.26.1",
         "@typescript-eslint/parser": "^4.26.1",
+        "chai": "^4.3.4",
         "eslint": "^7.28.0",
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-import-resolver-typescript": "^2.4.0",
         "eslint-plugin-import": "^2.23.4",
-        "ts-node-dev": "^1.1.6",
+        "mocha": "^9.0.1",
+        "ts-node": "^10.0.0",
         "typescript": "^4.3.2"
     },
     "eslintConfig": {
@@ -24,7 +31,8 @@
         },
         "extends": [
             "airbnb-base",
-            "plugin:@typescript-eslint/recommended"
+            "plugin:@typescript-eslint/recommended",
+            "plugin:import/typescript"
         ],
         "parser": "@typescript-eslint/parser",
         "parserOptions": {
@@ -40,14 +48,19 @@
             "comma-dangle": "warn",
             "import/extensions": "off",
             "import/no-unresolved": "warn",
+            "import/no-extraneous-dependencies": "off",
             "max-len": "off",
             "no-console": "off",
             "no-continue": "off",
             "no-param-reassign": "warn",
             "no-plusplus": "off",
-            "no-unused-vars": "off",
             "no-restricted-syntax": "warn",
-            "semi": "off"
+            "no-unused-vars": "off",
+            "no-unused-expressions": "off",
+            "semi": [
+                "error",
+                "never"
+            ]
         }
     }
 }

@@ -37,15 +37,17 @@
         "rules": {
             "arrow-body-style": "off",
             "arrow-parens": "warn",
+            "comma-dangle": "warn",
+            "import/extensions": "off",
+            "import/no-unresolved": "warn",
             "max-len": "off",
             "no-console": "off",
             "no-continue": "off",
             "no-param-reassign": "warn",
             "no-plusplus": "off",
             "no-unused-vars": "off",
-            "import/extensions": "off",
-            "import/no-unresolved": "warn",
-            "no-restricted-syntax": "warn"
+            "no-restricted-syntax": "warn",
+            "semi": "off"
         }
     }
 }

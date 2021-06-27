@@ -12,14 +12,16 @@
   Which starting number, under one million, produces the longest chain?
 */
 
-import { findLongestCollatzSequenceUnder } from '../utils';
+import { findLongestCollatzSequenceUnder } from '../utils'
 
-(() => {
-  const main = () => {
-    const MAX_NUMBER = 1000000;
-    const answer = findLongestCollatzSequenceUnder(MAX_NUMBER);
+export default function problem14(): number {
+  const main = (): number => {
+    const MAX_NUMBER = 1000000
+    const answer = findLongestCollatzSequenceUnder(MAX_NUMBER)
 
-    console.log(`The answer is ${answer.number}`);
+    // console.log(`The answer is ${answer.number}`)
+    return answer.number
   }
-  main();
-})()
+  const result = main()
+  return result
+}

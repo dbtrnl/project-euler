@@ -17,17 +17,19 @@ How many such routes are there through a 20×20 grid?
   So for a N x N grid, N+1 x N+1 matrix is needed
 */
 
-import { factorial } from '../utils';
+import { factorial } from '../utils'
 
-(() => {
+export default function problem15(): number {
   const main = () => {
-    let gridRowSize = 20;
-    let gridColumnSize = 20;
+    const gridRowSize = 20
+    const gridColumnSize = 20
 
-    let answer = factorial(gridRowSize + gridColumnSize) / factorial(gridRowSize) / factorial(gridColumnSize);
-    answer = Math.round(answer);
+    let answer = factorial(gridRowSize + gridColumnSize) / factorial(gridRowSize) / factorial(gridColumnSize)
+    answer = Math.round(answer)
 
-    console.log(`For a ${gridRowSize} by ${gridColumnSize} grid, there are ${answer} possible paths;`);
-  };
-  main();
-})()
+    // console.log(`For a ${gridRowSize} by ${gridColumnSize} grid, there are ${answer} possible paths;`)
+    return answer
+  }
+  const result = main()
+  return result
+}

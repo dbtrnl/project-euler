@@ -9,21 +9,6 @@
   A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
   How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 */
-export default function problem19(): number {
-  const leapYearsOnInterval = (start: number, end: number) => {
-    let leapYears = 0
-    let iterator = start
-    while (iterator <= end) {
-      if (iterator % 4 === 0) {
-        // console.log(`${iterator} was a leap year.`)
-        leapYears++
-      }
-      iterator++
-    }
-    return leapYears
-  }
-
-  const test = leapYearsOnInterval(1900, 2000)
-  // console.log(test)
+export default function problem20(): number {
   return 0
 }

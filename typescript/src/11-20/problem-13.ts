@@ -4,45 +4,45 @@
   Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 */
 
-import { problem13Input } from '../data';
+import { problem13Input as problemInput } from '../data'
 
-(() => {
+export default function problem13(): number {
   const assembleArray = (input: string): bigint[] => {
-
     // Creating array with 100 different memory addresses
-    let array: bigint[] = [...new Array(100)];
-    let currentIndex: number = 0;
-    let currentNumber: bigint = BigInt(0);
-    let substring: string;
+    const array: bigint[] = [...new Array(100)]
+    let currentIndex = 0
+    let currentNumber = BigInt(0)
+    let substring: string
 
     for (let i = 0; i <= array.length - 1; i++) {
-      substring = input.substring(currentIndex, currentIndex + 50);
-      currentNumber = BigInt(substring);
-      array[i] = currentNumber;
-      currentIndex += 50;
+      substring = input.substring(currentIndex, currentIndex + 50)
+      currentNumber = BigInt(substring)
+      array[i] = currentNumber
+      currentIndex += 50
     }
-    return array;
+    return array
   }
 
   const sumAllNumbersInArray = (inputArray: bigint[]): bigint => {
-    let sum: bigint = BigInt(0);
+    let sum = BigInt(0)
 
     for (let i = 0; i <= inputArray.length - 1; i++) {
-      sum += inputArray[i];
+      sum += inputArray[i]
     }
-    return sum;
+    return sum
   }
 
-  const main = (): void => {
+  const main = (): number => {
+    const array = assembleArray(problemInput)
+    const sum = sumAllNumbersInArray(array)
 
-    const array = assembleArray(problem13Input);
-    const sum = sumAllNumbersInArray(array);
+    const answer: string = sum.toString().substring(0, 10)
 
-    const answer: string = sum.toString().substring(0, 10);
-
-    console.log(`The answer is ${answer}`);
+    // console.log(`The answer is ${answer}`)
+    return parseInt(answer, 10)
   }
   // console.time();
-  main();
+  const result = main()
+  return result
   // console.timeEnd();
-})()
+}

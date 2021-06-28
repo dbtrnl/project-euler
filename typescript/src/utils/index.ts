@@ -1,13 +1,4 @@
-interface CollatzSequenceObject {
-  number: number;
-  sequence: Array<number>;
-}
-
-interface TripletSetObject {
-  a: number;
-  b: number;
-  c: number;
-}
+import { CollatzSequenceObject, TripletSetObject } from '../interfaces'
 
 /*
   An alternative to this function is to use template string:
@@ -21,6 +12,14 @@ export function numberLength(number: number): number {
   return length
 }
 
+/**
+ * Returns the result of N factorial (N!)
+ * @param number Number N
+ * @example
+ * factorial(5) = 120
+ * factorial(12) = 479001600
+ * @returns {Number} The result of N factorial
+ */
 export function factorial(number: number): number {
   let result = 0
   if (number === 1) return 1
@@ -46,7 +45,14 @@ export function combination(n: number, k: number): number {
   return permutation(n, k) / factorial(k)
 }
 
-export function isPrime(num: number): number | boolean {
+/**
+ * Checks if a given number is prime
+ * @param {Number} num The number to be checked
+ * @example isPrime(3) = 3
+ * isPrime(4) = false
+ * @returns {Number | Boolean} The number itself (if prime) or false (if not prime)
+ */
+export function isPrime(num: number): number | false {
   if (num <= 1) return false
 
   // 2 and 3 are both primes
@@ -121,6 +127,13 @@ export function findAndSumAllDivisorsLinear(number: number): number {
   return sum
 }
 
+/**
+ * Finds all prime numbers smaller than N (N >= 0)
+ * @param limit
+ * @example findAllPrimesSmallerThan(10) = [ 2, 3, 5, 7 ]
+ * // Returns the 4 prime numbers smaller than 10
+ * @returns {Array<number>} Prime number array
+ */
 export function findAllPrimesSmallerThan(limit: number): Array<number> {
   const primeArray: Array<number> = []
   let iterator = 0
@@ -132,6 +145,13 @@ export function findAllPrimesSmallerThan(limit: number): Array<number> {
   return primeArray
 }
 
+/**
+ *
+ * @param nthPrime Finds the Nth prime number
+ * @example findNthPrime(50) = 229
+ * // 229 is the 50th prime number
+ * @returns
+ */
 export function findNthPrime(nthPrime: number): number {
   const primeArray: Array<number> = []
   let iterator = 0
@@ -143,6 +163,11 @@ export function findNthPrime(nthPrime: number): number {
   return primeArray[nthPrime - 1]
 }
 
+/**
+ * Find prime numbers with N number of digits
+ * @param {Number} digits Desired number of digits
+ * @returns {Number} How many prime numbers have N digits
+ */
 export function findPrimesWithNDigits(digits: number): Array<number> {
   const primeArray: Array<number> = []
   let upperLimitNum: string | number = ''
@@ -185,9 +210,18 @@ export function findLargestPrimeFactor(inputNumber: number): number {
   return number
 }
 
-export function findCollatzSequenceOf(startNumber: number): CollatzSequenceObject {
-  const sequence = [startNumber]
-  let number = startNumber
+/**
+ * Find the Collatz sequence of a given number
+ * @param n
+ * @example findCollatzSequenceOf(5) = {
+ * number: 5,
+ * sequence: [ 5, 16, 8, 4, 2, 1 ]
+ * }
+ * @returns {CollatzSequenceObject} CollatzSequenceObject
+ */
+export function findCollatzSequenceOf(n: number): CollatzSequenceObject {
+  const sequence = [n]
+  let number = n
 
   while (number > 1) {
     if (number % 2 === 0) number /= 2
@@ -195,11 +229,20 @@ export function findCollatzSequenceOf(startNumber: number): CollatzSequenceObjec
     sequence.push(number)
   }
   return {
-    number: startNumber,
+    number: n,
     sequence,
   }
 }
 
+/**
+ * Find longest Collatz Sequence under number N
+ * @param limit
+ * @example findLongestCollatzSequenceUnder(3) = {
+ * number: 3,
+ * sequence: [3, 10, 5, 16, 8, 4, 2, 1]
+ * }
+ * @returns {CollatzSequenceObject} CollatzSequenceObject
+ */
 export function findLongestCollatzSequenceUnder(limit: number): CollatzSequenceObject {
   let longestSequence: CollatzSequenceObject = {
     number: 0,
@@ -216,6 +259,16 @@ export function findLongestCollatzSequenceUnder(limit: number): CollatzSequenceO
   return longestSequence
 }
 
+/**
+ * Find the sum of every squared number of the sequence
+ *
+ * Starting and ending of the sequence included.
+ * @param {Number} intervalStart The start of the interval
+ * @param {Number} intervalEnd The end of the interval
+ * @example findSumOfNumberIntervalSquares(2, 4) = 29
+ * // (2*2) + (3*3) + (4*4) = 29
+ * @returns {Number} sum
+ */
 export function findSumOfNumberIntervalSquares(intervalStart: number, intervalEnd: number): number {
   let result = 0
   for (let i = intervalStart; i <= intervalEnd; i++) result += i ** 2
@@ -223,6 +276,16 @@ export function findSumOfNumberIntervalSquares(intervalStart: number, intervalEn
   return result
 }
 
+/**
+ * Find the square of the sum of every number in the sequence
+ *
+ * Starting and ending of the sequence included.
+ * @param {Number} intervalStart The start of the interval
+ * @param {Number} intervalEnd The end of the interval
+ * @example findSumOfNumberIntervalSquares(2, 4) = 81
+ * // (2 + 3 + 4)^2 = 81
+ * @returns {Number} sum
+ */
 export function findSquareOfNumberIntervalSum(intervalStart: number, intervalEnd: number): number {
   let result = 0
   for (let i = intervalStart; i <= intervalEnd; i++) result += i
@@ -230,6 +293,14 @@ export function findSquareOfNumberIntervalSum(intervalStart: number, intervalEnd
   return result ** 2
 }
 
+/**
+ * Checks if a given number is a permutation of another number
+ * @param firstNum
+ * @param secondNum
+ * @example isNumberPermutationOfAnother(2223, 2232) = true
+ * @example isNumberPermutationOfAnother(2224, 2232) = false
+ * @returns {Boolean}
+ */
 export function isNumberPermutationOfAnother(firstNum: number, secondNum: number): boolean {
   const firstNumArr = firstNum.toString().split('')
   const secondNumArr = secondNum.toString().split('')
@@ -375,14 +446,22 @@ export function isEvenlyDivisibleByEveryNumberInInterval(
   return result
 }
 
+/**
+ * Polynomial formula for numbers 0 <= N <= 39
+ * @param {Number} n The starting number
+ * @returns {Number}
+ */
 export function polinomialPrimeFormula1One(n: number): number {
-  // 0 <= N <= 39
   const number = (n ** 2) + n + 41
   return number
 }
 
+/**
+ * Polynomial formula for numbers 0 <= N <= 79
+ * @param {Number} n The starting number
+ * @returns {Number}
+ */
 export function polinomialPrimeFormulaTwo(n: number): number {
-  // 0 <= N <= 79
   const number = (n ** 2) - (79 * n) + 1601
   return number
 }

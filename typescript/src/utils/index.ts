@@ -1,4 +1,7 @@
-import { CollatzSequenceObject, TripletSetObject } from '../interfaces'
+import {
+  amicableChainObject,
+  amicableNumberObject, CollatzSequenceObject, NumberClassification, TripletSetObject,
+} from '../interfaces'
 
 /*
   An alternative to this function is to use template string:
@@ -464,4 +467,89 @@ export function polinomialPrimeFormula1One(n: number): number {
 export function polinomialPrimeFormulaTwo(n: number): number {
   const number = (n ** 2) - (79 * n) + 1601
   return number
+}
+
+/**
+ * Checks input number N for amicability
+ * @param inputNum
+ * @example isAmicableNumber(1000) = { isAmicable: false, pair: null }
+ * @example isAmicableNumber(220) = { isAmicable: true, pair: [ 220, 284 ] }
+ * @returns
+ */
+export function isAmicableNumber(inputNum: number): amicableNumberObject {
+  const firstNum = findAndSumAllProperDivisors(inputNum)
+  const secondNum = findAndSumAllProperDivisors(firstNum)
+
+  // If amicable number pair was found
+  if (inputNum !== firstNum && secondNum === inputNum) {
+    return {
+      isAmicable: true,
+      pair: [inputNum, firstNum],
+    }
+  }
+  return {
+    isAmicable: false,
+    pair: null,
+  }
+}
+
+export function findAmicableNumbersUnder(maxLimit: number): Array<number> {
+  const array: number[] = []
+
+  for (let i = 0; i < maxLimit; i++) {
+    // If i was already calculated, skip this iteration;
+    if (array.includes(i)) continue
+
+    const iterator = isAmicableNumber(i)
+    // console.log(iterator);
+
+    // If an amicable number pair was found
+    if (iterator.isAmicable) {
+      iterator.pair?.forEach((number) => {
+        array.push(number)
+      })
+    }
+  }
+  return array
+}
+
+/**
+ * Returns if number N is perfect (sum of divisors == N),
+ * abundant (sum of divisors > N),
+ * or deficient (sum of divisors < N)
+ * @param number
+ * @returns
+ */
+export function isNumberDeficientPerfectOrAbundant(number: number): NumberClassification {
+  const sumOfDivisors = findAndSumAllProperDivisors(number)
+
+  if (sumOfDivisors === number) return 'perfect'
+  if (sumOfDivisors > number) return 'abundant'
+  if (sumOfDivisors < number) return 'deficient'
+
+  return null
+}
+
+/**
+ * THIS FUNCTION IS STILL A WORK IN PROGRESS
+ *
+ * USED IN PROBLEM 95
+ * @param number
+ * @param limit
+ * @returns
+ */
+export function findAmicableChain(number: number, limit: number): amicableChainObject {
+  const amicableChain: number[] = [number]
+  let currentNum: number = findAndSumAllDivisorsLinear(number)
+
+  while (!amicableChain.includes(currentNum) && currentNum <= limit) {
+    amicableChain.push(currentNum)
+    currentNum = findAndSumAllDivisorsLinear(currentNum)
+  }
+
+  return {
+    number,
+    chain: amicableChain,
+    chainLength: amicableChain.length,
+  }
 }

@@ -19,7 +19,7 @@ export function findNthPrime(nthPrime: number): number {
 
 ```typescript
 // Implementation without array is twice as slow because isPrime is called twice each iteration
-// ~6.8 seconds for findNthPrime(1000100) and using console.time/console.timeEnd
+// ~6.8 to ~7.4 seconds for findNthPrime(1000100) and using console.time/console.timeEnd
 export function findNthPrime(nthPrime: number): number {
   let currentNumber = 1
   let counter = 0
@@ -33,14 +33,16 @@ export function findNthPrime(nthPrime: number): number {
 ```
 
 ```typescript
-// Implementation without array but still slower that using array
-// ~3.6 seconds for findNthPrime(1000100) and using console.time/console.timeEnd
+// Implementation without array but still slower than using array
+// ~3.6 to ~3.9 seconds for findNthPrime(1000100) and using console.time/console.timeEnd
 export function findNthPrime(nthPrime: number): number {
   let currentNumber = 1
   let counter = 0
   while (counter < nthPrime) {
-    if (isPrime(currentNumber) && counter === nthPrime - 1) return currentNumber
-    if (isPrime(currentNumber)) counter++
+    if (isPrime(currentNumber)) {
+      if (counter === nthPrime - 1) return currentNumber
+      counter++
+    }
     currentNumber++
   }
   return currentNumber

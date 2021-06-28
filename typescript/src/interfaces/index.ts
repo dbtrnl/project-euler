@@ -21,3 +21,21 @@ export type TripletSetObject = {
   b: number;
   c: number;
 }
+
+/**
+ * Describes if number is amicable.
+ *
+ * If true, a pair of numbers is returned
+ */
+export type amicableNumberObject = {
+  isAmicable: boolean;
+  pair: number[] | null;
+}
+
+export type amicableChainObject = {
+  number: number;
+  chain: number[];
+  chainLength: number
+}
+
+export type NumberClassification = 'perfect' | 'abundant' | 'deficient' | null

@@ -15,36 +15,37 @@ The sum of these numbers is 1634 + 8208 + 9474 = 19316.
 Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
 
 */
-(() => {
+export default function problem30(): number {
   const isNumberWrittenAsSumOfNPowerOfItsDigits = (number: number, power: number): boolean => {
-    const numStr = number.toString().split('');
-    let sum: number = 0;
-    let currentDigit: number = 0;
+    const numStr = number.toString().split('')
+    let sum = 0
+    let currentDigit = 0
 
     for (let i = 0; i < numStr.length; i++) {
-      currentDigit = parseInt(numStr[i]);
-      sum += Math.pow(currentDigit, power);
+      currentDigit = parseInt(numStr[i], 10)
+      sum += currentDigit ** power
     }
 
-    if (sum === number) return true;
-    else return false;
+    if (sum === number) return true
+    return false
   }
 
-  const main = () => {
-    const MAX_VALUE = 9999999;
-    let iterator: boolean;
-    let sum: number = 0;
+  const main = (): number => {
+    const MAX_VALUE = 9999999
+    let iterator: boolean
+    let sum = 0
 
     for (let i = 2; i <= MAX_VALUE; i++) {
-      iterator = isNumberWrittenAsSumOfNPowerOfItsDigits(i, 5);
+      iterator = isNumberWrittenAsSumOfNPowerOfItsDigits(i, 5)
       if (iterator) {
-        sum += i;
-        console.log(`Number ${i} fulfills the conditions`);
+        sum += i
+        // console.log(`Number ${i} fulfills the conditions`)
       }
     }
-    console.log(`The answer is ${sum}`);
+    return sum
   }
   // console.time('Time elapsed on main()');
-  main();
+  const result = main()
+  return result
   // console.timeEnd('Time elapsed on main()');
-})()
+}

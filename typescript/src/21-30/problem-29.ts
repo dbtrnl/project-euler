@@ -17,25 +17,26 @@
 
 */
 
-(() => {
+export default function problem29(): number {
   const getAllIntegerPowerCombinations = (firstNum: number[], secondNum: number[]): number[] => {
-    let finalArray: number[] = [];
-    let currentNum: number = 0;
+    const finalArray: number[] = []
+    let currentNum = 0
 
     for (let i = firstNum[0]; i <= firstNum[1]; i++) {
       for (let k = secondNum[0]; k <= secondNum[1]; k++) {
-        currentNum = Math.pow(i, k);
+        currentNum = i ** k
 
-        if (!finalArray.includes(currentNum)) finalArray.push(currentNum);
+        if (!finalArray.includes(currentNum)) finalArray.push(currentNum)
       }
     }
-    return finalArray;
+    return finalArray
   }
 
-  const main = (): void => {
-    const answer = getAllIntegerPowerCombinations([2, 100], [2, 100]);
+  const main = (): number => {
+    const answer = getAllIntegerPowerCombinations([2, 100], [2, 100])
 
-    console.log(`The answer is ${answer.length}`);
+    return answer.length
   }
-  main();
-})()
+  const result = main()
+  return result
+}

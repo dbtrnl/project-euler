@@ -1,4 +1,4 @@
-/* 
+/*
   Problem 21 - Amicable numbers
 
   Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
@@ -10,66 +10,22 @@
   Evaluate the sum of all the amicable numbers under 10000.
 */
 
-import { findAndSumAllProperDivisors } from '../utils';
+import { findAmicableNumbersUnder } from '../utils'
 
-interface amicableNumberObject {
-  isAmicable: boolean;
-  pair: number[] | null;
-}
-
-(() => {
-  const isAmicableNumber = (inputNum: number): amicableNumberObject => {
-
-    let firstNum = findAndSumAllProperDivisors(inputNum);
-    let secondNum = findAndSumAllProperDivisors(firstNum);
-
-    // If amicable number pair was found
-    if (inputNum != firstNum && secondNum == inputNum) {
-      return {
-        isAmicable: true,
-        pair: [inputNum, firstNum]
-      }
-    } else {
-      return {
-        isAmicable: false,
-        pair: null
-      }
-    }
-  }
-
-  const findAmicableNumbersUnder = (maxLimit: number): Array<number> => {
-    let array: number[] = [];
-
-    for (let i = 0; i < maxLimit; i++) {
-
-      // If i was already calculated, skip this iteration;
-      if (array.includes(i)) continue;
-
-      let iterator = isAmicableNumber(i);
-      // console.log(iterator);
-
-      // If an amicable number pair was found
-      if (iterator.isAmicable) {
-        iterator.pair?.forEach(number => {
-          array.push(number);
-        });
-      }
-    }
-    return array;
-  }
-
-  const main = (): void => {
-    const amicableNumbersArray = findAmicableNumbersUnder(10000);
-    let answer: number = 0;
+export default function problem21(): number {
+  const main = (): number => {
+    const amicableNumbersArray = findAmicableNumbersUnder(10000)
+    let answer = 0
 
     // Summing everything
-    amicableNumbersArray.forEach(number => {
-      answer += number;
-    });
+    amicableNumbersArray.forEach((number) => {
+      answer += number
+    })
 
-    console.log(`The answer is ${answer}`);
+    return answer
   }
   // console.time();
-  main();
+  const result = main()
+  return result
   // console.timeEnd();
-})()
+}

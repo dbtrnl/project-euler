@@ -28,43 +28,44 @@
 
 */
 
-import { isPrime } from '../utils';
+import { isPrime } from '../utils'
 
-(() => {
+export default function problem27(): number {
   function problemPolinomialPrimeFormula(n: number, a: number, b: number): number {
-    return (n ** 2) + (a * n) + b;
+    return (n ** 2) + (a * n) + b
   }
 
-  const main = () => {
-    const MIN_A = -999;
-    const MAX_A = 999;
+  const main = (): number => {
+    const MIN_A = -999
+    const MAX_A = 999
 
-    const MIN_B = -1000;
-    const MAX_B = 1000;
+    const MIN_B = -1000
+    const MAX_B = 1000
 
     const object = {
       a: 0,
       b: 0,
       SequenceSize: 0,
-    };
+    }
 
     for (let a = MIN_A; a <= MAX_A; a++) {
       for (let b = MIN_B; b <= MAX_B; b++) {
-        let n = 0;
+        let n = 0
         while (isPrime(problemPolinomialPrimeFormula(n, a, b))) {
-          n++;
+          n++
         }
         if (n > object.SequenceSize) {
-          object.a = a;
-          object.b = b;
-          object.SequenceSize = n;
-          console.log(`n^2 + ${a}n + ${b} polynome produces a sequence of size ${n}`);
+          object.a = a
+          object.b = b
+          object.SequenceSize = n
+          // console.log(`n^2 + ${a}n + ${b} polynome produces a sequence of size ${n}`)
         }
       }
     }
 
-    const answer = object.a * object.b;
-    console.log(`The answer is ${answer}`);
-  };
-  main();
-})();
+    const answer = object.a * object.b
+    return answer
+  }
+  const result = main()
+  return result
+}

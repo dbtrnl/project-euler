@@ -1,6 +1,6 @@
 /*
   Problem 23 - Non-abundant sums
-  
+
   A perfect number is a number for which the sum of its proper divisors is exactly equal to the number.
   For example, the sum of the proper divisors of 28 would be 1 + 2 + 4 + 7 + 14 = 28, which means that 28 is a perfect number.
 
@@ -14,67 +14,60 @@
   Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 */
 
-import { findAndSumAllProperDivisors } from '../utils';
+import { isNumberDeficientPerfectOrAbundant } from '../utils'
 
-(() => {
-  const isNumberDeficientPerfectOrAbundant = (number: number) => {
-    let sumOfDivisors = findAndSumAllProperDivisors(number);
-
-    if (sumOfDivisors === number) return 'perfect';
-    if (sumOfDivisors > number) return 'abundant';
-    if (sumOfDivisors < number) return 'deficient';
-  }
-
+export default function problem23(): number {
   const findAbundantNumbersUntil = (upperLimit: number): number[] => {
-    let abundantNumbersArray: number[] = [];
+    const abundantNumbersArray: number[] = []
 
     for (let i = 1; i <= upperLimit; i++) {
-      if (isNumberDeficientPerfectOrAbundant(i) === 'abundant') abundantNumbersArray.push(i);
+      if (isNumberDeficientPerfectOrAbundant(i) === 'abundant') abundantNumbersArray.push(i)
     }
-    return abundantNumbersArray;
+    return abundantNumbersArray
   }
 
   const returnAllSumsOfTwoAbundantNumbers = (abundantNumberArray: number[], upperLimit: number): number[] => {
-    let finalArray: number[] = [];
+    const finalArray: number[] = []
 
-    abundantNumberArray.map(number => {
-      let currentNum = 0;
+    abundantNumberArray.forEach((number) => {
+      let currentNum = 0
 
       for (let i = 0; i < abundantNumberArray.length - 1; i++) {
-        currentNum = number + abundantNumberArray[i];
-        
-        if (currentNum > upperLimit) continue;
+        currentNum = number + abundantNumberArray[i]
+
+        if (currentNum > upperLimit) continue
 
         if (!finalArray.includes(currentNum)) {
-          console.log(`${currentNum} is not in the array`);
-          finalArray.push(currentNum);
+          // console.log(`${currentNum} is not in the array`)
+          finalArray.push(currentNum)
         }
       }
-    });
-    return finalArray;
+    })
+    return finalArray
   }
 
-  const main = () => {
-    const UPPER_LIMIT = 28123;
+  const main = (): number => {
+    const UPPER_LIMIT = 28123
 
-    const abundantNumbers = findAbundantNumbersUntil(UPPER_LIMIT);
+    const abundantNumbers = findAbundantNumbersUntil(UPPER_LIMIT)
 
-    console.time('time elapsed summing abundant numbers');
-    const sums = returnAllSumsOfTwoAbundantNumbers(abundantNumbers, UPPER_LIMIT);
-    console.timeEnd('time elapsed summing abundant numbers');
+    // console.time('time elapsed summing abundant numbers')
+    const sums = returnAllSumsOfTwoAbundantNumbers(abundantNumbers, UPPER_LIMIT)
+    // console.timeEnd('time elapsed summing abundant numbers')
 
-    let numbersNotWrittenAsSumOfTwoAbundantNumbers: number[] = [];
+    const numbersNotWrittenAsSumOfTwoAbundantNumbers: number[] = []
 
     for (let i = 0; i < sums.length - 1; i++) {
       if (!sums.includes(i)) {
-        console.log(`${i}`);
-        numbersNotWrittenAsSumOfTwoAbundantNumbers.push(i);
+        // console.log(`${i}`)
+        numbersNotWrittenAsSumOfTwoAbundantNumbers.push(i)
       }
     }
-    let answer = numbersNotWrittenAsSumOfTwoAbundantNumbers.reduce((sum, number) => {
-      return sum += number;
-    });
-    console.log(`Answer is ${answer}`);
+    const answer = numbersNotWrittenAsSumOfTwoAbundantNumbers.reduce((sum, number) => {
+      return sum += number
+    })
+    return answer
   }
-  main();
-})()
+  const result = main()
+  return result
+}

@@ -6,7 +6,7 @@
     "license": "MIT",
     "type": "commonjs",
     "scripts": {
-        "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register '**/*.test.ts' -t=60000 -s=0"
+        "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0"
     },
     "devDependencies": {
         "@types/chai": "^4.2.19",
@@ -55,6 +55,7 @@
             "no-param-reassign": "warn",
             "no-plusplus": "off",
             "no-restricted-syntax": "warn",
+            "no-return-assign": "warn",
             "no-unused-vars": "off",
             "no-unused-expressions": "off",
             "semi": [

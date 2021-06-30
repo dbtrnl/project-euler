@@ -9,9 +9,32 @@
  *
  * Find the product abc.
  */
+
+import { TripletSetObject } from '../_interfaces'
+import { isSetPythagoreanTriplet } from '../_utils'
+
 export default function problem9(): number {
   const main = (): number => {
-    return 0
+    const MAX_ITERATIONS = 1000
+    const pythagoreanSetArray: Array<TripletSetObject> = []
+    let desiredPythagoreanTriplet: TripletSetObject = { a: 0, b: 0, c: 0 }
+    let answer = 0
+
+    for (let c = 3; c <= MAX_ITERATIONS; c++) {
+      for (let b = 2; b < c; b++) {
+        for (let a = 1; a < b; a++) {
+          if (isSetPythagoreanTriplet({ a, b, c })) pythagoreanSetArray.push({ a, b, c })
+        }
+      }
+    }
+
+    pythagoreanSetArray.forEach((set) => {
+      if (set.a + set.b + set.c === 1000) desiredPythagoreanTriplet = set
+    })
+
+    answer = desiredPythagoreanTriplet.a * desiredPythagoreanTriplet.b * desiredPythagoreanTriplet.c
+
+    return answer
   }
 
   const result = main()

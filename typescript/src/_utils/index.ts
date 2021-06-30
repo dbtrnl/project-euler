@@ -443,8 +443,8 @@ export function isSetPythagoreanTriplet(inputSet: TripletSetObject): boolean {
   if (inputSet.b > inputSet.c) throw new Error('b must not be greater than c')
 
   const aSquared = inputSet.a ** 2
-  const bSquared = inputSet.a ** 2
-  const cSquared = inputSet.a ** 2
+  const bSquared = inputSet.b ** 2
+  const cSquared = inputSet.c ** 2
 
   if (aSquared + bSquared === cSquared) return true
   return false

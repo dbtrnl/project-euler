@@ -13,12 +13,12 @@
 
 (() => {
   const isNumberPandigital = (num: number): boolean => {
-    const numArr = num.toString().split('');
-    
-    return false;
+    const numArr = num.toString().split('')
+
+    return false
   }
   const main = () => {
 
   }
-  main();
+  main()
 })()

@@ -12,7 +12,7 @@
   Which starting number, under one million, produces the longest chain?
 */
 
-import { findLongestCollatzSequenceUnder } from '../utils'
+import { findLongestCollatzSequenceUnder } from '../_utils'
 
 export default function problem14(): number {
   const main = (): number => {

@@ -4,7 +4,7 @@
   Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 */
 
-import { problem13Input as problemInput } from '../data'
+import { problem13Input as problemInput } from '../_data'
 
 export default function problem13(): number {
   const assembleArray = (input: string): bigint[] => {

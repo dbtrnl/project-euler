@@ -14,7 +14,7 @@
   Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 */
 
-import { isNumberDeficientPerfectOrAbundant } from '../utils'
+import { isNumberDeficientPerfectOrAbundant } from '../_utils'
 
 export default function problem23(): number {
   const findAbundantNumbersUntil = (upperLimit: number): number[] => {

@@ -28,7 +28,7 @@
 
 */
 
-import { isPrime } from '../utils'
+import { isPrime } from '../_utils'
 
 export default function problem27(): number {
   function problemPolinomialPrimeFormula(n: number, a: number, b: number): number {

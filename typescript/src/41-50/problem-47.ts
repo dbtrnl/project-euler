@@ -19,5 +19,5 @@
   const main = () => {
 
   }
-  main();
+  main()
 })()

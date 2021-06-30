@@ -10,7 +10,7 @@
   Evaluate the sum of all the amicable numbers under 10000.
 */
 
-import { findAmicableNumbersUnder } from '../utils'
+import { findAmicableNumbersUnder } from '../_utils'
 
 export default function problem21(): number {
   const main = (): number => {

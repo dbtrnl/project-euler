@@ -86,7 +86,7 @@ console.log(primeNumberSum);
   func 4 - Last optimization
 */
 
-import { findAllPrimesSmallerThan } from '../utils'
+import { findAllPrimesSmallerThan } from '../_utils'
 
 export default function problem10(): number {
   const main = (): number => {

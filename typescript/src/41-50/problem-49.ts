@@ -13,28 +13,28 @@ import {
   findPrimesWithNDigits,
   findAllPermutationsOfNumber,
   isPrime,
-} from '../utils';
+} from '../_utils';
 
 (() => {
   function main(): void {
-    const allPrimesWithFourDigits = findPrimesWithNDigits(4);
-    const allPermutationsArray: Array<number[]> = [];
+    const allPrimesWithFourDigits = findPrimesWithNDigits(4)
+    const allPermutationsArray: Array<number[]> = []
 
     for (let i = 0; i <= allPrimesWithFourDigits.length - 1; i++) {
-      const currNum = allPrimesWithFourDigits[i];
-      const currNumPermSet: Set<number> = findAllPermutationsOfNumber(currNum);
+      const currNum = allPrimesWithFourDigits[i]
+      const currNumPermSet: Set<number> = findAllPermutationsOfNumber(currNum)
 
       // Delete permutations that aren't primes
       currNumPermSet.forEach((permutation) => {
-        if (!isPrime(permutation)) currNumPermSet.delete(permutation);
-      });
+        if (!isPrime(permutation)) currNumPermSet.delete(permutation)
+      })
 
-      const currNumPermArr = [...currNumPermSet];
+      const currNumPermArr = [...currNumPermSet]
 
-      allPermutationsArray.push(currNumPermArr);
+      allPermutationsArray.push(currNumPermArr)
     }
     // 1000+ arrays of permutations to check...
-    console.log(allPermutationsArray);
+    console.log(allPermutationsArray)
   }
-  main();
-})();
+  main()
+})()

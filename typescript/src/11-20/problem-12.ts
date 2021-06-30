@@ -19,7 +19,7 @@
   We can see that 28 is the first triangle number to have over five divisors.
   What is the value of the first triangle number to have over five hundred divisors?
  */
-import { findAllProperDivisors } from '../utils'
+import { findAllProperDivisors } from '../_utils'
 
 export default function problem12(): number {
   const generateTriangleNumbersSequence = (sequenceSize: number): number[] => {

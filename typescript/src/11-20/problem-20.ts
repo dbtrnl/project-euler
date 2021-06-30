@@ -1,4 +1,4 @@
-import { factorialBigInt } from '../utils'
+import { factorialBigInt } from '../_utils'
 
 /**
  * Problem 20 - Factorial digit sum

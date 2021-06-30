@@ -1,7 +1,7 @@
 import {
   amicableChainObject,
   amicableNumberObject, CollatzSequenceObject, NumberClassification, TripletSetObject,
-} from '../interfaces'
+} from '../_interfaces'
 
 /*
   An alternative to this function is to use template string:

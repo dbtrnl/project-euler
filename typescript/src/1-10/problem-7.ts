@@ -6,7 +6,7 @@
   What is the 10.001st prime number?
 */
 
-import { findNthPrime } from '../utils'
+import { findNthPrime } from '../_utils'
 /*
   Execution time: ~10 miliseconds
 */

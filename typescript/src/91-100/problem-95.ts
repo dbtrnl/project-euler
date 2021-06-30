@@ -17,54 +17,33 @@
   Find the smallest member of the longest amicable chain with no element exceeding one million.
 */
 
+import { amicableChainObject } from '../_interfaces'
 import {
-  findAndSumAllDivisors
-} from '../utils'
-
-interface amicableChainObject {
-  number: number;
-  chain: number[];
-  chainLength: number
-}
-
-const findAmicableChain = (number: number, limit: number): amicableChainObject => {
-  let amicableChain: number[] = [number];
-  let currentNum: number = findAndSumAllDivisors(number);
-
-  while (!amicableChain.includes(currentNum) && currentNum <= limit) {
-    amicableChain.push(currentNum)
-    currentNum = findAndSumAllDivisors(currentNum);
-  }
-
-  return {
-    number: number,
-    chain: amicableChain,
-    chainLength: amicableChain.length
-  }
-}
+  findAmicableChain,
+} from '../_utils'
 
 const main = () => {
-  console.time('Loop total execution time');
+  console.time('Loop total execution time')
   let longestChain: amicableChainObject = {
     number: 0,
     chain: [],
-    chainLength: 0
-  };
+    chainLength: 0,
+  }
 
   // Longest chain below 10.000 = 3594 - 87 numbers
 
   for (let i = 1; i < 203035; i++) {
-    let iterator = findAmicableChain(i, 1000000);
+    const iterator = findAmicableChain(i, 1000000)
     if (iterator.chainLength > longestChain.chainLength) {
-      longestChain = iterator;
+      longestChain = iterator
       // console.log(longestChain)
-      console.log(`Longest chain so far: ${longestChain.chainLength}, for number ${longestChain.number}`);
+      console.log(`Longest chain so far: ${longestChain.chainLength}, for number ${longestChain.number}`)
     }
   }
   console.timeEnd('Loop total execution time')
 
   console.log(longestChain)
-  console.log(longestChain.chain[longestChain.chainLength - 2]);
+  console.log(longestChain.chain[longestChain.chainLength - 2])
 }
 
 // main();
@@ -83,6 +62,6 @@ const main = () => {
 // })()
 
 (() => {
-  let teste = findAmicableChain(12496, 1000000);
-  console.log(teste);
+  const teste = findAmicableChain(12496, 1000000)
+  console.log(teste)
 })()

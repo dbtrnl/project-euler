@@ -17,7 +17,7 @@ How many such routes are there through a 20×20 grid?
   So for a N x N grid, N+1 x N+1 matrix is needed
 */
 
-import { factorial } from '../utils'
+import { factorial } from '../_utils'
 
 export default function problem15(): number {
   const main = () => {

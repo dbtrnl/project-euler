@@ -15,7 +15,7 @@
   https://www.mathsisfun.com/prime-factorization.html
 */
 
-import { findLargestPrimeFactor } from '../utils'
+import { findLargestPrimeFactor } from '../_utils'
 
 export default function problem3(): number {
   const PROBLEM_INPUT = 600851475143

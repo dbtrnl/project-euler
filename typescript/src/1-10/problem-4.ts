@@ -6,7 +6,7 @@
   Find the largest palindrome made from the product of two 3-digit numbers
 */
 
-import { isNumberPalindrome } from '../utils'
+import { isNumberPalindrome } from '../_utils'
 
 export default function problem4(): number {
   const main = (): number => {

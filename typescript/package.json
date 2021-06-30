@@ -6,7 +6,7 @@
     "license": "MIT",
     "type": "commonjs",
     "scripts": {
-        "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0"
+        "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0"
     },
     "devDependencies": {
         "@types/chai": "^4.2.19",

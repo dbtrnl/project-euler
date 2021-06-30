@@ -35,6 +35,28 @@ export function factorial(number: number): number {
   return result
 }
 
+/**
+ * BigInt implementation of factorial function
+ *
+ * Returns the result of N factorial (N!)
+ *
+ * @param {Number} number number N
+ * @returns {BigInt} factorial of number N
+ */
+export function factorialBigInt(n: number): BigInt {
+  let factorialIterator = BigInt(0)
+  let result = BigInt(1)
+  const inputNumber = BigInt(n)
+
+  if (inputNumber === BigInt(1)) return BigInt(1)
+  if (inputNumber === BigInt(2)) return BigInt(2)
+
+  for (factorialIterator = inputNumber; factorialIterator > BigInt(1); factorialIterator--) {
+    result *= factorialIterator
+  }
+  return result
+}
+
 export function permutation(n: number, k: number): number {
   return factorial(n) / factorial(n - k)
 }

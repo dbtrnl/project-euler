@@ -1,5 +1,5 @@
 import { Triangle, TriangleRow } from '../_interfaces'
-import { problem18Input as problemInput } from '../_data'
+import { problem18Input as PROBLEM_INPUT } from '../_data'
 
 /**
  * **Problem 18 - Maximum path sum I**
@@ -134,7 +134,7 @@ export default function problem18(): number {
   }
 
   function main(): number {
-    const triangle = assembleTriangle(problemInput)
+    const triangle = assembleTriangle(PROBLEM_INPUT)
     const answer = findMaximumPathSum(triangle)
     // console.log(`The answer is ${answer}`)
     return answer

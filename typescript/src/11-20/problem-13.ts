@@ -1,4 +1,4 @@
-import { problem13Input as problemInput } from '../_data'
+import { problem13Input as PROBLEM_INPUT } from '../_data'
 
 /**
  * **Problem 13 - Large sum**
@@ -234,7 +234,7 @@ export default function problem13(): number {
   }
 
   const main = (): number => {
-    const array = assembleArray(problemInput)
+    const array = assembleArray(PROBLEM_INPUT)
     const sum = sumAllNumbersInArray(array)
 
     const answer: string = sum.toString().substring(0, 10)

@@ -1,7 +1,7 @@
 import { findSumOfNumberIntervalSquares, findSquareOfNumberIntervalSum } from '../_utils'
 
 /**
- * Problem 6 - Sum square difference
+ * **Problem 6 - Sum square difference**
  *
  * The sum of the squares of the first ten natural numbers is,
  *
@@ -13,6 +13,7 @@ import { findSumOfNumberIntervalSquares, findSquareOfNumberIntervalSum } from '.
  *
  * Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025-385=2640
  *
+ * ---
  * Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
  */
 export default function problem6(): number {

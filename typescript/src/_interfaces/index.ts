@@ -27,12 +27,12 @@ export type TripletSetObject = {
  *
  * If true, a pair of numbers is returned
  */
-export type amicableNumberObject = {
+export type AmicableNumberObject = {
   isAmicable: boolean;
   pair: number[] | null;
 }
 
-export type amicableChainObject = {
+export type AmicableChainObject = {
   number: number;
   chain: number[];
   chainLength: number

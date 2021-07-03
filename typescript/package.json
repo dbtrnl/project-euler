@@ -6,7 +6,8 @@
     "license": "MIT",
     "type": "commonjs",
     "scripts": {
-        "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0"
+        "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0",
+        "test:single": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0 -g"
     },
     "devDependencies": {
         "@types/chai": "^4.2.19",

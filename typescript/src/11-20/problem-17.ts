@@ -1,117 +1,124 @@
 interface letterObject {
-  [key: string]: number;
+  [key: string]: string;
 }
 
-const lettersUsed: letterObject = {
-  0: 4,
-  1: 3,
-  2: 3,
-  3: 5,
-  4: 4,
-  5: 4,
-  6: 3,
-  7: 5,
-  8: 5,
-  9: 4,
-  10: 3,
-  11: 6,
-  12: 6,
-  13: 8,
-  14: 8,
-  15: 7,
-  16: 7,
-  17: 9,
-  18: 8,
-  19: 8,
-  20: 6,
-  30: 6,
-  40: 6,
-  50: 5,
-  60: 5,
-  70: 7,
-  80: 6,
-  90: 6,
-  100: 10,
-  '00': 7,
-  '000': 8,
+const numberMap: letterObject = {
+  0: 'zero',
+  1: 'one',
+  2: 'two',
+  3: 'three',
+  4: 'four',
+  5: 'five',
+  6: 'six',
+  7: 'seven',
+  8: 'eight',
+  9: 'nine',
+  10: 'ten',
+  11: 'eleven',
+  12: 'twelve',
+  13: 'thirteen',
+  14: 'fourteen',
+  15: 'fifteen',
+  16: 'sixteen',
+  17: 'seventeen',
+  18: 'eighteen',
+  19: 'nineteen',
+  20: 'twenty',
+  30: 'thirty',
+  40: 'forty',
+  50: 'fifty',
+  60: 'sixty',
+  70: 'seventy',
+  80: 'eighty',
+  90: 'ninety',
+  '00': 'hundred',
+  '000': 'thousand',
 }
-
-/**
- * **Problem 17 - Number letter counts**
- *
- * If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
- *
- * If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
- * **NOTE: Do not count spaces or hyphens.**
- *
- * For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters.
- *
- * ---
- * The use of "and" when writing out numbers is in compliance with British usage.
- */
 export default function problem17(): number {
-  const numberOfLettersInWrittenNumber = (num: number): number | null => {
-    if (lettersUsed[num]) {
-      return lettersUsed[num]
+  const numberOfLettersInWrittenNumber = (num: number): string => {
+    if (numberMap[num]) {
+      return numberMap[num]
     }
-    let answer: number | null = null
-    const string = num.toString()
+    let currentNumber = ''
+    const currNumStr = num.toString()
 
     // If it's a two-digit number:
-    if (string.length === 2) {
-      switch (string[0]) {
+    if (currNumStr.length === 2) {
+      // Extracting digits
+      const firstDigit = currNumStr[0]
+      const secondDigit = currNumStr[1]
+
+      switch (firstDigit) {
         case '2':
-          answer = lettersUsed[20] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[20]} ${numberMap[secondDigit]}`
           break
         case '3':
-          answer = lettersUsed[30] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[30]} ${numberMap[secondDigit]}`
           break
         case '4':
-          answer = lettersUsed[40] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[40]} ${numberMap[secondDigit]}`
           break
         case '5':
-          answer = lettersUsed[50] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[50]} ${numberMap[secondDigit]}`
           break
         case '6':
-          answer = lettersUsed[60] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[60]} ${numberMap[secondDigit]}`
           break
         case '7':
-          answer = lettersUsed[70] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[70]} ${numberMap[secondDigit]}`
           break
         case '8':
-          answer = lettersUsed[80] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[80]} ${numberMap[secondDigit]}`
           break
         case '9':
-          answer = lettersUsed[90] + lettersUsed[string[1]]
+          currentNumber = `${numberMap[90]} ${numberMap[secondDigit]}`
           break
         default:
-          null
+          ''
       }
     }
-    if (string.length === 3) {
-      switch (string.substr(1)) {
+    // If a three-digit number
+    if (currNumStr.length === 3) {
+      // Extracting digits
+      const firstDigit = currNumStr[0]
+      const secondDigit = currNumStr[1]
+      const thirdDigit = currNumStr[2]
+      const twoDigitCardinal = `${currNumStr[1]}0`
+      const twoLastDigits = currNumStr.substr(1)
+
+      switch (currNumStr.substr(1)) {
         case '00':
-          answer = lettersUsed[string[0]] + lettersUsed['00']
+          currentNumber = `${numberMap[currNumStr[0]]} ${numberMap['00']}`
           break
         default:
-          null
+          if (numberMap[num]) {
+            currentNumber = numberMap[num]
+          } else if (twoLastDigits === '00') {
+            currentNumber = `${numberMap[firstDigit]} ${numberMap['00']} and ${numberMap[twoDigitCardinal]}`
+          } else if (numberMap[twoLastDigits]) {
+            currentNumber = `${numberMap[firstDigit]} ${numberMap['00']} and ${numberMap[twoLastDigits]}`
+          } else if (secondDigit === '0') {
+            currentNumber = `${numberMap[firstDigit]} ${numberMap['00']} and ${numberMap[thirdDigit]}`
+          } else {
+            currentNumber = `${numberMap[firstDigit]} ${numberMap['00']} and ${numberMap[twoDigitCardinal]} ${numberMap[thirdDigit]}`
+          }
       }
+    }
+    if (currNumStr.length === 4) currentNumber = 'one thousand'
+    return currentNumber
+  }
+
+  const main = (): number => {
+    let currentNumber = ''
+    let answer = 0
+
+    for (let i = 1; i <= 1000; i++) {
+      currentNumber = numberOfLettersInWrittenNumber(i)
+      const currentNumberLength = currentNumber.replace(/\s+/g, '').length
+      answer += currentNumberLength
     }
     return answer
   }
-
-  const main = (): number | null => {
-    let iterator: number | null = null
-
-    for (let i = 0; i <= 1000; i++) {
-      iterator = numberOfLettersInWrittenNumber(i)
-      if (iterator == null) continue
-      // console.log(`${i} has ${iterator} letters`)
-    }
-    return iterator
-  }
   const result = main()
-
-  if (result === null) return 0
   return result
 }

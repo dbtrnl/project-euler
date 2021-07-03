@@ -8,10 +8,20 @@ import {
   TripletSetObject,
 } from '../_interfaces'
 
+import {
+  isPrime, findAllPrimesSmallerThan, findLargestPrimeFactor, findNthPrime, findPrimesWithNDigits,
+} from './primeNumberUtils'
+
+export {
+  isPrime, findAllPrimesSmallerThan, findLargestPrimeFactor, findNthPrime, findPrimesWithNDigits,
+}
+
 /**
  * Extracts a string line from a multi-line string
  *
  * Used in assembly of triangles (from string to matrix)
+ *
+ * ---
  * @param inputString String on format "02 03 99"
  */
 export function extractTriangleString(inputString: string): string {
@@ -70,11 +80,15 @@ export function numberLength(number: number): number {
 
 /**
  * Returns the result of N factorial (N!)
+ *
+ * ---
  * @param number Number N
+ * @returns {Number} The result of N factorial
+ *
+ * ---
  * @example
  * factorial(5) = 120
  * factorial(12) = 479001600
- * @returns {Number} The result of N factorial
  */
 export function factorial(number: number): number {
   let result = 0
@@ -93,6 +107,7 @@ export function factorial(number: number): number {
  *
  * Returns the result of N factorial (N!)
  *
+ * ---
  * @param {Number} number number N
  * @returns {BigInt} factorial of number N
  */
@@ -124,31 +139,37 @@ export function combination(n: number, k: number): number {
 }
 
 /**
- * Checks if a given number is prime
- * @param {Number} num The number to be checked
- * @example isPrime(3) = 3
- * isPrime(4) = false
- * @returns {Number | Boolean} The number itself (if prime) or false (if not prime)
+ * Returns the product of all digits in a number series passed in string format
+ *
+ * ---
+ * @param {String} digitSeries
+ * @returns {Number} THe product
+ *
+ * ---
+ * @example findProductOfDigitsInNumberSeries('2224') = 32
+ * @example findProductOfDigitsInNumberSeries('2204') = 0
  */
-export function isPrime(num: number): number | false {
-  if (num <= 1) return false
-
-  // 2 and 3 are both primes
-  if (num <= 3) return num
-
-  // Research this property of primes... Every prime is odd, but what about %3?
-  if (num % 2 === 0 || num % 3 === 0) return false
-
-  for (let i = 5; i * i <= num; i += 6) {
-    if (num % i === 0 || num % (i + 2) === 0) return false
-  }
-  // console.log(`Number ${num} is prime`);
-  return num
+export function findProductOfDigitsInNumberSeries(digitSeries: string): number {
+  const product: number = digitSeries
+    .split('')
+    .map((number) => {
+      return parseInt(number, 10)
+    })
+    .reduce((currentProduct: number, currentNumber: number) => {
+      return currentProduct * currentNumber
+    })
+  return product
 }
 
-/*
-  Takes O(sqrt(n)) to execute
-*/
+/**
+ * Returns all proper divisors of a number
+ *
+ * Execution in O(sqrt(n))
+ *
+ * ---
+ * @param {Number} number N >= 0
+ * @returns
+ */
 export function findAllProperDivisors(number: number): Array<number> {
   const divisors: Array<number> = [1]
 
@@ -174,9 +195,15 @@ export function findAndSumAllProperDivisors(number: number): number {
   return sum
 }
 
-/*
-  Takes O(n) to execute
-*/
+/**
+ * Returns all proper divisors of a number
+ *
+ * Execution in O(n)
+ *
+ * ---
+ * @param {Number} number N >= 0
+ * @returns
+ */
 export function findAllDivisorsLinear(number: number): Array<number> {
   // console.log(`Calculating divisors of ${number}...`);
   const divisors: Array<number> = []
@@ -206,120 +233,45 @@ export function findAndSumAllDivisorsLinear(number: number): number {
 }
 
 /**
- * Finds all prime numbers smaller than N (N >= 0)
- * @param limit
- * @example findAllPrimesSmallerThan(10) = [ 2, 3, 5, 7 ]
- * // Returns the 4 prime numbers smaller than 10
- * @returns {Array<number>} Prime number array
- */
-export function findAllPrimesSmallerThan(limit: number): Array<number> {
-  const primeArray: Array<number> = []
-  let iterator = 0
-
-  while (iterator < limit) {
-    if (isPrime(iterator)) primeArray.push(iterator)
-    iterator++
-  }
-  return primeArray
-}
-
-/**
- *
- * @param nthPrime Finds the Nth prime number
- * @example findNthPrime(50) = 229
- * // 229 is the 50th prime number
- * @returns
- */
-export function findNthPrime(nthPrime: number): number {
-  const primeArray: Array<number> = []
-  let iterator = 0
-
-  while (primeArray.length < nthPrime) {
-    if (isPrime(iterator)) primeArray.push(iterator)
-    iterator++
-  }
-  return primeArray[nthPrime - 1]
-}
-
-/**
- * Find prime numbers with N number of digits
- * @param {Number} digits Desired number of digits
- * @returns {Number} How many prime numbers have N digits
- */
-export function findPrimesWithNDigits(digits: number): Array<number> {
-  const primeArray: Array<number> = []
-  let upperLimitNum: string | number = ''
-  let iterator = 0
-
-  // Defining the Max number dynamically (999 for 3 digits, etc)
-  for (let i = 0; i < digits; i++) {
-    upperLimitNum += '9'
-  }
-  upperLimitNum = parseInt(upperLimitNum, 10)
-
-  while (iterator < upperLimitNum) {
-    if (isPrime(iterator) && iterator.toString().length === digits) primeArray.push(iterator)
-    iterator++
-  }
-  return primeArray
-}
-
-export function findLargestPrimeFactor(inputNumber: number): number {
-  /*
-    While number is divisible by 2, divide by 2.
-    In the end you have 1 or another odd number
-  */
-
-  let number = inputNumber
-
-  while (number % 2 === 0) {
-    number /= 2
-  }
-
-  for (let i = 3; i <= Math.sqrt(number); i += 2) {
-    while (number % i === 0) {
-      number /= i
-    }
-  }
-
-  if (number > 2) {
-    // console.log(`Largest prime factor of ${inputNumber} = ${number}`);
-  }
-  return number
-}
-
-/**
  * Find the Collatz sequence of a given number
- * @param n
+ *
+ * ---
+ * @param {Number} num
+ * @returns {CollatzSequenceObject} CollatzSequenceObject
+ *
+ * ---
  * @example findCollatzSequenceOf(5) = {
  * number: 5,
  * sequence: [ 5, 16, 8, 4, 2, 1 ]
  * }
- * @returns {CollatzSequenceObject} CollatzSequenceObject
  */
-export function findCollatzSequenceOf(n: number): CollatzSequenceObject {
-  const sequence = [n]
-  let number = n
+export function findCollatzSequenceOf(inputNumber: number): CollatzSequenceObject {
+  const sequence = [inputNumber]
+  let num = inputNumber
 
-  while (number > 1) {
-    if (number % 2 === 0) number /= 2
-    else number = 3 * number + 1
-    sequence.push(number)
+  while (num > 1) {
+    if (num % 2 === 0) num /= 2
+    else num = 3 * num + 1
+    sequence.push(num)
   }
   return {
-    number: n,
+    number: inputNumber,
     sequence,
   }
 }
 
 /**
  * Find longest Collatz Sequence under number N
- * @param limit
+ *
+ * ---
+ * @param limit Number N
+ * @returns {CollatzSequenceObject} CollatzSequenceObject
+ *
+ * ---
  * @example findLongestCollatzSequenceUnder(3) = {
  * number: 3,
  * sequence: [3, 10, 5, 16, 8, 4, 2, 1]
  * }
- * @returns {CollatzSequenceObject} CollatzSequenceObject
  */
 export function findLongestCollatzSequenceUnder(limit: number): CollatzSequenceObject {
   let longestSequence: CollatzSequenceObject = {
@@ -341,11 +293,15 @@ export function findLongestCollatzSequenceUnder(limit: number): CollatzSequenceO
  * Find the sum of every squared number of the sequence
  *
  * Starting and ending of the sequence included.
+ *
+ * ---
  * @param {Number} intervalStart The start of the interval
  * @param {Number} intervalEnd The end of the interval
+ * @returns {Number} sum
+ *
+ * ---
  * @example findSumOfNumberIntervalSquares(2, 4) = 29
  * // (2*2) + (3*3) + (4*4) = 29
- * @returns {Number} sum
  */
 export function findSumOfNumberIntervalSquares(intervalStart: number, intervalEnd: number): number {
   let result = 0
@@ -358,11 +314,15 @@ export function findSumOfNumberIntervalSquares(intervalStart: number, intervalEn
  * Find the square of the sum of every number in the sequence
  *
  * Starting and ending of the sequence included.
+ *
+ * ---
  * @param {Number} intervalStart The start of the interval
  * @param {Number} intervalEnd The end of the interval
+ * @returns {Number} sum
+ *
+ * ---
  * @example findSumOfNumberIntervalSquares(2, 4) = 81
  * // (2 + 3 + 4)^2 = 81
- * @returns {Number} sum
  */
 export function findSquareOfNumberIntervalSum(intervalStart: number, intervalEnd: number): number {
   let result = 0
@@ -372,12 +332,16 @@ export function findSquareOfNumberIntervalSum(intervalStart: number, intervalEnd
 }
 
 /**
- * Checks if a given number is a permutation of another number
- * @param firstNum
- * @param secondNum
+ * Checks if number N is a permutation of number M
+ *
+ * ---
+ * @param firstNum number N
+ * @param secondNum number M
+ * @returns {Boolean} true | false
+ *
+ * ---
  * @example isNumberPermutationOfAnother(2223, 2232) = true
  * @example isNumberPermutationOfAnother(2224, 2232) = false
- * @returns {Boolean}
  */
 export function isNumberPermutationOfAnother(firstNum: number, secondNum: number): boolean {
   const firstNumArr = firstNum.toString().split('')
@@ -472,6 +436,17 @@ export function findAllPermutationsOfNumber(inputNumber: number): Set<number> {
   return new Set(permutationsArray.sort())
 }
 
+/**
+ * Finds if a number N is a palindrome
+ *
+ * ---
+ * @param inputNumber number N
+ * @returns {Boolean} If N is a palindrome
+ *
+ * ---
+ * @example isNumberPalindrome(242) = true
+ * @example isNumberPalindrome(2422) = false
+ */
 export function isNumberPalindrome(inputNumber: number): boolean {
   const num: string = inputNumber.toString()
   const numArr: string[] = [...num]
@@ -526,6 +501,8 @@ export function isEvenlyDivisibleByEveryNumberInInterval(
 
 /**
  * Polynomial formula for numbers 0 <= N <= 39
+ *
+ * ---
  * @param {Number} n The starting number
  * @returns {Number}
  */
@@ -546,10 +523,14 @@ export function polinomialPrimeFormulaTwo(n: number): number {
 
 /**
  * Checks input number N for amicability
- * @param inputNum
+ *
+ * ---
+ * @param inputNum number N
+ * @returns {AmicableNumberObject} AmicableNumberObject
+ *
+ * ---
  * @example isAmicableNumber(1000) = { isAmicable: false, pair: null }
  * @example isAmicableNumber(220) = { isAmicable: true, pair: [ 220, 284 ] }
- * @returns
  */
 export function isAmicableNumber(inputNum: number): AmicableNumberObject {
   const firstNum = findAndSumAllProperDivisors(inputNum)
@@ -568,6 +549,17 @@ export function isAmicableNumber(inputNum: number): AmicableNumberObject {
   }
 }
 
+/**
+ * Finds all Amicable numbers under limit N
+ *
+ * ---
+ * @param maxLimit number N
+ * @returns {Array<number>} Array of amicable numbers under N
+ *
+ *  ---
+ * @example findAmicableNumbersUnder(300) = [ 220, 284 ]
+ * @example findAmicableNumbersUnder(2000) = [ 220, 284, 1184, 1210 ]
+ */
 export function findAmicableNumbersUnder(maxLimit: number): Array<number> {
   const array: number[] = []
 
@@ -592,8 +584,10 @@ export function findAmicableNumbersUnder(maxLimit: number): Array<number> {
  * Returns if number N is perfect (sum of divisors == N),
  * abundant (sum of divisors > N),
  * or deficient (sum of divisors < N)
+ *
+ * ---
  * @param number
- * @returns
+ * @returns {NumberClassification} 'perfect' | 'abundant' | 'deficient'
  */
 export function isNumberDeficientPerfectOrAbundant(number: number): NumberClassification {
   const sumOfDivisors = findAndSumAllProperDivisors(number)

@@ -52,6 +52,7 @@
             "max-len": "off",
             "no-console": "off",
             "no-continue": "off",
+            "no-else-return": "off",
             "no-param-reassign": "warn",
             "no-plusplus": "off",
             "no-restricted-syntax": "warn",

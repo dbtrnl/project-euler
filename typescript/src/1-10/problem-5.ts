@@ -19,7 +19,7 @@ export default function problem5(): number {
     while (isDivisible === false) {
       isDivisible = isEvenlyDivisibleByEveryNumberInInterval(currentNumber, [MIN_DIVISOR, MAX_DIVISOR])
       if (isDivisible) break
-      currentNumber++
+      else currentNumber++
     }
     return currentNumber
   }

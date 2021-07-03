@@ -30,7 +30,7 @@ export default function problem2(): number {
     const answer: number = fibArray.filter((number) => {
       // If number is not even
       if (number % 2 !== 0) return null
-      return number
+      else return number
     }).reduce((sum, number) => {
       return sum + number
     })

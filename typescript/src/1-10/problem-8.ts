@@ -1,4 +1,5 @@
 import { problem8Input as PROBLEM_INPUT } from '../_data'
+import { findProductOfDigitsInNumberSeries } from '../_utils'
 
 /**
  * **Problem 8 - Largest product in a series**
@@ -11,18 +12,6 @@ import { problem8Input as PROBLEM_INPUT } from '../_data'
  * What is the value of this product?
  */
 export default function problem8(): number {
-  const findProductOfDigitsInNumberSeries = (digitSeries: string): number => {
-    const product: number = digitSeries
-      .split('')
-      .map((number) => {
-        return parseInt(number, 10)
-      })
-      .reduce((currentProduct: number, currentNumber: number) => {
-        return currentProduct * currentNumber
-      })
-    return product
-  }
-
   const main = (): number => {
     const SERIES_SIZE = 13
     let greatestProduct = 0

@@ -1,19 +1,19 @@
 /**
- * Checks if a given number is prime
+ * Checks if number N is prime
  *
  * ---
- * @param {Number} num The number to be checked
- * @returns {Number | Boolean} The number itself (if prime) or false (if not prime)
+ * @param {Number} num number N
+ * @returns {Boolean} true or false
  *
  * ---
- * @example isPrime(3) = 3
+ * @example isPrime(3) = true
  * isPrime(4) = false
  */
-export function isPrime(num: number): number | false {
+export function isPrime(num: number): boolean {
   if (num <= 1) return false
 
   // 2 and 3 are both primes
-  if (num <= 3) return num
+  if (num <= 3) return true
 
   // Research this property of primes... Every prime is odd, but what about %3?
   if (num % 2 === 0 || num % 3 === 0) return false
@@ -21,8 +21,7 @@ export function isPrime(num: number): number | false {
   for (let i = 5; i * i <= num; i += 6) {
     if (num % i === 0 || num % (i + 2) === 0) return false
   }
-  // console.log(`Number ${num} is prime`);
-  return num
+  return true
 }
 
 /**

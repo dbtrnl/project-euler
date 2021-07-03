@@ -16,21 +16,50 @@
  * ---
  * How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
  */
-export default function problem19(): number {
-  const leapYearsOnInterval = (start: number, end: number) => {
-    let leapYears = 0
-    let iterator = start
-    while (iterator <= end) {
-      if (iterator % 4 === 0) {
-        // console.log(`${iterator} was a leap year.`)
-        leapYears++
-      }
-      iterator++
-    }
-    return leapYears
-  }
+// export default function problem19(): number {
+//   function isYearLeapYear(year: number): boolean {
+//     const isCentury = year.toString().substr(2) === '00'
+//     const isDivisibleByFour = isNumberEvenlyDivisibleBy(year, 4)
 
-  const test = leapYearsOnInterval(1900, 2000)
-  // console.log(test)
-  return 0
+//     if (isDivisibleByFour && isCentury) return true
+//     if (isDivisibleByFour) return true
+//     else return false
+//   }
+
+//   function main(): void {
+//     const START = 1901
+//     const END = 2000
+//     for (let i = START; i <= END; i++) {
+//       const isLeap = isYearLeapYear(i)
+//       console.warn(i, isLeap)
+//     }
+//   }
+//   const result = main()
+//   return 0
+// }
+
+export default function problem19(): number {
+  /*
+    Lazy solution using JS new Date()
+  */
+  function main(): number {
+    const START = 1901
+    const END = 2000
+    let answer = 0
+
+    for (let year = START; year <= END; year++) {
+      for (let month = 1; month <= 12; month++) {
+        const date = new Date(`${month} / 01 / ${year}`)
+        const wasFirstOfMonthASunday = date.getDay() === 0
+
+        if (wasFirstOfMonthASunday) {
+          // console.warn('date', date, date.getDay())
+          answer++
+        }
+      }
+    }
+    return answer
+  }
+  const result = main()
+  return result
 }

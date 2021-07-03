@@ -92,6 +92,11 @@ export function isEvenlyDivisibleByEveryNumberInInterval(
   return result
 }
 
+export function isNumberEvenlyDivisibleBy(inputNumber: number, divisor: number): boolean {
+  if (inputNumber % divisor === 0) return true
+  else return false
+}
+
 /**
  * Checks input number N for amicability
  *

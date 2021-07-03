@@ -1,13 +1,16 @@
-// Problem 22 - Names scores
-
 import { readFileSync } from 'fs'
 
-export default function problem22() {
+export default function problem22(): number {
   const assembleSortedNamesArray = (input: string): string[] => {
-    const inputToString: string = readFileSync(input).toString('utf-8')
-    const namesArray: string[] = inputToString.replace(/"/g, '').split(',')
+    try {
+      const inputToString = readFileSync(input).toString('utf-8')
+      const namesArray = inputToString.replace(/"/g, '').split(',')
 
-    return namesArray.sort()
+      return namesArray.sort()
+    } catch (e) {
+      console.error(e)
+      throw new Error(e)
+    }
   }
 
   const findNameScore = (name: string): number => {
@@ -22,7 +25,7 @@ export default function problem22() {
   }
 
   const main = (): number => {
-    const FILE_PATH = '../data/p022_names.txt'
+    const FILE_PATH = 'src/_data/p22Input.txt'
 
     let position: number
     let finalScore = 0

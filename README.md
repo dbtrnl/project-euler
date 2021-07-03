@@ -16,10 +16,9 @@ Using Typescript, Golang and Python.
 - Typescript:
   * Clone this repo;
   * `$ yarn install` to install dependencies;
-  * Run the code for the desired problem  
-    OR
-  * Run `$ npx ts-node-dev [FOLDER-NAME]` to run automated tests (currently using just native NodeJS `assert`)
-    + Currently only problems 1-10 have tests.
+  * `$ npm t` on `typescript` folder to run automated tests (Mocha + Chai)
+
+---
 
 ## Further reading
 
@@ -45,6 +44,7 @@ Using Typescript, Golang and Python.
   Positive divisors of 8 = [1, 2, 4]
   ```
 - **Identity** - An identity is a mathematical relationship equating one quantity to another (which may initially appear to be different). ([source](https://mathworld.wolfram.com/Identity.html))
+  
 ---
 
 ## Notes

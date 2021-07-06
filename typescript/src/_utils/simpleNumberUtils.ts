@@ -204,3 +204,35 @@ export function findAllPermutationsOfNumber(inputNumber: number): Set<number> {
     })
   return new Set(permutationsArray.sort())
 }
+
+export function findRecurringSequence(numerator: number, denominator: number): string {
+  // Taken from https://www.geeksforgeeks.org/find-recurring-sequence-fraction/
+  let result = ''
+
+  const sequenceMap = new Map()
+  sequenceMap.clear()
+
+  // Find first remainder
+  let remainder = numerator % denominator
+
+  // Keep finding remainder until
+  //  either remainder becomes 0 or repeats
+  while ((remainder !== 0) && (!sequenceMap.has(remainder))) {
+    // Store this remainder
+    sequenceMap.set(remainder, result.length)
+
+    // Multiply remainder with 10
+    remainder *= 10
+
+    // Append remainder / denominator to result
+    const resPart = Math.floor(remainder / denominator)
+    result += resPart.toString()
+
+    // Update remainder
+    remainder %= denominator
+  }
+
+  if (remainder === 0) return ''
+  else if (sequenceMap.has(remainder)) return result.substr(sequenceMap.get(remainder))
+  else return ''
+}

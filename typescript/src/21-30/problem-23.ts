@@ -14,58 +14,23 @@
   Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 */
 
-import { isNumberDeficientPerfectOrAbundant } from '../_utils'
+import { findAbundantNumbersUntil, returnUniqueSumCombinationsOfTwoNumbers } from '../_utils'
 
 export default function problem23(): number {
-  const findAbundantNumbersUntil = (upperLimit: number): number[] => {
-    const abundantNumbersArray: number[] = []
-
-    for (let i = 1; i <= upperLimit; i++) {
-      if (isNumberDeficientPerfectOrAbundant(i) === 'abundant') abundantNumbersArray.push(i)
-    }
-    return abundantNumbersArray
-  }
-
-  const returnAllSumsOfTwoAbundantNumbers = (abundantNumberArray: number[], upperLimit: number): number[] => {
-    const finalArray: number[] = []
-
-    abundantNumberArray.forEach((number) => {
-      let currentNum = 0
-
-      for (let i = 0; i < abundantNumberArray.length - 1; i++) {
-        currentNum = number + abundantNumberArray[i]
-
-        if (currentNum > upperLimit) continue
-
-        if (!finalArray.includes(currentNum)) {
-          // console.log(`${currentNum} is not in the array`)
-          finalArray.push(currentNum)
-        }
-      }
-    })
-    return finalArray
-  }
-
   const main = (): number => {
     const UPPER_LIMIT = 28123
+    let answer = 0
 
-    const abundantNumbers = findAbundantNumbersUntil(UPPER_LIMIT)
+    // Takes ~23ms to execute
+    const abundantNumberArray = findAbundantNumbersUntil(UPPER_LIMIT)
 
-    // console.time('time elapsed summing abundant numbers')
-    const sums = returnAllSumsOfTwoAbundantNumbers(abundantNumbers, UPPER_LIMIT)
-    // console.timeEnd('time elapsed summing abundant numbers')
+    // Takes ~480ms to execute
+    const sumsSet = returnUniqueSumCombinationsOfTwoNumbers(abundantNumberArray, UPPER_LIMIT)
 
-    const numbersNotWrittenAsSumOfTwoAbundantNumbers: number[] = []
-
-    for (let i = 0; i < sums.length - 1; i++) {
-      if (!sums.includes(i)) {
-        // console.log(`${i}`)
-        numbersNotWrittenAsSumOfTwoAbundantNumbers.push(i)
-      }
+    // UPPER_LIMIT instead of sumsSet, since every number > 28123 can be written as sum of two abundants
+    for (let i = 0; i < UPPER_LIMIT; i++) {
+      if (!sumsSet.has(i)) answer += i
     }
-    const answer = numbersNotWrittenAsSumOfTwoAbundantNumbers.reduce((sum, number) => {
-      return sum += number
-    })
     return answer
   }
   const result = main()

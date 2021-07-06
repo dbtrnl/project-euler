@@ -8,8 +8,7 @@ describe('Problems 21 to 30', () => {
 
   it('problem 22', () => { const result = problem22(); expect(result).to.be.equal(answers[1]) })
 
-  // This test is taking too long, need to debug
-  // it('problem 23', () => { const result = problem23(); expect(result).to.be.equal(answers[2]) })
+  it('problem 23', () => { const result = problem23(); expect(result).to.be.equal(answers[2]) })
 
   it('problem 24', () => { const result = problem24(); expect(result).to.be.equal(answers[3]) })
 

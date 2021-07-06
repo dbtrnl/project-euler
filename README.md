@@ -64,7 +64,8 @@ Just benchmarking data for possible optimization of algorithms.
   - Refactored code takes ~10 miliseconds (~1000 times faster)
 
 - Problem 23
-  - There were no significant performance chances using indexOf or includes() to iterate a large array
+  - Only 62 uneven numbers out of 6965 abundant numbers <= 28123
+  - There were no significant performance changes using indexOf or includes() to iterate a large array
   - Took ~4 min to return 26667 abundant number sums from 48.511.255 possible combinations (6965 x 6965)
 
 - Problem 25 (with typescript):

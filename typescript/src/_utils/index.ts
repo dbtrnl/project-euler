@@ -17,7 +17,7 @@ import {
 } from './simpleNumberUtils'
 
 import {
-  findAllDivisorsLinear, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder,
+  findAllDivisorsLinear, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
   findAndSumAllDivisorsLinear, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
 } from './divisorsProductsUtils'
@@ -31,7 +31,7 @@ export {
   assembleTriangle, extractTriangleString, findMaximumPathSumOfTriangle,
   combination, combinationGeneral, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutation,
   isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString,
-  findAllDivisorsLinear, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder,
+  findAllDivisorsLinear, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
   findAndSumAllDivisorsLinear, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
   polinomialPrimeFormula1One, polinomialPrimeFormulaTwo,
@@ -115,6 +115,15 @@ export function findSumOfNumberIntervalSquares(intervalStart: number, intervalEn
   return result
 }
 
+export function findAbundantNumbersUntil(limit: number): number[] {
+  const abundantNumbersArray: number[] = []
+
+  for (let i = 1; i <= limit; i++) {
+    if (isNumberDeficientPerfectOrAbundant(i) === 'abundant') abundantNumbersArray.push(i)
+  }
+  return abundantNumbersArray
+}
+
 /**
  * Find the square of the sum of every number in the sequence
  *
@@ -146,4 +155,31 @@ export function isSetPythagoreanTriplet(inputSet: TripletSetObject): boolean {
 
   if (aSquared + bSquared === cSquared) return true
   return false
+}
+
+/**
+ *
+ * @param numArr a number array
+ *
+ * @param upperLimit upper limit of the sum. If greater, the sum is ignored
+ * @returns {Set<number>}a number Set
+ */
+export function returnUniqueSumCombinationsOfTwoNumbers(numArr: number[], upperLimit: number): Set<number> {
+  const finalArray: Set<number> = new Set()
+  const numberArray = numArr
+
+  numberArray.forEach(async (number) => {
+    let currentNum = 0
+
+    for (let i = 0; i < numberArray.length - 1; i++) {
+      currentNum = number + numberArray[i]
+
+      if (currentNum > upperLimit) continue
+
+      // check if currentNum is present in finalArray takes too long
+      // regardless, the final result is the same, but dunno the mathematical explanation
+      finalArray.add(currentNum)
+    }
+  })
+  return finalArray
 }

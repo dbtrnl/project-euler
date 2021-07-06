@@ -176,6 +176,21 @@ export function isNumberDeficientPerfectOrAbundant(number: number): NumberClassi
 }
 
 /**
+ * Returns if number N is abundant (sum of divisors > N),
+ *
+ * ---
+ * @param number
+ * @returns {Boolean} true / false
+ */
+export function isNumberAbundant(number: number): boolean {
+  const sumOfDivisors = findAndSumAllProperDivisors(number)
+
+  if (sumOfDivisors > number) return true
+
+  return false
+}
+
+/**
  * THIS FUNCTION IS STILL A WORK IN PROGRESS
  *
  * USED IN PROBLEM 95

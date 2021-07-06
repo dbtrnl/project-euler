@@ -183,3 +183,20 @@ export function returnUniqueSumCombinationsOfTwoNumbers(numArr: number[], upperL
   })
   return finalArray
 }
+
+/**
+ * initialize a Matrix of matrixSize N filled with numbers or null-values
+ *
+ * ---
+ * @param matrixSize matrix size N
+ * @param filler number M or null
+ *
+ * ---
+ * @returns {Array<number[]>} empty matrix
+ */
+export function initializeMatrix(matrixSize: number, filler: number | null): Array<number[]> {
+  const matrix = [...new Array(matrixSize)].map(() => {
+    return new Array(matrixSize).fill(filler)
+  })
+  return matrix
+}

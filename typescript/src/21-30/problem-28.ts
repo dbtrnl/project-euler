@@ -16,6 +16,23 @@
 
 */
 
+import { initializeMatrix } from '../_utils'
+
 export default function problem28(): number {
-  return 0
+  function main(): number {
+    const matrix = initializeMatrix(5, null)
+    const centerOfMatrix = Math.ceil(matrix.length / 2)
+
+    // Function to fill the matrix in a spiral
+
+    // Sum the diagonals
+
+    console.log(matrix)
+    return 0
+  }
+
+  const result = main()
+  return result
 }
+
+problem28()

@@ -16,23 +16,41 @@
 
 */
 
+/*
+For purely mathematical solutions, see: https://www.mathblog.dk/project-euler-28-sum-diagonals-spiral/
+and https://www.xarg.org/puzzle/project-euler/problem-28/
+
+*/
+
+import { NullMatrix, NumberMatrix } from '../_interfaces'
 import { initializeMatrix } from '../_utils'
 
 export default function problem28(): number {
+  function fillMatrix(nullMatrix: NullMatrix): NumberMatrix {
+    const matrix = <NumberMatrix> nullMatrix
+    const center = Math.ceil(matrix.length / 2) - 1
+
+    matrix[center][center] = 1
+
+    for (let i = center; i <= matrix.length - 1; i++) {
+      // console.log(i)
+    }
+
+    return matrix
+  }
+
   function main(): number {
     const matrix = initializeMatrix(5, null)
-    const centerOfMatrix = Math.ceil(matrix.length / 2)
+    const filledMatrix = fillMatrix(matrix)
 
     // Function to fill the matrix in a spiral
 
     // Sum the diagonals
 
-    console.log(matrix)
+    // console.log(filledMatrix)
     return 0
   }
 
   const result = main()
   return result
 }
-
-problem28()

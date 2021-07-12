@@ -43,3 +43,5 @@ export type NumberClassification = 'perfect' | 'abundant' | 'deficient' | null
 export type NumberMatrix = Array<number[]>
 
 export type NullMatrix = Array<null[] | number[]>
+
+export type OrderEnum = 'ascending' | 'descending'

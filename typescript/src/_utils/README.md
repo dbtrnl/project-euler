@@ -49,3 +49,8 @@ export function findNthPrime(nthPrime: number): number {
 }
 ```
 ---
+
+### isEvenlyDivisibleByEveryNumberInInterval()
+- Descending order results - `4904ms`, `4254ms`, `4911ms`
+- Ascending order results - `5648ms`, `5672ms`, `5776ms`
+  

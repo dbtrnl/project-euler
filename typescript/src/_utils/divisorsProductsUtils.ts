@@ -1,4 +1,6 @@
-import { AmicableChainObject, AmicableNumberObject, NumberClassification } from '../_interfaces'
+import {
+  AmicableChainObject, AmicableNumberObject, NumberClassification, OrderEnum,
+} from '../_interfaces'
 
 /**
  * Returns all proper divisors of a number
@@ -74,21 +76,38 @@ export function findAndSumAllDivisorsLinear(number: number): number {
 export function isEvenlyDivisibleByEveryNumberInInterval(
   inputNumber: number,
   [intervalStart, intervalEnd]: number[],
+  order: OrderEnum,
 ): boolean {
   const number = inputNumber
   let result = false
-  let iterator = intervalStart
+  let iterator
 
   if (intervalStart > intervalEnd) throw new Error('Interval start must not be greater than interval end')
 
-  while (iterator <= intervalEnd) {
-    if (iterator === intervalEnd && number % iterator === 0) {
-      result = true
-      break
+  if (order === 'ascending') {
+    iterator = intervalStart
+    while (iterator <= intervalEnd) {
+      if (iterator === intervalEnd && number % iterator === 0) {
+        result = true
+        break
+      }
+      if (number % iterator !== 0) break
+      iterator++
     }
-    if (number % iterator !== 0) break
-    iterator++
   }
+
+  if (order === 'descending') {
+    iterator = intervalEnd
+    while (iterator >= intervalStart) {
+      if (iterator === intervalStart && number % iterator === 0) {
+        result = true
+        break
+      }
+      if (number % iterator !== 0) break
+      iterator--
+    }
+  }
+
   return result
 }
 

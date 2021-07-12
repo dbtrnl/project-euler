@@ -17,7 +17,7 @@ export default function problem5(): number {
     let isDivisible = false
 
     while (isDivisible === false) {
-      isDivisible = isEvenlyDivisibleByEveryNumberInInterval(currentNumber, [MIN_DIVISOR, MAX_DIVISOR])
+      isDivisible = isEvenlyDivisibleByEveryNumberInInterval(currentNumber, [MIN_DIVISOR, MAX_DIVISOR], 'descending')
       if (isDivisible) break
       else currentNumber++
     }

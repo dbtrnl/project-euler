@@ -10,7 +10,7 @@ import problem29 from './problem-29'
 import problem30 from './problem-30'
 
 const answers = [
-  31626, 871198282, 4179871, undefined, 4782,
+  31626, 871198282, 4179871, 2783915460, 4782,
   983, -59231, undefined, 9183, 443839,
 ]
 

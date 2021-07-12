@@ -11,24 +11,62 @@
 
 import { factorial } from '../_utils/index'
 
-export default function problem24(): void {
-  const problemInput = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+export default function problem24(): number {
+  /*
+  First permutations will begin with 0 = 9! = 362880 permutations beginning with 0
+  362880 + 362880 + 362880 = 1088640
+  So the millionth permutation has to begin with 2
 
-  const findTotalUniqueNumbers = (input: Array<number>): void => {
-    let result = 0
-    let iterator = input.length
+  The first permutation beginning with 2 is the 725761st (725760 + 1)
 
-    for (let i = input.length; i > 0; i--) {
-      // console.log(`The ${input[i - 1]} digit has ${i}! different values = ${factorial(iterator)}`)
-      result += factorial(i)
-      iterator--
+  All permutations beginning with 20 = 8! = 40320
+  Permutations beginning with 20 end at (725760 + 40320) = 766080
+  Permutations beginning with 21 end at (766080 + 40320) = 806400
+  Permutations beginning with 22 end at (806400 + 40320) = 846720
+  Permutations beginning with 23 end at (846720 + 40320) = 887040
+  Permutations beginning with 24 end at (887040 + 40320) = 927360
+  Permutations beginning with 25 end at (927360 + 40320) = 967680
+  Permutations beginning with 26 end at (967680 + 40320) = 1008000
+
+  Permutations beginning with 260 = 7! = (967680 + 5040) = 972720
+  ...
+  Permutations beginning with 276 = 7! = (997920 + 5040) = 1002960
+
+  Permutations beginning with 2760 = 6! = (997920 + 720) = 998640
+  ...
+  Permutations beginning with 2762 = 6! = (999360 + 720) = 1000080
+
+  Permutations beginning with 2760 = 5! = (999360 + 720) = 1000080
+
+  So the millionth permutation begins with 25
+ */
+  function main(): number {
+    // Solution adapted from https://www.mathblog.dk/project-euler-24-millionth-lexicographic-permutation/
+    const permutations = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const N = permutations.length
+    let result = ''
+    let remain = 1000000 - 1
+
+    const remainingNumbers = []
+    for (let i = 0; i < N; i++) {
+      remainingNumbers.push(i)
     }
-    // console.log(result)
-  }
 
-  const findLexicographicPermutations = (input: Array<number>): void => {
-    findTotalUniqueNumbers(input)
-  }
+    for (let i = 1; i < N; i++) {
+      const j = Math.floor(remain / factorial(N - i))
+      remain %= factorial(N - i)
+      // console.log('appending', remainingNumbers[j], 'j:', j, 'avaliable:', remainingNumbers)
+      result += remainingNumbers[j].toString()
+      remainingNumbers.splice(remainingNumbers.indexOf(remainingNumbers[j]), 1)
+      if (remain === 0) break
+    }
+    // console.log('result', result, 'remaining:', remainingNumbers)
 
-  findLexicographicPermutations(problemInput)
+    for (let i = 0; i < remainingNumbers.length; i++) {
+      result += remainingNumbers[i]
+    }
+    return parseInt(result, 10)
+  }
+  const result = main()
+  return result
 }

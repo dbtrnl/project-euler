@@ -13,7 +13,7 @@ import {
 
 import {
   combination, combinationGeneral, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutation,
-  isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence
+  isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence,
 } from './simpleNumberUtils'
 
 import {
@@ -199,4 +199,18 @@ export function initializeMatrix(matrixSize: number, filler: number | null): Arr
     return new Array(matrixSize).fill(filler)
   })
   return matrix
+}
+
+export function returnFibonacciNumbersUntil(limit: number): Array<number> {
+  const fibArray = [1, 2]
+
+  let iterator = 2
+  let currentNumber = fibArray[iterator - 1] + fibArray[iterator - 2]
+
+  while (currentNumber <= limit) {
+    fibArray.push(currentNumber)
+    iterator++
+    currentNumber = fibArray[iterator - 1] + fibArray[iterator - 2]
+  }
+  return fibArray
 }

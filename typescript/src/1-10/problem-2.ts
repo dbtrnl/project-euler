@@ -1,3 +1,5 @@
+import { returnFibonacciNumbersUntil } from '../_utils'
+
 /**
  * **Problem 2 - Even Fibonacci Numbers**
  *
@@ -11,21 +13,10 @@
  *
  */
 export default function problem2(): number {
-  const fibArray: number[] = []
-
-  // Setting the first elements of the arrays cause i'm lazy
-  fibArray[0] = 1
-  fibArray[1] = 2
-
   const main = (): number => {
-    let iterator = 2
-    let currentNum = fibArray[iterator - 1] + fibArray[iterator - 2]
+    const LIMIT = 4000000
 
-    while (currentNum <= 4000000) {
-      fibArray.push(currentNum)
-      iterator++
-      currentNum = fibArray[iterator - 1] + fibArray[iterator - 2]
-    }
+    const fibArray = returnFibonacciNumbersUntil(LIMIT)
 
     const answer: number = fibArray.filter((number) => {
       // If number is not even

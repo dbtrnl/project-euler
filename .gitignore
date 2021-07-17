@@ -1,5 +1,8 @@
-# Folders
+# Typescript
 node_modules
 .vscode
 
 testing.ts
+
+# Python
+__pycache__

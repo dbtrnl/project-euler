@@ -9,7 +9,7 @@
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 """
-def problem1():
+def problem1() -> int:
   def main() -> int:
     LIMIT = 1000
     multiplesOfThreeOrFive = []
@@ -23,4 +23,5 @@ def problem1():
   
   result = main()
   return result
-problem1()
+
+print(f'problem 1 answer = {problem1()}')

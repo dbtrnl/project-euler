@@ -12,12 +12,12 @@
  *
  */
 """
-from utils import fibonacci
+from utils import fibonacci_utils
 
 def problem2() -> int:
   def main() -> int:
     LIMIT = 4000000
-    fibList = fibonacci.returnFibonacciNumbersUntil(LIMIT)
+    fibList = fibonacci_utils.returnFibonacciNumbersUntil(LIMIT)
     fibListEven = []
 
     for num in fibList:

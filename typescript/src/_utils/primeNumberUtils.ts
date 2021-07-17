@@ -35,7 +35,11 @@ export function isPrime(num: number): boolean {
  * @example findAllPrimesSmallerThan(10) = [ 2, 3, 5, 7 ]
  */
 export function findAllPrimesSmallerThan(limit: number): Array<number> {
+  if (limit < 0) throw new RangeError('Argument must be greater or equal than zero')
+
   const primeArray: Array<number> = []
+  if (limit === 0) return primeArray
+
   let iterator = 0
 
   while (iterator < limit) {
@@ -57,6 +61,8 @@ export function findAllPrimesSmallerThan(limit: number): Array<number> {
  * // 229 is the 50th prime number
  */
 export function findNthPrime(nthPrime: number): number {
+  if (nthPrime <= 0) throw new RangeError('Argument must be greater than zero')
+
   const primeArray: Array<number> = []
   let iterator = 0
 
@@ -82,6 +88,8 @@ export function findNthPrime(nthPrime: number): number {
  * ]
  */
 export function findPrimesWithNDigits(digits: number): Array<number> {
+  if (digits <= 0) throw new RangeError('Argument must be greater than zero')
+
   const primeArray: Array<number> = []
   let upperLimitNum: string | number = ''
   let iterator = 0
@@ -112,6 +120,7 @@ export function findPrimesWithNDigits(digits: number): Array<number> {
  * @example findLargestPrimeFactor(8) = 2
  */
 export function findLargestPrimeFactor(inputNumber: number): number {
+  if (inputNumber <= 0) throw new RangeError('Argument must be greater than zero')
   /*
     While number is divisible by 2, divide by 2.
     In the end you have 1 or another odd number

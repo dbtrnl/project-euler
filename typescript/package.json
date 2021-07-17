@@ -7,7 +7,9 @@
     "type": "commonjs",
     "scripts": {
         "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0",
-        "test:single": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0 -g"
+        "test:single": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0 -g",
+        "test:problems": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0 -g [0-9]",
+        "test:utils": "mocha -r ts-node/register '**/_utils/*.test.ts' -t=10000 -s=0"
     },
     "devDependencies": {
         "@types/chai": "^4.2.19",

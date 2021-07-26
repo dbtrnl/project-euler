@@ -1,3 +1,5 @@
+import { findAllPermutationsOfNumber } from './simpleNumberUtils'
+
 /**
  * Checks if number N is prime
  *
@@ -139,4 +141,16 @@ export function findLargestPrimeFactor(inputNumber: number): number {
     // console.log(`Largest prime factor of ${inputNumber} = ${num}`)
   }
   return num
+}
+
+export function isPrimeCircular(inputNumber: number): boolean {
+  if (!isPrime(inputNumber)) throw new Error('input number must be prime!')
+
+  const result = false
+  const num = inputNumber
+
+  const test = findAllPermutationsOfNumber(num)
+  console.log(test)
+
+  return result
 }

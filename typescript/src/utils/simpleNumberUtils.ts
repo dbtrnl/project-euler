@@ -11,9 +11,14 @@
  * factorial(12) = 479001600
  */
 export function factorial(number: number): number {
-  let result = 0
+
+  // Errors and edge cases
+  if (number <= 0) throw new RangeError('Number should be greater than zero')
+  if (number > 170) throw new RangeError('Number is too big, use factorialBigInt() instead')
   if (number === 1) return 1
   if (number === 2) return 2
+
+  let result = 0
 
   for (let i = number; i > 1; i--) {
     if (i === number) result += i * (i - 1)
@@ -45,17 +50,68 @@ export function factorialBigInt(n: number): BigInt {
   return result
 }
 
-export function permutation(n: number, k: number): number {
-  return factorial(n) / factorial(n - k)
+/**
+ * Function to calculate permutations of K elements in a pool of N elements.
+ * Without repetition
+ *
+ * ---
+ * @param {number} n number N - The total pool of elements
+ * @param {number} k number K (must be greater or equal than N)
+ * @returns {number} the ammount of possible permutations
+ */
+export function permutationWithoutRepetition(n: number, k: number): number {
+  if (n <= 0 || k <= 0) throw new RangeError('N and K must be positive integers')
+  if (n < k) throw new RangeError('Number N should be equal or greater than K')
+
+  // If n === k, the dividend will be 10 - 10! == 0, so it's disregarded
+  if (n === k) return factorial(n)
+
+  const result = factorial(n) / factorial(n - k)
+  return result
 }
 
-// See https://betterexplained.com/articles/easy-permutations-and-combinations/
-export function combinationGeneral(n: number, k: number): number {
-  return factorial(n) / (factorial(n - k) * factorial(k))
+// See
+/**
+ * Implementation of combination using only factorials:
+ *
+ * **n! / (n - k)! . k!**
+ *
+ * ---
+ * @param {number} n number N - The total pool of elements
+ * @param {number} k number K (must be greater or equal than N)
+ * @returns {number} How many combinations of K in N
+ */
+export function combinationFactorial(n: number, k: number): number {
+  if (n <= 0 || k <= 0) throw new RangeError('N and K must be positive integers')
+  if (n < k) throw new RangeError('Number N should be equal or greater than K')
+
+  // If n === k, there is only 1 possible way to pick K elements from N
+  if (n === k) return 1
+
+  const result = Math.floor(factorial(n) / (factorial(n - k) * factorial(k)))
+  return result
 }
 
-export function combination(n: number, k: number): number {
-  return permutation(n, k) / factorial(k)
+/**
+ * Implementation of combination using permutation:
+ *
+ * **Permutation(n,k) / k!**
+ *
+ * ---
+ * @param {number} n number N - The total pool of elements
+ * @param {number} k number K (must be greater or equal than N)
+ * @returns {number} How many combinations of K in N
+ */
+export function combinationPermutation(n: number, k: number): number {
+  if (n <= 0 || k <= 0) throw new RangeError('N and K must be positive integers')
+  if (n < k) throw new RangeError('Number N should be equal or greater than K')
+
+  // If n === k, there is only 1 possible way to pick K elements from N
+  if (n === k) return 1
+
+  // Using Math.floor to avoid floating point imprecision (when calculating C(30,2) for example)
+  const result = Math.floor(permutationWithoutRepetition(n, k) / factorial(k))
+  return result
 }
 
 /*

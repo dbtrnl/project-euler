@@ -121,7 +121,8 @@ export function combinationPermutation(n: number, k: number): number {
   (for floating point numbers, the dot is included in this count...)
 */
 export function numberLength(number: number): number {
-  const num = number
+  const num = Math.abs(number)
+  // const num = number
   const length = Math.ceil(Math.log10(num + 1))
   return length
 }

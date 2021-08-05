@@ -55,9 +55,9 @@ export function factorialBigInt(n: number): BigInt {
  * Without repetition
  *
  * ---
- * @param {number} n number N - The total pool of elements
- * @param {number} k number K (must be greater or equal than N)
- * @returns {number} the ammount of possible permutations
+ * @param {Number} n number N - The total pool of elements
+ * @param {Number} k number K (must be greater or equal than N)
+ * @returns {Number} the ammount of possible permutations
  */
 export function permutationWithoutRepetition(n: number, k: number): number {
   if (n <= 0 || k <= 0) throw new RangeError('N and K must be positive integers')
@@ -77,9 +77,9 @@ export function permutationWithoutRepetition(n: number, k: number): number {
  * **n! / (n - k)! . k!**
  *
  * ---
- * @param {number} n number N - The total pool of elements
- * @param {number} k number K (must be greater or equal than N)
- * @returns {number} How many combinations of K in N
+ * @param {Number}} n number N - The total pool of elements
+ * @param {Number}} k number K (must be greater or equal than N)
+ * @returns {Number}} How many combinations of K in N
  */
 export function combinationFactorial(n: number, k: number): number {
   if (n <= 0 || k <= 0) throw new RangeError('N and K must be positive integers')
@@ -98,9 +98,9 @@ export function combinationFactorial(n: number, k: number): number {
  * **Permutation(n,k) / k!**
  *
  * ---
- * @param {number} n number N - The total pool of elements
- * @param {number} k number K (must be greater or equal than N)
- * @returns {number} How many combinations of K in N
+ * @param {Number}} n number N - The total pool of elements
+ * @param {Number}} k number K (must be greater or equal than N)
+ * @returns {Number}} How many combinations of K in N
  */
 export function combinationPermutation(n: number, k: number): number {
   if (n <= 0 || k <= 0) throw new RangeError('N and K must be positive integers')
@@ -262,9 +262,23 @@ export function findAllPermutationsOfNumber(inputNumber: number): Set<number> {
   return new Set(permutationsArray.sort())
 }
 
+/**
+ * Function to find the recurring sequence in a given fraction
+ *
+ * See [Reference](https://www.geeksforgeeks.org/find-recurring-sequence-fraction/)
+ *
+ * ---
+ * @example
+ * findRecurringSequence(1, 3) = 3 // 1/3 = 0,3333...
+ *
+ * @param {Number} numerator Fraction numerator
+ * @param {Number} denominator Fraction denominator
+ * @returns {String} The recurring sequence (if any)
+ */
 export function findRecurringSequence(numerator: number, denominator: number): string {
-  // Taken from https://www.geeksforgeeks.org/find-recurring-sequence-fraction/
+
   let result = ''
+  if (numerator === denominator) return result
 
   const sequenceMap = new Map()
   sequenceMap.clear()
@@ -288,6 +302,8 @@ export function findRecurringSequence(numerator: number, denominator: number): s
     // Update remainder
     remainder %= denominator
   }
+
+  // If 1/10, remainder is zero... but 1 should be returned.
 
   if (remainder === 0) return ''
   else if (sequenceMap.has(remainder)) return result.substr(sequenceMap.get(remainder))

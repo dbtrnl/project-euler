@@ -16,6 +16,6 @@
     },
     "strict": true,
     "skipLibCheck": true,
-    "target": "ES6",
+    "target": "ES2020",
   }
 }

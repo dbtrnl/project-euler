@@ -59,7 +59,7 @@
             "no-else-return": "off",
             "no-param-reassign": "warn",
             "no-plusplus": "off",
-            "no-restricted-syntax": "warn",
+            "no-restricted-syntax": "off",
             "no-return-assign": "warn",
             "no-unused-vars": "off",
             "no-unused-expressions": "off",

@@ -1,3 +1,5 @@
+import { DigitMapObject } from 'src/interfaces'
+
 /**
  * Returns the result of N factorial (N!)
  *
@@ -161,37 +163,50 @@ export function isNumberPalindrome(inputNumber: number): boolean {
  * Checks if number N is a permutation of number M
  *
  * ---
- * @param firstNum number N
- * @param secondNum number M
+ * @param m First number to compare
+ * @param n Second number to compare
  * @returns {Boolean} true | false
  *
  * ---
  * @example isNumberPermutationOfAnother(2223, 2232) = true
  * @example isNumberPermutationOfAnother(2224, 2232) = false
  */
-export function isNumberPermutationOfAnother(firstNum: number, secondNum: number): boolean {
-  const firstNumArr = firstNum.toString().split('')
-  const secondNumArr = secondNum.toString().split('')
-  let includes = true
-  // console.log(`firstNumArr: ${firstNumArr}, secondNumArr: ${secondNumArr}`);
+export function isNumberPermutationOfAnother(m: number, n: number): boolean {
+  const firstNumArr = m.toString().split('')
+  const secondNumArr = n.toString().split('')
 
-  if (firstNumArr.length !== secondNumArr.length) return false
+  // Creating an ordered Set of every unique digit in each number
+  const digitsOfFirstNum = new Set(firstNumArr.sort())
+  const digitsOfSecondNum = new Set(secondNumArr.sort())
 
-  // Try a for loop + break to see impact in performance
-  firstNumArr.forEach((digit) => {
-    if (!secondNumArr.includes(digit)) includes = false
-  })
+  // If number of unique digits from each number is different, returns false.
+  if (digitsOfFirstNum.size !== digitsOfSecondNum.size) return false
 
-  secondNumArr.forEach((digit) => {
-    if (!firstNumArr.includes(digit)) includes = false
-  })
+  // { '6': 0, '9': 0 }
+  const firstDigitMap: DigitMapObject = {}
+  const secondDigitMap: DigitMapObject = {}
 
-  return includes
+  digitsOfFirstNum.forEach((digit) => { firstDigitMap[digit] = 0 })
+  digitsOfSecondNum.forEach((digit) => { secondDigitMap[digit] = 0 })
+
+  firstNumArr.forEach((digit) => { firstDigitMap[digit] += 1 })
+  secondNumArr.forEach((digit) => { secondDigitMap[digit] += 1 })
+
+  // Creates number array with ocurrences of each sorted digit in M and N
+  const firstNumDigitOcurrences: Array<number> = Object.values(firstDigitMap)
+  const secondNumDigitOcurrences: Array<number> = Object.values(secondDigitMap)
+
+  // Compares both arrays to see if each digit occurs the sa
+  for (let i = 0; i <= firstNumDigitOcurrences.length; i++) {
+    if (firstNumDigitOcurrences[i] !== secondNumDigitOcurrences[i]) return false
+  }
+
+  return true
 }
 
 // This algorithm has viritually the same performance as the HEAP ALGORITHM below
 // Took ~2.5s for number 1234567890
-// Taken from https://levelup.gitconnected.com/find-all-permutations-of-a-string-in-javascript-af41bfe072d2
+// Taken from https://levelup.gitconnecten.com/find-all-permutations-of-a-string-in-javascript-af41bfe072d2
 export function findAllPermutationsOfString(string: string): Set<string> {
   if (!string || typeof string !== 'string') throw new Error('Please enter a string')
 

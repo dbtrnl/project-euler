@@ -38,6 +38,13 @@ export type AmicableChainObject = {
   chainLength: number
 }
 
+/**
+ * A digit map object, mapping how many times each digit repeats in a single number
+ */
+export type DigitMapObject = {
+  [key: string]: number
+}
+
 export type NumberClassification = 'perfect' | 'abundant' | 'deficient' | null
 
 export type NumberMatrix = Array<number[]>

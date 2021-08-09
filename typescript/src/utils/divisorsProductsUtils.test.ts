@@ -1,8 +1,9 @@
 import { expect } from 'chai'
-import { AllProperDivisorsResult, AmicableNumberObject } from 'src/interfaces'
+import { AllProperDivisorsResult, AmicableNumberObject, NumberClassification } from 'src/interfaces'
 import {
   findAllProperDivisors,
   isAmicableNumber,
+  isNumberDeficientPerfectOrAbundant,
 } from './divisorsProductsUtils'
 
 describe('Test divisorsProductsUtils', () => {
@@ -92,6 +93,68 @@ describe('Test divisorsProductsUtils', () => {
     it('should return expected result when calling function with (0)', () => {
       const expected: AmicableNumberObject = { isAmicable: false, pair: null }
       const result = isAmicableNumber(0); expect(result).to.be.deep.equal(expected)
+    })
+  })
+
+  describe('isNumberDeficientPerfectOrAbundant()', () => {
+    it('should return "perfect" when calling function with (28)', () => {
+      const expected: NumberClassification = 'perfect'
+      const result = isNumberDeficientPerfectOrAbundant(28); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "perfect" when calling function with (8128)', () => {
+      const expected: NumberClassification = 'perfect'
+      const result = isNumberDeficientPerfectOrAbundant(8128); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "perfect" when calling function with (33550336)', () => {
+      const expected: NumberClassification = 'perfect'
+      const result = isNumberDeficientPerfectOrAbundant(33550336); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "perfect" when calling function with (137438691328)', () => {
+      const expected: NumberClassification = 'perfect'
+      const result = isNumberDeficientPerfectOrAbundant(137438691328); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "abundant" when calling function with (12)', () => {
+      const expected: NumberClassification = 'abundant'
+      const result = isNumberDeficientPerfectOrAbundant(12); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "abundant" when calling function with (40)', () => {
+      const expected: NumberClassification = 'abundant'
+      const result = isNumberDeficientPerfectOrAbundant(40); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "abundant" when calling function with (120)', () => {
+      const expected: NumberClassification = 'abundant'
+      const result = isNumberDeficientPerfectOrAbundant(120); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "abundant" when calling function with (5775)', () => {
+      const expected: NumberClassification = 'abundant'
+      const result = isNumberDeficientPerfectOrAbundant(5775); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "abundant" when calling function with (5985)', () => {
+      const expected: NumberClassification = 'abundant'
+      const result = isNumberDeficientPerfectOrAbundant(5985); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "deficient" when calling function with (0)', () => {
+      const expected: NumberClassification = 'deficient'
+      const result = isNumberDeficientPerfectOrAbundant(10); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "deficient" when calling function with (10)', () => {
+      const expected: NumberClassification = 'deficient'
+      const result = isNumberDeficientPerfectOrAbundant(10); expect(result).to.be.equal(expected)
+    })
+
+    it('should return "deficient" when calling function with (13)', () => {
+      const expected: NumberClassification = 'deficient'
+      const result = isNumberDeficientPerfectOrAbundant(10); expect(result).to.be.equal(expected)
     })
   })
 

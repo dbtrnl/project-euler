@@ -73,6 +73,27 @@ export function findAndSumAllDivisorsLinear(number: number): number {
   return sum
 }
 
+/**
+ * Returns if a number is evenly divisible by another
+ *
+ * ---
+ * @param {number} inputNumber The number to be divided
+ * @param {number} divisor The divisor
+ * @returns {boolean} true or false
+ */
+export function isNumberEvenlyDivisibleBy(inputNumber: number, divisor: number): boolean {
+  if (inputNumber % divisor === 0) return true
+  else return false
+}
+
+/**
+ * Returns if a number is evenly divisible by every number in a given interval
+ *
+ * @param {number} inputNumber The number to be checked
+ * @param {Array<number>} param1 The interval
+ * @param {OrderEnum} order The iteration order (influences the performance)
+ * @returns
+ */
 export function isEvenlyDivisibleByEveryNumberInInterval(
   inputNumber: number,
   [intervalStart, intervalEnd]: number[],
@@ -111,11 +132,6 @@ export function isEvenlyDivisibleByEveryNumberInInterval(
   return result
 }
 
-export function isNumberEvenlyDivisibleBy(inputNumber: number, divisor: number): boolean {
-  if (inputNumber % divisor === 0) return true
-  else return false
-}
-
 /**
  * Checks input number N for amicability
  *
@@ -128,6 +144,8 @@ export function isNumberEvenlyDivisibleBy(inputNumber: number, divisor: number):
  * @example isAmicableNumber(220) = { isAmicable: true, pair: [ 220, 284 ] }
  */
 export function isAmicableNumber(inputNum: number): AmicableNumberObject {
+  if (inputNum < 0) throw new RangeError('Number must be greater or equal than zero')
+
   const firstNum = findAndSumAllProperDivisors(inputNum)
   const secondNum = findAndSumAllProperDivisors(firstNum)
 

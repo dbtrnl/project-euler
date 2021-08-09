@@ -1,9 +1,13 @@
 import {
-  AmicableChainObject, AmicableNumberObject, NumberClassification, OrderEnum,
+  AllProperDivisorsResult,
+  AmicableChainObject,
+  AmicableNumberObject,
+  NumberClassification,
+  OrderEnum,
 } from '../interfaces'
 
 /**
- * Returns all proper divisors of a number
+ * Returns all proper divisors of a number, excluding the number itself
  *
  * Execution in O(sqrt(n))
  *
@@ -11,28 +15,49 @@ import {
  * @param {Number} number N >= 0
  * @returns
  */
-export function findAllProperDivisors(number: number): Array<number> {
+export function findAllProperDivisors(inputNumber: number): AllProperDivisorsResult {
+  let number = inputNumber
+  const numberLength = `${inputNumber}`.length
   const divisors: Array<number> = [1]
 
-  if (number === 1) return divisors
+  // console.warn('number', number, 'numberLength', numberLength, 'Math.sqrt(number)', Math.sqrt(number))
 
-  for (let i = 2; i <= Math.sqrt(number); i++) {
-    if (number % i === 0) {
-      if (number / i === i || i === 1) divisors.push(i)
-      else {
-        divisors.push(i)
-        divisors.push(number / i)
+  // Edge cases
+  if (number === 0) return null
+  if (number < 0) number = Math.abs(number)
+  // TODO - transform all the numbers in result array to negative
+  if (number === 1) return divisors
+  if (number === 2) return [1, 2]
+
+  // The logic of this if needs to be refined...
+  if (numberLength < 3) {
+    for (let i = 2; i <= number; i++) {
+
+      // Do not push the number itself to the array
+      if (number === i) continue
+      if (number % i === 0) divisors.push(i)
+    }
+  } else {
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+      if (number % i === 0) {
+        if (number / i === i || i === 1) divisors.push(i)
+        else { divisors.push(i); divisors.push(number / i) }
       }
     }
   }
+  // TODO - Numbers on ascending order
   return divisors
 }
 
 export function findAndSumAllProperDivisors(number: number): number {
-  const sum: number = findAllProperDivisors(number)
-    .reduce((total, num) => {
-      return total + num
-    })
+  let sum = 0
+  const properDivisors = findAllProperDivisors(number)
+
+  if (!properDivisors) return sum
+
+  sum = properDivisors.reduce((total, num) => {
+    return total + num
+  })
   return sum
 }
 

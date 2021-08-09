@@ -45,6 +45,11 @@ export type DigitMapObject = {
   [key: string]: number
 }
 
+/**
+ * Simple type used on findAllProperDivisors()
+ */
+export type AllProperDivisorsResult = Array<number> | null
+
 export type NumberClassification = 'perfect' | 'abundant' | 'deficient' | null
 
 export type NumberMatrix = Array<number[]>

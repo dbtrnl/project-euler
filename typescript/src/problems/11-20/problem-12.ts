@@ -1,3 +1,4 @@
+import { AllProperDivisorsResult } from 'src/interfaces'
 import { findAllProperDivisors } from '../../utils'
 
 /**
@@ -50,7 +51,7 @@ export default function problem12(): number {
     */
     const sequence: number[] = []
     let sequenceNumber = 1
-    let divisorsOfSequenceNumber: number[] = []
+    let divisorsOfSequenceNumber: AllProperDivisorsResult = []
 
     for (let i = 0; i <= sequenceSize; i++) {
       // console.log(`sequenceNumber:${sequenceNumber}, i:${i}`);
@@ -61,6 +62,8 @@ export default function problem12(): number {
       sequence.push(sequenceNumber)
 
       divisorsOfSequenceNumber = findAllProperDivisors(sequenceNumber)
+
+      if (!divisorsOfSequenceNumber) return [0]
 
       if (divisorsOfSequenceNumber.length > 500) {
         break

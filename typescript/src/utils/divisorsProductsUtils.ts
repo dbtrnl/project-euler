@@ -20,8 +20,6 @@ export function findAllProperDivisors(inputNumber: number): AllProperDivisorsRes
   const numberLength = `${inputNumber}`.length
   const divisors: Array<number> = [1]
 
-  // console.warn('number', number, 'numberLength', numberLength, 'Math.sqrt(number)', Math.sqrt(number))
-
   // Edge cases
   if (number === 0) return null
   if (number < 0) number = Math.abs(number)
@@ -32,10 +30,7 @@ export function findAllProperDivisors(inputNumber: number): AllProperDivisorsRes
   // The logic of this if needs to be refined...
   if (numberLength < 3) {
     for (let i = 2; i <= number; i++) {
-
-      // Do not push the number itself to the array
-      if (number === i) continue
-      if (number % i === 0) divisors.push(i)
+      if (number === i) continue; if (number % i === 0) divisors.push(i)
     }
   } else {
     for (let i = 2; i <= Math.sqrt(number); i++) {
@@ -49,7 +44,35 @@ export function findAllProperDivisors(inputNumber: number): AllProperDivisorsRes
   return divisors
 }
 
-export function findAndSumAllProperDivisors(number: number): number {
+/**
+ * Returns all proper divisors of a number
+ *
+ * Execution in O(n)
+ *
+ * ---
+ * @param {Number} inputNumber N >= 0
+ * @returns
+ */
+export function findAllDivisorsLinear(inputNumber: number): Array<number> {
+  // console.log(`Calculating divisors of ${number}...`);
+  const divisors: Array<number> = []
+  const number = inputNumber
+
+  for (let i = 1; i < number; i++) {
+    if (number % i === 0) divisors.push(i)
+  }
+  return divisors
+}
+
+/**
+ * Returns the sum of all the proper divisors of a given number
+ *
+ * ---
+ * @param {number} inputNumber The number
+ * @returns
+ */
+export function findAndSumAllProperDivisors(inputNumber: number): number {
+  const number = inputNumber
   let sum = 0
   const properDivisors = findAllProperDivisors(number)
 
@@ -62,29 +85,17 @@ export function findAndSumAllProperDivisors(number: number): number {
 }
 
 /**
- * Returns all proper divisors of a number
+ * Returns the sum of all the proper divisors of a given number
  *
  * Execution in O(n)
  *
  * ---
- * @param {Number} number N >= 0
+ * @param {Number} inputNumber N >= 0
  * @returns
  */
-export function findAllDivisorsLinear(number: number): Array<number> {
-  // console.log(`Calculating divisors of ${number}...`);
+export function findAndSumAllDivisorsLinear(inputNumber: number): number {
   const divisors: Array<number> = []
-
-  for (let i = 1; i < number; i++) {
-    if (number % i === 0) divisors.push(i)
-  }
-  return divisors
-}
-
-/*
-  Takes O(n) to execute
-*/
-export function findAndSumAllDivisorsLinear(number: number): number {
-  const divisors: Array<number> = []
+  const number = inputNumber
   let sum = 0
 
   if (number === 1) return 1
@@ -128,7 +139,7 @@ export function isEvenlyDivisibleByEveryNumberInInterval(
   let result = false
   let iterator
 
-  if (intervalStart > intervalEnd) throw new Error('Interval start must not be greater than interval end')
+  if (intervalStart > intervalEnd) throw new RangeError('Interval start must not be greater than interval end')
 
   if (order === 'ascending') {
     iterator = intervalStart

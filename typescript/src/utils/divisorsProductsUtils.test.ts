@@ -1,5 +1,6 @@
 import { expect } from 'chai'
 import { AllProperDivisorsResult, AmicableNumberObject, NumberClassification } from 'src/interfaces'
+import { findAbundantNumbersUntil } from '.'
 import {
   findAllProperDivisors,
   isAmicableNumber,
@@ -155,6 +156,18 @@ describe('Test divisorsProductsUtils', () => {
     it('should return "deficient" when calling function with (13)', () => {
       const expected: NumberClassification = 'deficient'
       const result = isNumberDeficientPerfectOrAbundant(10); expect(result).to.be.equal(expected)
+    })
+  })
+
+  describe('findAbundantNumbersUntil()', () => {
+    it('should return the expected abundant number array when called with (54)', () => {
+
+      /*
+        Returns 2.
+        Is 2 an abundant number? it's divisors are 1 and 2, whose sum is 3...
+      */
+      const expected: Array<number> = [12, 18, 20, 24, 30, 36, 40, 42, 48, 54]
+      const result = findAbundantNumbersUntil(54); expect(result).to.be.deep.equal(expected)
     })
   })
 

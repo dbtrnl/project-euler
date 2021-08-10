@@ -24,8 +24,7 @@ export function findAllProperDivisors(inputNumber: number): AllProperDivisorsRes
   if (number === 0) return null
   if (number < 0) number = Math.abs(number)
   // TODO - transform all the numbers in result array to negative
-  if (number === 1) return divisors
-  if (number === 2) return [1, 2]
+  if (number === 1 || number === 2) return divisors
 
   // The logic of this if needs to be refined...
   if (numberLength < 3) {

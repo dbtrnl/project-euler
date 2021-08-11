@@ -52,12 +52,12 @@ export function findAllProperDivisors(inputNumber: number): AllProperDivisorsRes
  * @param {Number} inputNumber N >= 0
  * @returns
  */
-export function findAllDivisorsLinear(inputNumber: number): Array<number> {
+export function findAllDivisors(inputNumber: number): Array<number> {
   // console.log(`Calculating divisors of ${number}...`);
   const divisors: Array<number> = []
   const number = inputNumber
 
-  for (let i = 1; i < number; i++) {
+  for (let i = 1; i <= number; i++) {
     if (number % i === 0) divisors.push(i)
   }
   return divisors

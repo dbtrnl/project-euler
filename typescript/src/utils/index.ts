@@ -17,7 +17,7 @@ import {
 } from './simpleNumberUtils'
 
 import {
-  findAllDivisorsLinear, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
+  findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
   findAndSumAllDivisorsLinear, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
 } from './divisorsProductsUtils'
@@ -31,7 +31,7 @@ export {
   assembleTriangle, extractTriangleString, findMaximumPathSumOfTriangle,
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
   isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence,
-  findAllDivisorsLinear, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
+  findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
   findAndSumAllDivisorsLinear, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
   polinomialPrimeFormula1One, polinomialPrimeFormulaTwo,

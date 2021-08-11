@@ -1,7 +1,8 @@
 import { expect } from 'chai'
-import { AllProperDivisorsResult, AmicableNumberObject, NumberClassification } from 'src/interfaces'
+import { AllDivisors, AmicableNumberObject, NumberClassification } from 'src/interfaces'
 import { findAbundantNumbersUntil } from '.'
 import {
+  findAllDivisors,
   findAllProperDivisors,
   isAmicableNumber,
   isNumberDeficientPerfectOrAbundant,
@@ -11,53 +12,60 @@ describe('Test divisorsProductsUtils', () => {
 
   describe('findAllProperDivisors()', () => {
     it('should return NULL when calling function with (0)', () => {
-      const expected: AllProperDivisorsResult = null
+      const expected: AllDivisors = null
       const result = findAllProperDivisors(0); expect(result).to.be.equal(expected)
     })
 
     it('should return expected result when calling function with (1)', () => {
-      const expected: AllProperDivisorsResult = [1]
+      const expected: AllDivisors = [1]
       const result = findAllProperDivisors(1); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (2)', () => {
-      const expected: AllProperDivisorsResult = [1, 2]
+      const expected: AllDivisors = [1]
       const result = findAllProperDivisors(2); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (8)', () => {
-      const expected: AllProperDivisorsResult = [1, 2, 4]
+      const expected: AllDivisors = [1, 2, 4]
       const result = findAllProperDivisors(8); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (15)', () => {
-      const expected: AllProperDivisorsResult = [1, 3, 5]
+      const expected: AllDivisors = [1, 3, 5]
       const result = findAllProperDivisors(15); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (16)', () => {
-      const expected: AllProperDivisorsResult = [1, 2, 4, 8]
+      const expected: AllDivisors = [1, 2, 4, 8]
       const result = findAllProperDivisors(16); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (100)', () => {
-      const expected: AllProperDivisorsResult = [1, 2, 4, 5, 10, 20, 25, 50]
+      const expected: AllDivisors = [1, 2, 4, 5, 10, 20, 25, 50]
       const result = findAllProperDivisors(100); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (1000)', () => {
-      const expected: AllProperDivisorsResult = [1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500]
+      const expected: AllDivisors = [1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500]
       const result = findAllProperDivisors(1000); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (1001)', () => {
-      const expected: AllProperDivisorsResult = [1, 7, 11, 13, 77, 91, 143]
+      const expected: AllDivisors = [1, 7, 11, 13, 77, 91, 143]
       const result = findAllProperDivisors(1001); expect(result).to.have.members(expected)
     })
 
     it('should return expected result when calling function with (1003)', () => {
-      const expected: AllProperDivisorsResult = [1, 17, 59]
+      const expected: AllDivisors = [1, 17, 59]
       const result = findAllProperDivisors(1003); expect(result).to.have.members(expected)
+    })
+  })
+
+  describe('findAllDivisors()', () => {
+    it('should return expected result when calling function with (1003)', () => {
+      const expected: AllDivisors = [1, 17, 59, 1003]
+      const result = findAllDivisors(1003); expect(result).to.have.members(expected)
     })
   })
 

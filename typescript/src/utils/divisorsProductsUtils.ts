@@ -1,5 +1,5 @@
 import {
-  AllProperDivisorsResult,
+  AllDivisors,
   AmicableChainObject,
   AmicableNumberObject,
   NumberClassification,
@@ -7,15 +7,21 @@ import {
 } from '../interfaces'
 
 /**
- * Returns all proper divisors of a number, excluding the number itself
+ * Returns all proper divisors of a number (Excludes the number itself)
  *
  * Execution in O(sqrt(n))
  *
  * ---
- * @param {Number} number N >= 0
- * @returns
+ * @param {number} number N >= 0
+ * @example findAllProperDivisors(6) = [1, 2, 3]
+ * @example findAllProperDivisors(100) = [1, 2, 4, 5, 10, 20, 25, 50]
+ * @returns {Array<number>} An array with the divisors
  */
-export function findAllProperDivisors(inputNumber: number): AllProperDivisorsResult {
+export function findAllProperDivisors(inputNumber: number): AllDivisors {
+  /*
+    TODO - Make this function work with negative numbers
+    TODO - Return final array in ascending order
+  */
   let number = inputNumber
   const numberLength = `${inputNumber}`.length
   const divisors: Array<number> = [1]
@@ -23,7 +29,6 @@ export function findAllProperDivisors(inputNumber: number): AllProperDivisorsRes
   // Edge cases
   if (number === 0) return null
   if (number < 0) number = Math.abs(number)
-  // TODO - transform all the numbers in result array to negative
   if (number === 1 || number === 2) return divisors
 
   // The logic of this if needs to be refined...
@@ -39,23 +44,31 @@ export function findAllProperDivisors(inputNumber: number): AllProperDivisorsRes
       }
     }
   }
-  // TODO - Numbers on ascending order
   return divisors
 }
 
 /**
- * Returns all proper divisors of a number
+ * Returns all divisors of a number
  *
  * Execution in O(n)
  *
  * ---
- * @param {Number} inputNumber N >= 0
- * @returns
+ * @param {number} inputNumber N >= 0
+ * @example findAllDivisors(6) = [1, 2, 3, 6]
+ * @example findAllDivisors(100) = [1, 2, 4, 5, 10, 20, 25, 50, 100]
+ * @returns {Array<number>} An array with the divisors
  */
-export function findAllDivisors(inputNumber: number): Array<number> {
-  // console.log(`Calculating divisors of ${number}...`);
+export function findAllDivisors(inputNumber: number): AllDivisors {
+  /*
+    TODO - Make this function work with negative numbers
+    TODO - Return final array in ascending order
+  */
+  let number = inputNumber
   const divisors: Array<number> = []
-  const number = inputNumber
+
+  // Edge cases
+  if (number === 0) return null
+  if (number < 0) number = Math.abs(number)
 
   for (let i = 1; i <= number; i++) {
     if (number % i === 0) divisors.push(i)
@@ -68,7 +81,7 @@ export function findAllDivisors(inputNumber: number): Array<number> {
  *
  * ---
  * @param {number} inputNumber The number
- * @returns
+ * @returns {number} The sum of all proper divisors
  */
 export function findAndSumAllProperDivisors(inputNumber: number): number {
   const number = inputNumber
@@ -84,26 +97,21 @@ export function findAndSumAllProperDivisors(inputNumber: number): number {
 }
 
 /**
- * Returns the sum of all the proper divisors of a given number
- *
- * Execution in O(n)
+ * Returns the sum of all divisors of a given number
  *
  * ---
- * @param {Number} inputNumber N >= 0
- * @returns
+ * @param {number} inputNumber N >= 0
+ * @returns {number} The sum of all divisors
  */
-export function findAndSumAllDivisorsLinear(inputNumber: number): number {
-  const divisors: Array<number> = []
+export function findAndSumAllDivisors(inputNumber: number): number {
   const number = inputNumber
   let sum = 0
+  const properDivisors = findAllDivisors(number)
 
-  if (number === 1) return 1
+  if (!properDivisors) return sum
 
-  for (let i = 1; i < number; i++) {
-    if (number % i === 0) divisors.push(i)
-  }
-  divisors.forEach((num) => {
-    sum += num
+  sum = properDivisors.reduce((total, num) => {
+    return total + num
   })
   return sum
 }
@@ -272,11 +280,11 @@ export function isNumberAbundant(number: number): boolean {
  */
 export function findAmicableChain(number: number, limit: number): AmicableChainObject {
   const amicableChain: number[] = [number]
-  let currentNum: number = findAndSumAllDivisorsLinear(number)
+  let currentNum: number = findAndSumAllDivisors(number)
 
   while (!amicableChain.includes(currentNum) && currentNum <= limit) {
     amicableChain.push(currentNum)
-    currentNum = findAndSumAllDivisorsLinear(currentNum)
+    currentNum = findAndSumAllDivisors(currentNum)
   }
 
   return {

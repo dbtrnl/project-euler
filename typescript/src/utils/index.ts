@@ -18,7 +18,7 @@ import {
 
 import {
   findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
-  findAndSumAllDivisorsLinear, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
+  findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
 } from './divisorsProductsUtils'
 
@@ -32,7 +32,7 @@ export {
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
   isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence,
   findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
-  findAndSumAllDivisorsLinear, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
+  findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
   polinomialPrimeFormula1One, polinomialPrimeFormulaTwo,
 }

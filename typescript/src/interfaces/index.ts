@@ -34,8 +34,14 @@ export type AmicableNumberObject = {
 
 export type AmicableChainObject = {
   number: number;
-  chain: number[];
-  chainLength: number
+  /**
+   * Null in case of zero
+   */
+  chain: number[] | null;
+  /**
+   * Null in case of zero
+   */
+  chainLength: number | null
 }
 
 /**
@@ -56,6 +62,18 @@ export type letterObject = {
  * Simple type used on findAllProperDivisors()
  */
 export type AllDivisors = Array<number> | null
+
+/**
+ * Divisor type. A number in the case of numbers which have divisors
+ *
+ * Null in case of 0
+ */
+export type Divisors = number | null
+
+/**
+ * A two-number array representing a number interval
+ */
+export type Interval = [number, number]
 
 export type NumberClassification = 'perfect' | 'abundant' | 'deficient' | null
 

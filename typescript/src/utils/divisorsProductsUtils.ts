@@ -2,6 +2,8 @@ import {
   AllDivisors,
   AmicableChainObject,
   AmicableNumberObject,
+  Divisors,
+  Interval,
   NumberClassification,
   OrderEnum,
 } from '../interfaces'
@@ -83,12 +85,12 @@ export function findAllDivisors(inputNumber: number): AllDivisors {
  * @param {number} inputNumber The number
  * @returns {number} The sum of all proper divisors
  */
-export function findAndSumAllProperDivisors(inputNumber: number): number {
+export function findAndSumAllProperDivisors(inputNumber: number): Divisors {
   const number = inputNumber
   let sum = 0
   const properDivisors = findAllProperDivisors(number)
 
-  if (!properDivisors) return sum
+  if (!properDivisors) return null
 
   sum = properDivisors.reduce((total, num) => {
     return total + num
@@ -103,12 +105,12 @@ export function findAndSumAllProperDivisors(inputNumber: number): number {
  * @param {number} inputNumber N >= 0
  * @returns {number} The sum of all divisors
  */
-export function findAndSumAllDivisors(inputNumber: number): number {
+export function findAndSumAllDivisors(inputNumber: number): Divisors {
   const number = inputNumber
   let sum = 0
   const properDivisors = findAllDivisors(number)
 
-  if (!properDivisors) return sum
+  if (!properDivisors) return null
 
   sum = properDivisors.reduce((total, num) => {
     return total + num
@@ -122,9 +124,11 @@ export function findAndSumAllDivisors(inputNumber: number): number {
  * ---
  * @param {number} inputNumber The number to be divided
  * @param {number} divisor The divisor
+ * @throws {RangeError} RangeError with arguments <= 0
  * @returns {boolean} true or false
  */
 export function isNumberEvenlyDivisibleBy(inputNumber: number, divisor: number): boolean {
+  if (inputNumber <= 0 || divisor <= 0) throw new RangeError('Both arguments must be greater than zero!')
   if (inputNumber % divisor === 0) return true
   else return false
 }
@@ -139,7 +143,7 @@ export function isNumberEvenlyDivisibleBy(inputNumber: number, divisor: number):
  */
 export function isEvenlyDivisibleByEveryNumberInInterval(
   inputNumber: number,
-  [intervalStart, intervalEnd]: number[],
+  [intervalStart, intervalEnd]: Interval,
   order: OrderEnum,
 ): boolean {
   const number = inputNumber
@@ -189,20 +193,23 @@ export function isEvenlyDivisibleByEveryNumberInInterval(
 export function isAmicableNumber(inputNum: number): AmicableNumberObject {
   if (inputNum < 0) throw new RangeError('Number must be greater or equal than zero')
 
+  const amicableObject: AmicableNumberObject = { isAmicable: false, pair: null }
+
   const firstNum = findAndSumAllProperDivisors(inputNum)
+
+  // Checking if not null so the transpiler doesn't complain
+  if (!firstNum) return amicableObject
+
   const secondNum = findAndSumAllProperDivisors(firstNum)
 
   // If amicable number pair was found
   if (inputNum !== firstNum && secondNum === inputNum) {
-    return {
-      isAmicable: true,
-      pair: [inputNum, firstNum],
-    }
+    amicableObject.isAmicable = true
+    amicableObject.pair = [inputNum, firstNum]
+
+    return amicableObject
   }
-  return {
-    isAmicable: false,
-    pair: null,
-  }
+  return amicableObject
 }
 
 /**
@@ -246,7 +253,12 @@ export function findAmicableNumbersUnder(maxLimit: number): Array<number> {
  * @returns {NumberClassification} 'perfect' | 'abundant' | 'deficient'
  */
 export function isNumberDeficientPerfectOrAbundant(number: number): NumberClassification {
+  if (number === 0) throw new RangeError('Number must be different from zero!')
+
   const sumOfDivisors = findAndSumAllProperDivisors(number)
+
+  // If findAndSumAllProperDivisors() is called with 0
+  if (!sumOfDivisors) return null
 
   if (sumOfDivisors === number) return 'perfect'
   if (sumOfDivisors > number) return 'abundant'
@@ -262,9 +274,12 @@ export function isNumberDeficientPerfectOrAbundant(number: number): NumberClassi
  * @param number
  * @returns {Boolean} true / false
  */
-export function isNumberAbundant(number: number): boolean {
+export function isNumberAbundant(number: number): boolean | null {
+  if (number === 0) throw new RangeError('Number must be different from zero!')
+
   const sumOfDivisors = findAndSumAllProperDivisors(number)
 
+  if (!sumOfDivisors) return null
   if (sumOfDivisors > number) return true
 
   return false
@@ -280,18 +295,20 @@ export function isNumberAbundant(number: number): boolean {
  */
 export function findAmicableChain(number: number, limit: number): AmicableChainObject {
   const amicableChain: number[] = [number]
-  let currentNum: number = findAndSumAllDivisors(number)
+  // let currentNum: Divisors = findAndSumAllDivisors(number)
 
-  while (!amicableChain.includes(currentNum) && currentNum <= limit) {
-    amicableChain.push(currentNum)
-    currentNum = findAndSumAllDivisors(currentNum)
-  }
-
-  return {
+  const chainObject: AmicableChainObject = {
     number,
-    chain: amicableChain,
-    chainLength: amicableChain.length,
+    chain: null,
+    chainLength: null,
   }
+
+  // while (!amicableChain.includes(currentNum) && currentNum <= limit) {
+  //   amicableChain.push(currentNum)
+  //   currentNum = findAndSumAllDivisors(currentNum)
+  // }
+
+  return chainObject
 }
 
 /**

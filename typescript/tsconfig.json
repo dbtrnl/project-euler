@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
+    "allowJs": false,
     "baseUrl": ".",
     "downlevelIteration": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "paths": {
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@data/*": [
-        "./src/data/*"
-      ],
+      "@data/*": [ "./src/data/*" ],
+      "@interfaces/*": [ "./src/interfaces/*" ],
+      "@problems/*": [ "./src/problems/*" ],
+      "@utils/*": [ "./src/utils/*" ],
     },
     "strict": true,
     "skipLibCheck": true,

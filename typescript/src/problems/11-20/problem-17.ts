@@ -1,6 +1,4 @@
-interface letterObject {
-  [key: string]: string;
-}
+import { letterObject } from 'src/interfaces'
 
 const numberMap: letterObject = {
   0: 'zero',

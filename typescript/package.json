@@ -9,7 +9,8 @@
         "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0",
         "test:single": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g",
         "test:problems": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g [0-9]",
-        "test:utils": "mocha -r ts-node/register '**/utils/*.test.ts' -t=10000 -s=0"
+        "test:utils": "mocha -r ts-node/register '**/utils/*.test.ts' -t=10000 -s=0",
+        "eslint:audit": "eslint ."
     },
     "devDependencies": {
         "@types/chai": "^4.2.19",
@@ -22,10 +23,9 @@
         "eslint": "^7.28.0",
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-import-resolver-typescript": "^2.4.0",
-        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-import": "^2.24.0",
         "mocha": "^9.0.1",
         "ts-node": "^10.0.0",
-        "tsconfig-paths": "^3.10.1",
         "typescript": "^4.3.2"
     },
     "eslintConfig": {

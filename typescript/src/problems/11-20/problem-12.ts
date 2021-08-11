@@ -1,4 +1,4 @@
-import { AllDivisors } from 'src/interfaces'
+import { AllDivisors } from '../../interfaces'
 import { findAllProperDivisors } from '../../utils'
 
 /**

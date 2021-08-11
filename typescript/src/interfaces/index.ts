@@ -46,6 +46,13 @@ export type DigitMapObject = {
 }
 
 /**
+ * Used in problem 17
+ */
+export type letterObject = {
+  [key: string]: string;
+}
+
+/**
  * Simple type used on findAllProperDivisors()
  */
 export type AllDivisors = Array<number> | null

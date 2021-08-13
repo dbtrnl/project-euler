@@ -139,7 +139,7 @@ export function isNumberEvenlyDivisibleBy(inputNumber: number, divisor: number):
  * @param {number} inputNumber The number to be checked
  * @param {Array<number>} param1 The interval
  * @param {OrderEnum} order The iteration order (influences the performance)
- * @returns
+ * @returns {boolean} true or false
  */
 export function isEvenlyDivisibleByEveryNumberInInterval(
   inputNumber: number,
@@ -148,32 +148,23 @@ export function isEvenlyDivisibleByEveryNumberInInterval(
 ): boolean {
   const number = inputNumber
   let result = false
-  let iterator
+  let isDivisible
 
   if (intervalStart > intervalEnd) throw new RangeError('Interval start must not be greater than interval end')
 
   if (order === 'ascending') {
-    iterator = intervalStart
-    while (iterator <= intervalEnd) {
-      if (iterator === intervalEnd && number % iterator === 0) {
-        result = true
-        break
-      }
-      if (number % iterator !== 0) break
-      iterator++
+    for (let i = intervalStart; i <= intervalEnd; i++) {
+      isDivisible = isNumberEvenlyDivisibleBy(number, i)
+      if (!isDivisible) return false
     }
+    result = true
   }
-
   if (order === 'descending') {
-    iterator = intervalEnd
-    while (iterator >= intervalStart) {
-      if (iterator === intervalStart && number % iterator === 0) {
-        result = true
-        break
-      }
-      if (number % iterator !== 0) break
-      iterator--
+    for (let i = intervalEnd; i >= intervalStart; i--) {
+      isDivisible = isNumberEvenlyDivisibleBy(number, i)
+      if (!isDivisible) return false
     }
+    result = true
   }
 
   return result

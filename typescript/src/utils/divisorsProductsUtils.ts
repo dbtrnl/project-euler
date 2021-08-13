@@ -224,7 +224,11 @@ export function isAmicableNumber(inputNum: number): AmicableNumberObject {
  * @example findAmicableNumbersUnder(2000) = [ 220, 284, 1184, 1210 ]
  */
 export function findAmicableNumbersUnder(maxLimit: number): Array<number> {
+  if (maxLimit < 0) throw new RangeError('Number must be greater or equal than zero')
+
   const array: number[] = []
+
+  if (maxLimit === 0) return array
 
   for (let i = 0; i < maxLimit; i++) {
     // If i was already calculated, skip this iteration;

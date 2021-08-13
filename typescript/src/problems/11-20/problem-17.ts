@@ -1,6 +1,6 @@
-import { letterObject } from 'src/interfaces'
+import { LetterMapObject } from 'src/interfaces'
 
-const numberMap: letterObject = {
+const numberMap: LetterMapObject = {
   0: 'zero',
   1: 'one',
   2: 'two',

@@ -18,7 +18,7 @@ import {
 
 import {
   findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
-  findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
+  findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy, findAbundantNumbersUntil,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
 } from './divisorsProductsUtils'
 
@@ -32,7 +32,7 @@ export {
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
   isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence,
   findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
-  findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy,
+  findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy, findAbundantNumbersUntil,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
   polinomialPrimeFormula1One, polinomialPrimeFormulaTwo,
 }
@@ -113,15 +113,6 @@ export function findSumOfNumberIntervalSquares(intervalStart: number, intervalEn
   for (let i = intervalStart; i <= intervalEnd; i++) result += i ** 2
 
   return result
-}
-
-export function findAbundantNumbersUntil(limit: number): number[] {
-  const abundantNumbersArray: number[] = []
-
-  for (let i = 1; i <= limit; i++) {
-    if (isNumberDeficientPerfectOrAbundant(i) === 'abundant') abundantNumbersArray.push(i)
-  }
-  return abundantNumbersArray
 }
 
 /**

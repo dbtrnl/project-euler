@@ -51,9 +51,9 @@ export type AmicableChainObject = {
    */
   chain: number[] | null;
   /**
-   * Null in case of zero
+   * Zero in case of zero
    */
-  chainLength: number | null
+  chainLength: number
 }
 
 /**

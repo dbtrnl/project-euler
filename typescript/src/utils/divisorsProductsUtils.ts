@@ -281,6 +281,22 @@ export function isNumberAbundant(number: number): boolean | null {
 }
 
 /**
+ * Returns all abundant numbers from 0 until the specified limit
+ *
+ * ---
+ * @param limit The limit
+ * @returns The set of abundant numbers or empty array
+ */
+export function findAbundantNumbersUntil(limit: number): number[] {
+  const abundantNumbersArray: number[] = []
+
+  for (let i = 1; i <= limit; i++) {
+    if (isNumberDeficientPerfectOrAbundant(i) === 'abundant') abundantNumbersArray.push(i)
+  }
+  return abundantNumbersArray
+}
+
+/**
  * THIS FUNCTION IS STILL A WORK IN PROGRESS
  *
  * USED IN PROBLEM 95
@@ -288,20 +304,37 @@ export function isNumberAbundant(number: number): boolean | null {
  * @param limit
  * @returns
  */
-export function findAmicableChain(number: number, limit: number): AmicableChainObject {
-  const amicableChain: number[] = [number]
-  // let currentNum: Divisors = findAndSumAllDivisors(number)
+export function findAmicableChain(inputNumber: number): AmicableChainObject {
+  let completeChainFound = false
 
+  // Create the chainObject to be returned
   const chainObject: AmicableChainObject = {
-    number,
+    number: inputNumber,
     chain: null,
-    chainLength: null,
+    chainLength: 0,
   }
 
-  // while (!amicableChain.includes(currentNum) && currentNum <= limit) {
-  //   amicableChain.push(currentNum)
-  //   currentNum = findAndSumAllDivisors(currentNum)
-  // }
+  // Creating the chain with inputNumber as the first member
+  const amicableChain: Set<number> = new Set()
+  amicableChain.add(inputNumber)
+
+  // Adding the second member of the chain
+  let currentSum: number | null = findAndSumAllProperDivisors(inputNumber)
+  if (currentSum) amicableChain.add(currentSum)
+
+  // Looping while the chain isn't complete
+  while (!completeChainFound) {
+    if (inputNumber === 276) console.warn('currentSum', currentSum)
+    if (!currentSum) throw new Error('Some error occurred (null when it shouldn\'t be null')
+    currentSum = findAndSumAllProperDivisors(currentSum)
+    if (currentSum && amicableChain.has(currentSum)) completeChainFound = true
+
+    if (currentSum) amicableChain.add(currentSum)
+  }
+
+  // After while is done, set the chainObject properties
+  chainObject.chain = Array.from(amicableChain)
+  chainObject.chainLength = Array.from(amicableChain).length
 
   return chainObject
 }

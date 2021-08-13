@@ -1,9 +1,11 @@
 import { expect } from 'chai'
-import { AllDivisors, AmicableNumberObject, NumberClassification } from 'src/interfaces'
-import { findAbundantNumbersUntil } from '.'
+import {
+  AllDivisors, AmicableChainObject, AmicableNumberObject, NumberClassification,
+} from 'src/interfaces'
 import {
   findAllDivisors,
   findAllProperDivisors,
+  findAbundantNumbersUntil,
   findAmicableNumbersUnder,
   findAndSumAllDivisors,
   findAndSumAllProperDivisors,
@@ -12,6 +14,7 @@ import {
   isNumberAbundant,
   isNumberDeficientPerfectOrAbundant,
   isNumberEvenlyDivisibleBy,
+  findAmicableChain,
 } from './divisorsProductsUtils'
 
 describe('Test divisorsProductsUtils', () => {
@@ -491,6 +494,23 @@ describe('Test divisorsProductsUtils', () => {
         222, 224, 228, 234, 240, 246, 252, 258, 260, 264, 270,
       ]
       const result = findAbundantNumbersUntil(270); expect(result).to.be.deep.equal(expected)
+    })
+  })
+
+  describe('findAmicableChain()', () => {
+    it('should return the correct amicable chain when called with (12496)', () => {
+
+      const expected: AmicableChainObject = {
+        number: 12496,
+        chain: [12496, 14288, 15472, 14536, 14264],
+        chainLength: 5,
+      }
+      const result = findAmicableChain(12496); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return the correct amicable chain length when called with (138)', () => {
+      const expected = 178
+      const result = findAmicableChain(138); expect(result.chainLength).to.be.deep.equal(expected)
     })
   })
 

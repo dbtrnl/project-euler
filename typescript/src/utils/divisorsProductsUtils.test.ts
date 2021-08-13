@@ -4,10 +4,12 @@ import { findAbundantNumbersUntil } from '.'
 import {
   findAllDivisors,
   findAllProperDivisors,
+  findAmicableNumbersUnder,
   findAndSumAllDivisors,
   findAndSumAllProperDivisors,
   isAmicableNumber,
   isEvenlyDivisibleByEveryNumberInInterval,
+  isNumberAbundant,
   isNumberDeficientPerfectOrAbundant,
   isNumberEvenlyDivisibleBy,
 } from './divisorsProductsUtils'
@@ -318,6 +320,35 @@ describe('Test divisorsProductsUtils', () => {
     })
   })
 
+  describe('findAmicableNumbersUnder()', () => {
+    it('should throw RangeError when calling function with negative values', () => {
+      expect(() => findAmicableNumbersUnder(-238293)).to.throw(
+        RangeError, 'Number must be greater or equal than zero',
+      )
+      expect(() => findAmicableNumbersUnder(-1)).to.throw(
+        RangeError, 'Number must be greater or equal than zero',
+      )
+    })
+
+    it('should return expected result when calling function with (0)', () => {
+      const expected: Array<number> = []
+      const result = findAmicableNumbersUnder(0); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return expected result when calling function with (220)', () => {
+      const expected = [220, 284]
+      const result = findAmicableNumbersUnder(221); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return 20 first amicable numbers when calling function with (66993)', () => {
+      const expected = [
+        220, 284, 1184, 1210, 2620, 2924, 5020, 5564, 6232, 6368,
+        10744, 10856, 12285, 14595, 17296, 18416, 63020, 76084, 66928, 66992,
+      ]
+      const result = findAmicableNumbersUnder(66993); expect(result).to.be.deep.equal(expected)
+    })
+  })
+
   describe('isNumberDeficientPerfectOrAbundant()', () => {
     it('should return "perfect" when calling function with (28)', () => {
       const expected: NumberClassification = 'perfect'
@@ -376,19 +407,84 @@ describe('Test divisorsProductsUtils', () => {
 
     it('should return "deficient" when calling function with (13)', () => {
       const expected: NumberClassification = 'deficient'
-      const result = isNumberDeficientPerfectOrAbundant(10); expect(result).to.be.equal(expected)
+      const result = isNumberDeficientPerfectOrAbundant(13); expect(result).to.be.equal(expected)
+    })
+  })
+
+  describe('isNumberAbundant()', () => {
+    it('should throw RangeError when calling function with zero', () => {
+      expect(() => isNumberAbundant(0)).to.throw(
+        RangeError, 'Number must be different from zero!',
+      )
+    })
+
+    it('should return TRUE when calling function with (12)', () => {
+      const expected = true
+      const result = isNumberAbundant(12); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return TRUE when calling function with (40)', () => {
+      const expected = true
+      const result = isNumberAbundant(40); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return TRUE when calling function with (120)', () => {
+      const expected = true
+      const result = isNumberAbundant(120); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return TRUE when calling function with (5775)', () => {
+      const expected = true
+      const result = isNumberAbundant(5775); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return FALSE when calling function with (10)', () => {
+      const expected = false
+      const result = isNumberAbundant(10); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return FALSE when calling function with (13)', () => {
+      const expected = false
+      const result = isNumberAbundant(13); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return FALSE when calling function with (28)', () => {
+      const expected = false
+      const result = isNumberAbundant(28); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return FALSE when calling function with (8128)', () => {
+      const expected = false
+      const result = isNumberAbundant(8128); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return FALSE when calling function with (33550336)', () => {
+      const expected = false
+      const result = isNumberAbundant(33550336); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return FALSE when calling function with (137438691328)', () => {
+      const expected = false
+      const result = isNumberAbundant(137438691328); expect(result).to.be.deep.equal(expected)
     })
   })
 
   describe('findAbundantNumbersUntil()', () => {
     it('should return the expected abundant number array when called with (54)', () => {
 
-      /*
-        Returns 2.
-        Is 2 an abundant number? it's divisors are 1 and 2, whose sum is 3...
-      */
       const expected: Array<number> = [12, 18, 20, 24, 30, 36, 40, 42, 48, 54]
       const result = findAbundantNumbersUntil(54); expect(result).to.be.deep.equal(expected)
+    })
+
+    it('should return the expected abundant number array when called with (270)', () => {
+
+      const expected: Array<number> = [12, 18, 20, 24, 30, 36, 40, 42,
+        48, 54, 56, 60, 66, 70, 72, 78, 80, 84, 88, 90, 96, 100, 102, 104,
+        108, 112, 114, 120, 126, 132, 138, 140, 144, 150, 156, 160, 162,
+        168, 174, 176, 180, 186, 192, 196, 198, 200, 204, 208, 210, 216, 220,
+        222, 224, 228, 234, 240, 246, 252, 258, 260, 264, 270,
+      ]
+      const result = findAbundantNumbersUntil(270); expect(result).to.be.deep.equal(expected)
     })
   })
 

@@ -17,14 +17,14 @@
   Find the smallest member of the longest amicable chain with no element exceeding one million.
 */
 
-import { amicableChainObject } from '../interfaces'
+import { AmicableChainObject } from '../../interfaces'
 import {
   findAmicableChain,
-} from '../utils'
+} from '../../utils'
 
-const main = () => {
-  console.time('Loop total execution time')
-  let longestChain: amicableChainObject = {
+export default function problem95(): number {
+  const result = 0
+  let longestChain: AmicableChainObject = {
     number: 0,
     chain: [],
     chainLength: 0,
@@ -32,36 +32,13 @@ const main = () => {
 
   // Longest chain below 10.000 = 3594 - 87 numbers
 
-  for (let i = 1; i < 203035; i++) {
-    const iterator = findAmicableChain(i, 1000000)
-    if (iterator.chainLength > longestChain.chainLength) {
-      longestChain = iterator
-      // console.log(longestChain)
-      console.log(`Longest chain so far: ${longestChain.chainLength}, for number ${longestChain.number}`)
-    }
+  for (let i = 1; i < 276; i++) {
+    const currentChain = findAmicableChain(i)
+    if (currentChain.chainLength > longestChain.chainLength) longestChain = currentChain
+
+    console.warn('number', currentChain.number, 'length', currentChain.chainLength)
   }
-  console.timeEnd('Loop total execution time')
+  console.warn(longestChain)
 
-  console.log(longestChain)
-  console.log(longestChain.chain[longestChain.chainLength - 2])
+  return result
 }
-
-// main();
-
-// (() => {
-//   for (let i = 1; i <= 220; i++) {
-//     let teste = findAndSumAllDivisors(i);
-//     console.log(`Sum of divisors of ${i} - ${teste}`);
-//   }
-// })()
-
-// (() => {
-//   let i = 220;
-//   let teste = findAndSumAllDivisors(i);
-//   console.log(`Sum of divisors of ${i} - ${teste}`);
-// })()
-
-(() => {
-  const teste = findAmicableChain(12496, 1000000)
-  console.log(teste)
-})()

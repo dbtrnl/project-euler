@@ -8,7 +8,7 @@
     "scripts": {
         "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0",
         "test:single": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g",
-        "test:problems": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g [0-9]",
+        "test:problems": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g problem",
         "test:utils": "mocha -r ts-node/register '**/utils/*.test.ts' -t=10000 -s=0",
         "eslint:audit": "eslint ."
     },

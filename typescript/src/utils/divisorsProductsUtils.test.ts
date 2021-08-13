@@ -263,24 +263,30 @@ describe('Test divisorsProductsUtils', () => {
 
   describe('isEvenlyDivisibleByEveryNumberInInterval()', () => {
     it('should throw RangeError when calling function with invalid interval', () => {
-      expect(() => isEvenlyDivisibleByEveryNumberInInterval(100, [2, 3], 'ascending')).to.throw(
-        RangeError, 'Both arguments must be greater than zero!',
+      expect(() => isEvenlyDivisibleByEveryNumberInInterval(100, [3, 2], 'ascending')).to.throw(
+        RangeError, 'Interval start must not be greater than interval end',
       )
-      expect(() => isEvenlyDivisibleByEveryNumberInInterval(100, [0, 2323], 'descending')).to.throw(
-        RangeError, 'Both arguments must be greater than zero!',
+      expect(() => isEvenlyDivisibleByEveryNumberInInterval(100, [50, 0], 'descending')).to.throw(
+        RangeError, 'Interval start must not be greater than interval end',
+      )
+      expect(() => isEvenlyDivisibleByEveryNumberInInterval(100, [-5, -6], 'descending')).to.throw(
+        RangeError, 'Interval start must not be greater than interval end',
       )
     })
 
     it('should return TRUE when calling function with (100, [1, 2], "ascending")', () => {
-      const result = isEvenlyDivisibleByEveryNumberInInterval(100, [1, 2], 'ascending'); expect(result).to.be.equal(true)
+      const expected = true
+      const result = isEvenlyDivisibleByEveryNumberInInterval(100, [1, 2], 'ascending'); expect(result).to.be.equal(expected)
     })
 
     it('should return FALSE when calling function with (100, [1, 4], "ascending")', () => {
-      const result = isEvenlyDivisibleByEveryNumberInInterval(100, [1, 4], 'ascending'); expect(result).to.be.equal(true)
+      const expected = false
+      const result = isEvenlyDivisibleByEveryNumberInInterval(100, [1, 4], 'ascending'); expect(result).to.be.equal(expected)
     })
 
     it('should return FALSE when calling function with (1432, [1, 1432], "descending")', () => {
-      const result = isEvenlyDivisibleByEveryNumberInInterval(1432, [1, 1432], 'descending'); expect(result).to.be.equal(true)
+      const expected = false
+      const result = isEvenlyDivisibleByEveryNumberInInterval(1432, [1, 1432], 'descending'); expect(result).to.be.equal(expected)
     })
   })
 

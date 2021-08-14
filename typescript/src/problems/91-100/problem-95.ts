@@ -23,7 +23,7 @@ import {
 } from '../../utils'
 
 export default function problem95(): number {
-  const result = 0
+  const NO_ELEMENT_EXCEEDING = 1000000
   let longestChain: AmicableChainObject = {
     number: 0,
     chain: [],
@@ -32,13 +32,31 @@ export default function problem95(): number {
 
   // Longest chain below 10.000 = 3594 - 87 numbers
 
-  for (let i = 1; i < 276; i++) {
-    const currentChain = findAmicableChain(i)
+  for (let i = 4; i < 1000000; i++) {
+    const currentChain = findAmicableChain(i, NO_ELEMENT_EXCEEDING)
     if (currentChain.chainLength > longestChain.chainLength) longestChain = currentChain
 
-    console.warn('number', currentChain.number, 'length', currentChain.chainLength)
+    if (i === 200000) console.warn('200.000 iterations')
+    if (i === 400000) console.warn('400.000 iterations')
+    if (i === 600000) console.warn('600.000 iterations')
+    if (i === 800000) console.warn('800.000 iterations')
   }
-  console.warn(longestChain)
+
+  // longestChain = findAmicableChain(12496, NO_ELEMENT_EXCEEDING)
+
+  console.warn('longestChain', longestChain)
+  const { chain } = longestChain
+  let result = 0
+
+  // eslint-disable-next-line prefer-destructuring
+  if (chain) result = chain[0]
+  if (!chain) throw new Error('Something went wrong (chain shouldn\'t be null')
+
+  for (let k = 0; k < longestChain.chainLength; k++) {
+    const currentNumber = chain[k]
+    // console.warn('k', k, 'current', currentNumber)
+    if (currentNumber < result) result = currentNumber
+  }
 
   return result
 }

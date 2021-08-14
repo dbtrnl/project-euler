@@ -2,7 +2,7 @@ import {
   AllDivisors,
   AmicableChainObject,
   AmicableNumberObject,
-  Divisors,
+  DivisorsSum,
   Interval,
   NumberClassification,
   OrderEnum,
@@ -29,7 +29,8 @@ export function findAllProperDivisors(inputNumber: number): AllDivisors {
   const divisors: Array<number> = [1]
 
   // Edge cases
-  if (number === 0) return null
+  if (number === 0) return [0]
+  // Still need to implement logic to return negative numbers
   if (number < 0) number = Math.abs(number)
   if (number === 1 || number === 2) return divisors
 
@@ -69,7 +70,7 @@ export function findAllDivisors(inputNumber: number): AllDivisors {
   const divisors: Array<number> = []
 
   // Edge cases
-  if (number === 0) return null
+  if (number === 0) return [0]
   if (number < 0) number = Math.abs(number)
 
   for (let i = 1; i <= number; i++) {
@@ -85,12 +86,14 @@ export function findAllDivisors(inputNumber: number): AllDivisors {
  * @param {number} inputNumber The number
  * @returns {number} The sum of all proper divisors
  */
-export function findAndSumAllProperDivisors(inputNumber: number): Divisors {
+export function findAndSumAllProperDivisors(inputNumber: number): DivisorsSum {
+  if (inputNumber === 0) return 0
+  if (inputNumber === 1) return 0
+  if (inputNumber === 2) return 1
+
   const number = inputNumber
   let sum = 0
   const properDivisors = findAllProperDivisors(number)
-
-  if (!properDivisors) return null
 
   sum = properDivisors.reduce((total, num) => {
     return total + num
@@ -105,12 +108,10 @@ export function findAndSumAllProperDivisors(inputNumber: number): Divisors {
  * @param {number} inputNumber N >= 0
  * @returns {number} The sum of all divisors
  */
-export function findAndSumAllDivisors(inputNumber: number): Divisors {
+export function findAndSumAllDivisors(inputNumber: number): DivisorsSum {
   const number = inputNumber
   let sum = 0
   const properDivisors = findAllDivisors(number)
-
-  if (!properDivisors) return null
 
   sum = properDivisors.reduce((total, num) => {
     return total + num
@@ -304,8 +305,9 @@ export function findAbundantNumbersUntil(limit: number): number[] {
  * @param limit
  * @returns
  */
-export function findAmicableChain(inputNumber: number): AmicableChainObject {
-  let completeChainFound = false
+export function findAmicableChain(inputNumber: number, limit: number): AmicableChainObject {
+  // const completeChainFound = false
+  let isChainValid = true
 
   // Create the chainObject to be returned
   const chainObject: AmicableChainObject = {
@@ -316,20 +318,26 @@ export function findAmicableChain(inputNumber: number): AmicableChainObject {
 
   // Creating the chain with inputNumber as the first member
   const amicableChain: Set<number> = new Set()
-  amicableChain.add(inputNumber)
 
-  // Adding the second member of the chain
-  let currentSum: number | null = findAndSumAllProperDivisors(inputNumber)
-  if (currentSum) amicableChain.add(currentSum)
+  let currentSum = findAndSumAllProperDivisors(inputNumber)
+  // Adding first and second numbers;
+  amicableChain.add(inputNumber); amicableChain.add(currentSum)
 
-  // Looping while the chain isn't complete
-  while (!completeChainFound) {
-    if (inputNumber === 276) console.warn('currentSum', currentSum)
-    if (!currentSum) throw new Error('Some error occurred (null when it shouldn\'t be null')
+  // console.warn('amicableChain before loop', amicableChain)
+
+  while (currentSum !== inputNumber && isChainValid) {
     currentSum = findAndSumAllProperDivisors(currentSum)
-    if (currentSum && amicableChain.has(currentSum)) completeChainFound = true
 
-    if (currentSum) amicableChain.add(currentSum)
+    if (amicableChain.has(currentSum)) break
+
+    amicableChain.add(currentSum)
+    // console.log('inputNumber', inputNumber, 'currentSum', currentSum, 'currentSum !== inputNumber ?', currentSum !== inputNumber, 'isChainValid?', isChainValid)
+
+    if (currentSum === 1 || currentSum === 0) break
+    if (currentSum >= limit) {
+      isChainValid = false
+      break
+    }
   }
 
   // After while is done, set the chainObject properties

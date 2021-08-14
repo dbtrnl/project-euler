@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import {
-  AllDivisors, AmicableChainObject, AmicableNumberObject, NumberClassification,
+  AllDivisors, AmicableChainObject, AmicableNumberObject, DivisorsSum, NumberClassification,
 } from 'src/interfaces'
 import {
   findAllDivisors,
@@ -20,9 +20,9 @@ import {
 describe('Test divisorsProductsUtils', () => {
 
   describe('findAllProperDivisors()', () => {
-    it('should return NULL when calling function with (0)', () => {
-      const expected: AllDivisors = null
-      const result = findAllProperDivisors(0); expect(result).to.be.equal(expected)
+    it('should return [0] when calling function with (0)', () => {
+      const expected: AllDivisors = [0]
+      const result = findAllProperDivisors(0); expect(result).to.be.deep.equal(expected)
     })
 
     it('should return expected result when calling function with (1)', () => {
@@ -72,9 +72,9 @@ describe('Test divisorsProductsUtils', () => {
   })
 
   describe('findAllDivisors()', () => {
-    it('should return NULL when calling function with (0)', () => {
-      const expected: AllDivisors = null
-      const result = findAllDivisors(0); expect(result).to.be.equal(expected)
+    it('should return [0] when calling function with (0)', () => {
+      const expected: AllDivisors = [0]
+      const result = findAllDivisors(0); expect(result).to.be.deep.equal(expected)
     })
 
     it('should return expected result when calling function with (1)', () => {
@@ -124,9 +124,9 @@ describe('Test divisorsProductsUtils', () => {
   })
 
   describe('findAndSumAllProperDivisors', () => {
-    it('should return NULL when calling function with (0)', () => {
-      const expected: AllDivisors = null
-      const result = findAndSumAllProperDivisors(0); expect(result).to.be.equal(expected)
+    it('should return [0] when calling function with (0)', () => {
+      const expected: DivisorsSum = 0
+      const result = findAndSumAllProperDivisors(0); expect(result).to.be.deep.equal(expected)
     })
 
     it('should return expected result when calling function with (1)', () => {
@@ -176,9 +176,9 @@ describe('Test divisorsProductsUtils', () => {
   })
 
   describe('findAndSumAllDivisors', () => {
-    it('should return NULL when calling function with (0)', () => {
-      const expected: AllDivisors = null
-      const result = findAndSumAllDivisors(0); expect(result).to.be.equal(expected)
+    it('should return [0] when calling function with (0)', () => {
+      const expected: DivisorsSum = 0
+      const result = findAndSumAllDivisors(0); expect(result).to.be.deep.equal(expected)
     })
 
     it('should return expected result when calling function with (1)', () => {
@@ -505,12 +505,16 @@ describe('Test divisorsProductsUtils', () => {
         chain: [12496, 14288, 15472, 14536, 14264],
         chainLength: 5,
       }
-      const result = findAmicableChain(12496); expect(result).to.be.deep.equal(expected)
+      const result = findAmicableChain(12496, 1000000)
+
+      expect(result).to.be.deep.equal(expected)
     })
 
     it('should return the correct amicable chain length when called with (138)', () => {
       const expected = 178
-      const result = findAmicableChain(138); expect(result.chainLength).to.be.deep.equal(expected)
+      const result = findAmicableChain(138, Number.MAX_SAFE_INTEGER)
+
+      expect(result.chainLength).to.be.deep.equal(expected)
     })
   })
 

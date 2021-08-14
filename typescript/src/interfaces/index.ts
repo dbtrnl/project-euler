@@ -79,14 +79,16 @@ export type LetterMapObject = {
 /**
  * Simple type used on findAllProperDivisors() util
  */
-export type AllDivisors = Array<number> | null
+export type AllDivisors = Array<number>
 
 /**
- * Divisor type. A number in the case of numbers which have divisors
+ * Divisor sum type.
  *
- * Null in case of 0
+ * The sum of all divisors of a number.
+ *
+ * Comes from and AllDivisors array
  */
-export type Divisors = number | null
+export type DivisorsSum = number
 
 /**
  * A two-number array representing a number interval

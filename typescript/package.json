@@ -7,9 +7,13 @@
     "type": "commonjs",
     "scripts": {
         "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0",
-        "test:single": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g",
-        "test:problems": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g problem",
-        "test:utils": "mocha -r ts-node/register '**/utils/*.test.ts' -t=10000 -s=0",
+        "test-single": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g",
+        "test-problems": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g problem",
+        "test-utils": "mocha -r ts-node/register '**/utils/*.test.ts' -t=10000 -s=0",
+        "test:cov": "nyc npm run test",
+        "test-single:cov": "nyc yarn test-single",
+        "test-problems:cov": "nyc yarn test-problems",
+        "test-utils:cov": "nyc yarn test-utils",
         "eslint:audit": "eslint ."
     },
     "devDependencies": {
@@ -25,6 +29,7 @@
         "eslint-import-resolver-typescript": "^2.4.0",
         "eslint-plugin-import": "^2.24.0",
         "mocha": "^9.0.1",
+        "nyc": "^15.1.0",
         "ts-node": "^10.0.0",
         "typescript": "^4.3.2"
     },

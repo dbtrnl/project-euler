@@ -2,7 +2,8 @@
 node_modules
 .vscode
 
-testing.ts
+# Istambul (nyc)
+.nyc_output
 
 # Python
 __pycache__

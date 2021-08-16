@@ -4,6 +4,7 @@ node_modules
 
 # Istambul (nyc)
 .nyc_output
+coverage
 
 # Python
 __pycache__

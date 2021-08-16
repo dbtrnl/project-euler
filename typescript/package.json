@@ -12,8 +12,11 @@
         "test-utils": "mocha -r ts-node/register '**/utils/*.test.ts' -t=10000 -s=0",
         "test:cov": "nyc npm run test",
         "test-single:cov": "nyc yarn test-single",
+        "test-single:cov-rep": "nyc --reporter=html  yarn test-single",
         "test-problems:cov": "nyc yarn test-problems",
+        "test-problems:cov-rep": "nyc --reporter=html yarn test-problems",
         "test-utils:cov": "nyc yarn test-utils",
+        "test-utils:cov-rep": "nyc --reporter=html yarn test-utils",
         "eslint:audit": "eslint ."
     },
     "devDependencies": {

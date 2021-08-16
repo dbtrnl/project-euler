@@ -141,21 +141,10 @@ export function numberLength(number: number): number {
  * @example isNumberPalindrome(2422) = false
  */
 export function isNumberPalindrome(inputNumber: number): boolean {
-  const num: string = inputNumber.toString()
-  const numArr: string[] = [...num]
-  const inverseNum: string[] = []
+  const number: string = inputNumber.toString()
+  const inverseNum: string = inputNumber.toString().split('').reverse().join('')
 
-  let register = ''
-  let revNum = ''
-
-  for (let k = 0; k <= num.length - 1; k++) {
-    register = numArr.pop()!
-    inverseNum.push(register)
-  }
-
-  revNum = inverseNum.join(',').replace(/,/g, '')
-
-  if (num === revNum) return true
+  if (number === inverseNum) return true
   return false
 }
 

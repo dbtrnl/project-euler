@@ -111,3 +111,43 @@ user	0m9,733s
 sys	0m0,190s
 ```
 
+## isNumberPalindrome()
+
+Original implementation (some ~40% slower)
+
+Problem4 elapsed in ~550ms
+
+```typescript
+export function isNumberPalindrome(inputNumber: number): boolean {
+  const num: string = inputNumber.toString()
+  const numArr: string[] = [...num]
+  const inverseNum: string[] = []
+
+  let register = ''
+  let revNum = ''
+
+  for (let k = 0; k <= num.length - 1; k++) {
+    register = numArr.pop()!
+    inverseNum.push(register)
+  }
+
+  revNum = inverseNum.join(',').replace(/,/g, '')
+
+  if (num === revNum) return true
+  return false
+}
+```
+
+Simplified implementation, using native Array methods
+
+Problem 4 elapsed in ~350ms
+
+```typescript
+export function isNumberPalindrome(inputNumber: number): boolean {
+  const number: string = inputNumber.toString()
+  const inverseNum: string = inputNumber.toString().split('').reverse().join('')
+
+  if (number === inverseNum) return true
+  return false
+}
+```

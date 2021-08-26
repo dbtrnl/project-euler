@@ -261,6 +261,40 @@ export function findAllPermutationsOfNumber(inputNumber: number): Set<number> {
 }
 
 /**
+ * Returns all cyclic permutations of a number
+ *
+ * [Reference](https://mathworld.wolfram.com/CyclicPermutation.html)
+ * @param inputNumber The input number
+ */
+export function findAllCyclicPermutationsOfNumber(inputNumber: number): Array<string> {
+  let result: Array<string> = []
+
+  // If number is negative, set a flag
+  let isInputNumberNegative = false
+  if (inputNumber < 0) isInputNumberNegative = true
+
+  // Splitting the number
+  const currentNum: Array<string> = inputNumber.toString().split('')
+
+  // If number is negative, removes the negative sign from the string array
+  if (isInputNumberNegative) currentNum.shift()
+  const numLength = currentNum.length
+
+  // Adding inputNumber to the final array
+  result.push(currentNum.join(''))
+
+  for (let i = 0; i < numLength - 1; i++) {
+    const register = currentNum.pop()
+    if (register) currentNum.unshift(register); result.push(currentNum.join(''))
+  }
+
+  // If inputNumber is negative, put back the negative sign on all numbers
+  if (isInputNumberNegative) result = result.map((string) => `-${string}`)
+
+  return result
+}
+
+/**
  * Function to find the recurring sequence in a given fraction
  *
  * See [Reference](https://www.geeksforgeeks.org/find-recurring-sequence-fraction/)

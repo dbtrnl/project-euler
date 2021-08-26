@@ -143,14 +143,32 @@ export function findLargestPrimeFactor(inputNumber: number): number {
   return num
 }
 
+/**
+ * Returns all Circular primes
+ *
+ * Numbers such that every cyclic permutation is a prime
+ *
+ * [Reference](http://oeis.org/A068652)
+ *
+ * ---
+ * @param inputNumber
+ * @returns
+ */
 export function isPrimeCircular(inputNumber: number): boolean {
   if (!isPrime(inputNumber)) throw new Error('input number must be prime!')
 
-  const result = false
   const num = inputNumber
+  let result = true
 
-  const test = findAllPermutationsOfNumber(num)
-  console.log(test)
+  const permutationsSet = findAllPermutationsOfNumber(num)
+  const permutationsArray = Array.from(permutationsSet)
+
+  // console.warn(`permutationsArray of ${num}`, permutationsArray)
+
+  permutationsArray.forEach((number) => {
+    // console.log(`Checking ${number}`, isPrime(number))
+    if (!isPrime(number)) result = false
+  })
 
   return result
 }

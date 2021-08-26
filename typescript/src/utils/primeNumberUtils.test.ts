@@ -5,6 +5,7 @@ import {
   findNthPrime,
   findLargestPrimeFactor,
   findPrimesWithNDigits,
+  isPrimeCircular,
 } from './primeNumberUtils'
 
 describe('Test primeNumberUtils', () => {
@@ -123,6 +124,46 @@ describe('Test primeNumberUtils', () => {
 
     it('should return 65789 as the largest prime factor of 4243587867', () => {
       const result = findLargestPrimeFactor(4243587867); expect(result).to.be.equal(65789)
+    })
+  })
+
+  describe('isPrimeCircular()', () => {
+    it('should throw Error when calling function with numbers that are NOT PRIME', () => {
+      expect(() => isPrimeCircular(-42)).to.throw(Error, 'input number must be prime!')
+      expect(() => isPrimeCircular(0)).to.throw(Error, 'input number must be prime!')
+      expect(() => isPrimeCircular(4)).to.throw(Error, 'input number must be prime!')
+    })
+
+    it('should return TRUE when calling function with (7)', () => {
+      const result = isPrimeCircular(7); expect(result).to.be.equal(true)
+    })
+
+    it('should return TRUE when calling function with (197)', () => {
+      const result = isPrimeCircular(197); expect(result).to.be.equal(true)
+    })
+
+    it('should return TRUE when calling function with (3779)', () => {
+      const result = isPrimeCircular(3779); expect(result).to.be.equal(true)
+    })
+
+    it('should return TRUE when calling function with (199933)', () => {
+      const result = isPrimeCircular(199933); expect(result).to.be.equal(true)
+    })
+
+    it('should return FALSE when calling function with (23)', () => {
+      const result = isPrimeCircular(23); expect(result).to.be.equal(false)
+    })
+
+    it('should return FALSE when calling function with (163)', () => {
+      const result = isPrimeCircular(163); expect(result).to.be.equal(false)
+    })
+
+    it('should return FALSE when calling function with (3823)', () => {
+      const result = isPrimeCircular(3823); expect(result).to.be.equal(false)
+    })
+
+    it('should return FALSE when calling function with (27644437)', () => {
+      const result = isPrimeCircular(27644437); expect(result).to.be.equal(false)
     })
   })
 })

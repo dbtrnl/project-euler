@@ -6,11 +6,13 @@
     "license": "MIT",
     "type": "commonjs",
     "scripts": {
+        "clean": "rm -rf .nyc_output coverage",
         "test": "mocha -r ts-node/register '**/*.test.ts' -t=10000 -s=0",
         "test-single": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g",
         "test-problems": "mocha -r ts-node/register '**/**/*.test.ts' -t=10000 -s=0 -g problem",
         "test-utils": "mocha -r ts-node/register '**/utils/*.test.ts' -t=10000 -s=0",
         "test:cov": "nyc npm run test",
+        "test:cov-rep": "nyc --reporter=html  yarn test",
         "test-single:cov": "nyc yarn test-single",
         "test-single:cov-rep": "nyc --reporter=html  yarn test-single",
         "test-problems:cov": "nyc yarn test-problems",

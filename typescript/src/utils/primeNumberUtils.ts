@@ -1,4 +1,4 @@
-import { findAllPermutationsOfNumber } from './simpleNumberUtils'
+import { findAllCyclicPermutationsOfNumber, findAllPermutationsOfNumber } from './simpleNumberUtils'
 
 /**
  * Checks if number N is prime
@@ -160,14 +160,15 @@ export function isPrimeCircular(inputNumber: number): boolean {
   const num = inputNumber
   let result = true
 
-  const permutationsSet = findAllPermutationsOfNumber(num)
+  const permutationsSet = findAllCyclicPermutationsOfNumber(num)
   const permutationsArray = Array.from(permutationsSet)
 
   // console.warn(`permutationsArray of ${num}`, permutationsArray)
 
   permutationsArray.forEach((number) => {
     // console.log(`Checking ${number}`, isPrime(number))
-    if (!isPrime(number)) result = false
+    const parsedNumber = parseInt(number, 10)
+    if (!isPrime(parsedNumber)) result = false
   })
 
   return result

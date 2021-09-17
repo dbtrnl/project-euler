@@ -5,7 +5,7 @@
  * @param {Number} n The starting number
  * @returns {Number}
  */
-export function polinomialPrimeFormula1One(n: number): number {
+export function polinomialPrimeFormulaOne(n: number): number {
   const number = (n ** 2) + n + 41
   return number
 }

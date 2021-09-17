@@ -23,7 +23,7 @@ import {
 } from './divisorsProductsUtils'
 
 import {
-  polinomialPrimeFormula1One, polinomialPrimeFormulaTwo,
+  polinomialPrimeFormulaOne, polinomialPrimeFormulaTwo,
 } from './polynomialUtils'
 
 export {
@@ -34,7 +34,7 @@ export {
   findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
   findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy, findAbundantNumbersUntil,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,
-  polinomialPrimeFormula1One, polinomialPrimeFormulaTwo,
+  polinomialPrimeFormulaOne, polinomialPrimeFormulaTwo,
 }
 
 /**

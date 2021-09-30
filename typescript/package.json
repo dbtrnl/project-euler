@@ -6,11 +6,11 @@
     "license": "MIT",
     "type": "commonjs",
     "scripts": {
-        "clean": "rm -rf .nyc_output coverage",
+        "clean": "rm -rf coverage",
+        "eslint:audit": "eslint .",
         "test": "jest --silent",
-        "test-single": "jest --silent -t",
         "test:cov": "jest --coverage --silent",
-        "eslint:audit": "eslint ."
+        "test-single": "jest --silent -t"
     },
     "devDependencies": {
         "@types/eslint": "^7.2.13",

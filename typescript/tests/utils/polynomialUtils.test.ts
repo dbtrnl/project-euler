@@ -1,12 +1,11 @@
-import { expect } from 'chai'
 import {
   polinomialPrimeFormulaOne,
   polinomialPrimeFormulaTwo,
-} from './polynomialUtils'
+} from '../../src/utils/polynomialUtils'
 
 describe('Test polynomialUtils', () => {
   describe('polinomialPrimeFormulaOne()', () => {
-    it('should return the correct 40 prime numbers when calling function with range 0-39', () => {
+    test('should return the correct 40 prime numbers when calling function with range 0-39', () => {
       const result = []
       const expected = [
         41, 43, 47, 53, 61, 71, 83, 97, 113, 131, 151, 173, 197, 223,
@@ -18,12 +17,12 @@ describe('Test polynomialUtils', () => {
         const currentNum = polinomialPrimeFormulaOne(i)
         result.push(currentNum)
       }
-      expect(result).to.be.deep.equal(expected)
+      expect(result).toEqual(expected)
     })
   })
 
   describe('polinomialPrimeFormulaTwo()', () => {
-    it('should return empty Array when calling function with 0', () => {
+    test('should return empty Array when calling function with 0', () => {
       const result = []
       const expected = [
         1601, 1523, 1447, 1373, 1301, 1231, 1163, 1097, 1033, 971,
@@ -42,7 +41,7 @@ describe('Test polynomialUtils', () => {
       }
       console.log(result)
 
-      expect(result).to.be.deep.equal(expected)
+      expect(result).toEqual(expected)
     })
   })
 })

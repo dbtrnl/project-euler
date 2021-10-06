@@ -1,4 +1,4 @@
-import { findAllCyclicPermutationsOfNumber, findAllPermutationsOfNumber } from './simpleNumberUtils'
+import { findAllCyclicPermutationsOfNumber } from './simpleNumberUtils'
 
 /**
  * Checks if number N is prime

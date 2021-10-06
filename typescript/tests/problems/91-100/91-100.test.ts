@@ -1,4 +1,4 @@
-import { answers, problem95 } from '../../../src/problems/91-100'
+import { answers } from '../../../src/problems/91-100'
 
 describe('Problems 91 to 100', () => {
   it('problem95', () => {

@@ -20,7 +20,7 @@ import { assembleTriangle, findMaximumPathSumOfTriangle } from '../../utils'
   const main = (): void => {
     const triangle = assembleTriangle(problem67Input, 100)
     const answer = findMaximumPathSumOfTriangle(triangle)
-    console.log(`${'The answer is' + ' '}${answer}`)
+    console.log(`${'The answer is '}${answer}`)
   }
   main()
 })()

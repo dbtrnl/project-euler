@@ -25,6 +25,6 @@ export default function problem35(): number {
     return result
   }
   const result = main()
-  return 0
+  return result
 }
 problem35()

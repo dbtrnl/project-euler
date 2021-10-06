@@ -1,4 +1,4 @@
-import { DigitMapObject } from 'src/interfaces'
+import { DigitMapObject } from '../interfaces'
 
 /**
  * Returns the result of N factorial (N!)

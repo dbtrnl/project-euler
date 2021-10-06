@@ -16,7 +16,7 @@ import {
 } from '../../utils'
 
 export default function problem49(): number {
-  function main(): void {
+  function main(): number {
     const allPrimesWithFourDigits = findPrimesWithNDigits(4)
     const allPermutationsArray: Array<number[]> = []
 
@@ -35,7 +35,8 @@ export default function problem49(): number {
     }
     // 1000+ arrays of permutations to check...
     console.log(allPermutationsArray)
+    return 0
   }
   const result = main()
-  return 0
+  return result
 }

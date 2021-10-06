@@ -17,5 +17,5 @@ export default function problem37(): number {
     return 0
   }
   const result = main()
-  return 0
+  return result
 }

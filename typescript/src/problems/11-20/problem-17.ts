@@ -1,4 +1,4 @@
-import { LetterMapObject } from 'src/interfaces'
+import { LetterMapObject } from '../../interfaces'
 
 const numberMap: LetterMapObject = {
   0: 'zero',

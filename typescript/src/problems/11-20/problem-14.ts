@@ -22,13 +22,14 @@ import { findLongestCollatzSequenceUnder } from '../../utils'
  * Which starting number, under one million, produces the longest chain?
  */
 export default function problem14(): number {
-  const main = (): number => {
+
+  function main(): number {
     const MAX_NUMBER = 1000000
     const answer = findLongestCollatzSequenceUnder(MAX_NUMBER)
 
-    // console.log(`The answer is ${answer.number}`)
     return answer.number
   }
+
   const result = main()
   return result
 }

@@ -2,7 +2,7 @@ import {
   answers, problem11, problem12, problem13, problem14, problem15, problem16, problem17, problem18, problem19, problem20,
 } from '../../../src/problems/11-20'
 
-describe('Problems 11 to 20', () => {
+describe('Problems 11-20', () => {
   test('problem11 returns the expected answer', () => { const result = problem11(); expect(result).toStrictEqual(answers[0]) })
   test('problem12 returns the expected answer', () => { const result = problem12(); expect(result).toStrictEqual(answers[1]) })
   test('problem13 returns the expected answer', () => { const result = problem13(); expect(result).toStrictEqual(answers[2]) })

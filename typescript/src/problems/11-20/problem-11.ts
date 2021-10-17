@@ -190,7 +190,7 @@ export default function problem11(): number {
     }
   }
 
-  const main = (): number => {
+  function main(): number {
     calculateAllDiagonals()
     // console.log(`Greatest Product so far: ${iterator.product}, numbers = ${iterator.numbers}\n`)
     calculateAllRows()
@@ -203,6 +203,7 @@ export default function problem11(): number {
 
     return iterator.product
   }
+
   const result = main()
   return result
 }

@@ -7,7 +7,8 @@
  * What is the sum of the digits of the number 2^1000?
  */
 export default function problem16(): number {
-  const main = () => {
+
+  function main() {
     let answer = 0
     const number = BigInt(2 ** 1000)
     const numberString: string = number.toString()
@@ -16,9 +17,9 @@ export default function problem16(): number {
       answer += parseInt(numberString[i], 10)
     }
 
-    // console.log(`The answer is ${answer}`)
     return answer
   }
+
   const result = main()
   return result
 }

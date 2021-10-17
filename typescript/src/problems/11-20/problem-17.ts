@@ -32,19 +32,20 @@ const numberMap: LetterMapObject = {
   '00': 'hundred',
   '000': 'thousand',
 }
+
 export default function problem17(): number {
-  const numberOfLettersInWrittenNumber = (num: number): string => {
-    if (numberMap[num]) {
-      return numberMap[num]
-    }
+
+  function numberOfLettersInWrittenNumber(num: number): string {
+    if (numberMap[num]) return numberMap[num]
+
     let currentNumber = ''
-    const currNumStr = num.toString()
+    const currentNumberString = num.toString()
 
     // If it's a two-digit number:
-    if (currNumStr.length === 2) {
+    if (currentNumberString.length === 2) {
       // Extracting digits
-      const firstDigit = currNumStr[0]
-      const secondDigit = currNumStr[1]
+      const firstDigit = currentNumberString[0]
+      const secondDigit = currentNumberString[1]
 
       switch (firstDigit) {
         case '2':
@@ -76,17 +77,17 @@ export default function problem17(): number {
       }
     }
     // If a three-digit number
-    if (currNumStr.length === 3) {
+    if (currentNumberString.length === 3) {
       // Extracting digits
-      const firstDigit = currNumStr[0]
-      const secondDigit = currNumStr[1]
-      const thirdDigit = currNumStr[2]
-      const twoDigitCardinal = `${currNumStr[1]}0`
-      const twoLastDigits = currNumStr.substr(1)
+      const firstDigit = currentNumberString[0]
+      const secondDigit = currentNumberString[1]
+      const thirdDigit = currentNumberString[2]
+      const twoDigitCardinal = `${currentNumberString[1]}0`
+      const twoLastDigits = currentNumberString.substr(1)
 
-      switch (currNumStr.substr(1)) {
+      switch (currentNumberString.substr(1)) {
         case '00':
-          currentNumber = `${numberMap[currNumStr[0]]} ${numberMap['00']}`
+          currentNumber = `${numberMap[currentNumberString[0]]} ${numberMap['00']}`
           break
         default:
           if (numberMap[num]) {
@@ -102,11 +103,11 @@ export default function problem17(): number {
           }
       }
     }
-    if (currNumStr.length === 4) currentNumber = 'one thousand'
+    if (currentNumberString.length === 4) currentNumber = 'one thousand'
     return currentNumber
   }
 
-  const main = (): number => {
+  function main(): number {
     let currentNumber = ''
     let answer = 0
 
@@ -117,6 +118,7 @@ export default function problem17(): number {
     }
     return answer
   }
+
   const result = main()
   return result
 }

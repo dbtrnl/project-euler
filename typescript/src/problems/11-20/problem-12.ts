@@ -65,9 +65,7 @@ export default function problem12(): number {
 
       if (!divisorsOfSequenceNumber) return [0]
 
-      if (divisorsOfSequenceNumber.length > 500) {
-        break
-      }
+      if (divisorsOfSequenceNumber.length > 500) break
     }
     return sequence
   }

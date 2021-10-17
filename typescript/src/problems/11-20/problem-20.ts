@@ -23,12 +23,20 @@ export default function problem20(): number {
     // Returns 93326215443944175354307254139643190247129328132295862491935879110669343325734178368282822618707234467717279847537548956702435362278960753539491860335688679424n
     // Should be 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000n
     */
-  const number = factorialBigInt(100)
-  let answer = 0
-  const bigNumberStr = number.toString()
 
-  for (let i = 0; i <= bigNumberStr.length - 1; i++) {
-    answer += parseInt(bigNumberStr[i], 10)
+  function main(): number {
+
+    const number = factorialBigInt(100)
+    let sum = 0
+    const bigNumberStr = number.toString()
+
+    for (let i = 0; i <= bigNumberStr.length - 1; i++) {
+      sum += parseInt(bigNumberStr[i], 10)
+    }
+
+    return sum
   }
-  return answer
+
+  const result = main()
+  return result
 }

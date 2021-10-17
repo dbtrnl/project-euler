@@ -10,16 +10,17 @@ import { factorial } from '../../utils'
  * How many such routes are there through a 20×20 grid?
  */
 export default function problem15(): number {
-  const main = () => {
+
+  function main() {
     const gridRowSize = 20
     const gridColumnSize = 20
 
     let answer = factorial(gridRowSize + gridColumnSize) / factorial(gridRowSize) / factorial(gridColumnSize)
     answer = Math.round(answer)
 
-    // console.log(`For a ${gridRowSize} by ${gridColumnSize} grid, there are ${answer} possible paths;`)
     return answer
   }
+
   const result = main()
   return result
 }

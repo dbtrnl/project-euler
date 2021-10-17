@@ -57,6 +57,7 @@ import { problem18Input as PROBLEM_INPUT } from '../../data'
  * it cannot be solved by brute force, and requires a clever method! ;o)
  */
 export default function problem18(): number {
+
   function main(): number {
     const triangle = assembleTriangle(PROBLEM_INPUT, 15)
     const answer = findMaximumPathSumOfTriangle(triangle)

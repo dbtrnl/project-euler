@@ -60,6 +60,7 @@ export default function problem19(): number {
     }
     return answer
   }
+
   const result = main()
   return result
 }

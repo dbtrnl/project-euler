@@ -341,3 +341,17 @@ export function findRecurringSequence(numerator: number, denominator: number): s
   else if (sequenceMap.has(remainder)) return result.substr(sequenceMap.get(remainder))
   else return ''
 }
+
+/**
+ * Returns the sum of all numbers in a bigInt array
+ * @param {bigint[]} inputArray
+ * @returns The sum
+ */
+export function sumAllNumbersInBigIntArray(inputArray: bigint[]): bigint {
+  let sum = BigInt(0)
+
+  for (let i = 0; i <= inputArray.length - 1; i++) {
+    sum += inputArray[i]
+  }
+  return sum
+}

@@ -13,7 +13,7 @@ import {
 
 import {
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
-  isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence,
+  isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence, sumAllNumbersInBigIntArray,
 } from './simpleNumberUtils'
 
 import {
@@ -30,7 +30,7 @@ export {
   isPrime, findAllPrimesSmallerThan, findLargestPrimeFactor, findNthPrime, findPrimesWithNDigits,
   assembleTriangle, extractTriangleString, findMaximumPathSumOfTriangle,
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
-  isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence,
+  isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence, sumAllNumbersInBigIntArray,
   findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
   findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy, findAbundantNumbersUntil,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,

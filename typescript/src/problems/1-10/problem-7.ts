@@ -10,8 +10,8 @@ import { findNthPrime } from '../../utils'
  * What is the 10.001st prime number?
  */
 export default function problem7(): number {
-  // Execution time: ~10 miliseconds
-  const main = (): number => {
+
+  function main(): number {
     const nth = 10001
     const nthPrime = findNthPrime(nth)
 

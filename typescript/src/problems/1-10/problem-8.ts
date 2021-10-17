@@ -12,7 +12,8 @@ import { findProductOfDigitsInNumberSeries } from '../../utils'
  * What is the value of this product?
  */
 export default function problem8(): number {
-  const main = (): number => {
+
+  function main(): number {
     const SERIES_SIZE = 13
     let greatestProduct = 0
 
@@ -27,6 +28,7 @@ export default function problem8(): number {
     }
     return greatestProduct
   }
+
   const result = main()
   return result
 }

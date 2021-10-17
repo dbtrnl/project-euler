@@ -9,17 +9,18 @@
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 export default function problem1(): number {
-  const main = (): number => {
+
+  function main(): number {
     const LIMIT = 1000
-    const multiplesOfThreeOrFive: number[] = []
+    const multiplesOfThreeOrFiveSmallerThanLimit: number[] = []
 
     for (let i = 0; i < LIMIT; i++) {
-      if (i % 3 === 0 || i % 5 === 0) multiplesOfThreeOrFive.push(i)
+      if (i % 3 === 0 || i % 5 === 0) multiplesOfThreeOrFiveSmallerThanLimit.push(i)
     }
-
-    const finalCount = multiplesOfThreeOrFive.reduce((sum, number) => {
+    const finalCount = multiplesOfThreeOrFiveSmallerThanLimit.reduce((sum, number) => {
       return sum + number
     })
+
     return finalCount
   }
 

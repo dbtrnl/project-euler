@@ -13,18 +13,19 @@ import { returnFibonacciNumbersUntil } from '../../utils'
  *
  */
 export default function problem2(): number {
-  const main = (): number => {
+
+  function main(): number {
     const LIMIT = 4000000
 
     const fibArray = returnFibonacciNumbersUntil(LIMIT)
 
     const answer: number = fibArray.filter((number) => {
-      // If number is not even
       if (number % 2 !== 0) return null
       else return number
     }).reduce((sum, number) => {
       return sum + number
     })
+
     return answer
   }
 

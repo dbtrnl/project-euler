@@ -9,20 +9,22 @@ import { isEvenlyDivisibleByEveryNumberInInterval } from '../../utils'
  * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
  */
 export default function problem5(): number {
-  const main = (): number => {
+
+  function main(): number {
     const MIN_DIVISOR = 1
     const MAX_DIVISOR = 20
 
     let currentNumber = 1
     let isDivisible = false
 
-    while (isDivisible === false) {
+    while (!isDivisible) {
       isDivisible = isEvenlyDivisibleByEveryNumberInInterval(currentNumber, [MIN_DIVISOR, MAX_DIVISOR], 'descending')
       if (isDivisible) break
       else currentNumber++
     }
     return currentNumber
   }
+
   const result = main()
   return result
 }

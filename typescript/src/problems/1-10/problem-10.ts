@@ -9,7 +9,8 @@ import { findAllPrimesSmallerThan } from '../../utils'
  * Find the sum of all the primes below two million
  */
 export default function problem10(): number {
-  const main = (): number => {
+
+  function main(): number {
     const MAX_PRIME_VALUE = 2000000
     const primesArray = findAllPrimesSmallerThan(MAX_PRIME_VALUE)
 
@@ -20,6 +21,7 @@ export default function problem10(): number {
 
     return answer
   }
+
   const result = main()
   return result
 }

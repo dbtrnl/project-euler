@@ -16,7 +16,8 @@ import { isSetPythagoreanTriplet } from '../../utils'
  * Find the product abc.
  */
 export default function problem9(): number {
-  const main = (): number => {
+
+  function main(): number {
     const MAX_ITERATIONS = 1000
     const pythagoreanSetArray: Array<TripletSetObject> = []
     let desiredPythagoreanTriplet: TripletSetObject = { a: 0, b: 0, c: 0 }
@@ -30,8 +31,8 @@ export default function problem9(): number {
       }
     }
 
-    pythagoreanSetArray.forEach((set) => {
-      if (set.a + set.b + set.c === 1000) desiredPythagoreanTriplet = set
+    pythagoreanSetArray.forEach((currentSet) => {
+      if (currentSet.a + currentSet.b + currentSet.c === 1000) desiredPythagoreanTriplet = currentSet
     })
 
     answer = desiredPythagoreanTriplet.a * desiredPythagoreanTriplet.b * desiredPythagoreanTriplet.c

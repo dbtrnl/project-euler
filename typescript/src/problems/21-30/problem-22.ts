@@ -21,9 +21,9 @@ export default function problem22(): number {
       const namesArray = inputToString.replace(/"/g, '').split(',')
 
       return namesArray.sort()
-    } catch (e) {
-      console.error(e)
-      throw new Error(e)
+    } catch (error) {
+      console.error(error)
+      throw new Error(error as string)
     }
   }
 

@@ -14,6 +14,7 @@ import {
 import {
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
   isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence, sumAllNumbersInBigIntArray,
+  isNumberPandigital
 } from './simpleNumberUtils'
 
 import {
@@ -185,7 +186,7 @@ export function returnUniqueSumCombinationsOfTwoNumbers(numArr: number[], upperL
  * ---
  * @returns {Array<number[]>} empty matrix
  */
-export function initializeMatrix(matrixSize: number, filler: number | null): Array<number[]> {
+export function initializeMatrix(matrixSize: number, filler: number | null = null): Array<number[]> {
   const matrix = [...new Array(matrixSize)].map(() => {
     return new Array(matrixSize).fill(filler)
   })

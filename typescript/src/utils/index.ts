@@ -14,7 +14,7 @@ import {
 import {
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
   isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence, sumAllNumbersInBigIntArray,
-  isNumberPandigital
+  isNumberPandigital, findNthFibonacciNumberStartingFromZero,
 } from './simpleNumberUtils'
 
 import {
@@ -32,6 +32,7 @@ export {
   assembleTriangle, extractTriangleString, findMaximumPathSumOfTriangle,
   combinationPermutation, combinationFactorial, factorial, factorialBigInt, isNumberPalindrome, numberLength, permutationWithoutRepetition,
   isNumberPermutationOfAnother, findAllPermutationsOfNumber, findAllPermutationsOfString, findRecurringSequence, sumAllNumbersInBigIntArray,
+  isNumberPandigital, findNthFibonacciNumberStartingFromZero,
   findAllDivisors, findAllProperDivisors, findAmicableChain, findAmicableNumbersUnder, isNumberAbundant,
   findAndSumAllDivisors, findAndSumAllProperDivisors, isAmicableNumber, isNumberEvenlyDivisibleBy, findAbundantNumbersUntil,
   isEvenlyDivisibleByEveryNumberInInterval, isNumberDeficientPerfectOrAbundant, findProductOfDigitsInNumberSeries,

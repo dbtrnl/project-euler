@@ -12,6 +12,8 @@ import {
   findAllPermutationsOfNumber,
   findAllCyclicPermutationsOfNumber,
   sumAllNumbersInBigIntArray,
+  isNumberPandigital,
+  findNthFibonacciNumberStartingFromZero,
 } from '../../src/utils/simpleNumberUtils'
 
 const bigIntTestData = 2375260959611012304762670562014361042438984145402220668778622781714011973204885586721482102170138158017912909951749136618152622129665396063239798755672359045046791829533325912027294542599629170699575537786862911468691373814785865095468673736329346200056801571256348847559429853735176210547154678930278110511566678722555512623148840981131519045028867092173070167152372046754942891599061407539992464813252446967500735310145266296308132663082347129938078910331766655962259524538226270268104901185069573299029741119207595046240433933652690636018226038180892363217411319419952117838233703303843335265621971744866701765360122693268656816241096593766867249468004712749335136620049127184532630665619974867030240370421565462309102083926831653585488121267996060830575065845534255204509489976997933497386133447457547860847341819440144231159324744764530120855729783651147993024383690557821638843032047063145228296241119775491129809030007423558887873049500258661443702180595441168549636198954131395416728355849072111498959229220199120476066753251229458761083689692200991808920078198442112854567368210648292329483868634825497591200676735959800089399606277491034162279182789675964205461407646146661046051865013633074481520637074466035945061616169856730344083745794661432890037380035825505170435051667885361002009644379180722347858564162542575422949400582115109252055775393792922796353732115146238331643390217113530018198252136416847295453203475440225315019861541206341202256543805373542358516244106639143943315487105537971115211314630563055351227453941395167633007855277738336583656455370724924172069333701790302842920421216455014139794193231455016709118778441998062756692085736002862854169040545221003182080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000n
@@ -405,6 +407,68 @@ describe('Test simpleNumberUtils', () => {
       const inputArray: bigint[] = [BigInt(1), BigInt(2)]
       const result = sumAllNumbersInBigIntArray(inputArray)
       expect(result).toEqual(3)
+    })
+  })
+
+  describe.skip('isNumberPandigital()', () => {
+    test('problem41 should throw error when called with a "NaN" value', () => {
+      expect(() => isNumberPandigital(NaN)).toThrow('This function requires a valid number!')
+    })
+
+    test('problem41 should return true when called with 1', () => {
+      const result = isNumberPandigital(1); expect(result).toEqual(true)
+    })
+
+    test('problem41 should return true when called with 10234', () => {
+      const result = isNumberPandigital(10234); expect(result).toEqual(true)
+    })
+
+    test('problem41 should return true when called with 1023456789', () => {
+      const result = isNumberPandigital(1023456789); expect(result).toEqual(true)
+    })
+
+    test('problem41 should return false when called with 1023456781', () => {
+      const result = isNumberPandigital(1023456781); expect(result).toEqual(false)
+    })
+
+    test('problem41 should return false when called with 123456', () => {
+      const result = isNumberPandigital(123456); expect(result).toEqual(false)
+    })
+
+    test('problem41 should return false when called with 123456', () => {
+      const result = isNumberPandigital(123456); expect(result).toEqual(false)
+    })
+  })
+
+  describe('Test findNthFibonacciNumberStartingFromZero()', () => {
+    test('should throw RangeError when calling function with n <= 0', () => {
+      expect(() => findNthFibonacciNumberStartingFromZero(0)).toThrow(RangeError)
+      expect(() => findNthFibonacciNumberStartingFromZero(0)).toThrow('Invalid number! Input should be > 0!')
+
+      expect(() => findNthFibonacciNumberStartingFromZero(-200)).toThrow(RangeError)
+      expect(() => findNthFibonacciNumberStartingFromZero(-200)).toThrow('Invalid number! Input should be > 0!')
+    })
+
+    test('should return 0 when called with 1', () => {
+      const result = findNthFibonacciNumberStartingFromZero(1); expect(result).toEqual(0)
+    })
+    test('should return 1 when called with 2', () => {
+      const result = findNthFibonacciNumberStartingFromZero(2); expect(result).toEqual(1)
+    })
+    test('should return 1 when called with 3', () => {
+      const result = findNthFibonacciNumberStartingFromZero(3); expect(result).toEqual(1)
+    })
+    test('should return 2 when called with 4', () => {
+      const result = findNthFibonacciNumberStartingFromZero(4); expect(result).toEqual(2)
+    })
+    test('should return 144 when called with 13', () => {
+      const result = findNthFibonacciNumberStartingFromZero(13); expect(result).toEqual(144)
+    })
+    test('should return 144 when called with 13', () => {
+      const result = findNthFibonacciNumberStartingFromZero(13); expect(result).toEqual(144)
+    })
+    test('should return 7778742049 when called with 50', () => {
+      const result = findNthFibonacciNumberStartingFromZero(50); expect(result).toEqual(7778742049)
     })
   })
 })

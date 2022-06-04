@@ -355,3 +355,48 @@ export function sumAllNumbersInBigIntArray(inputArray: bigint[]): bigint {
   }
   return sum
 }
+
+/**
+ * Checks if a number N is **pandigital**
+ *
+ * --
+ * Still TODO
+ * @param num C
+ * @returns
+ */
+export function isNumberPandigital(num: number): number {
+  if (Number.isNaN(num)) throw new Error('This function requires a valid number!')
+
+  const numberOfDigits = num.toString().split('').length
+  return numberOfDigits
+}
+
+/**
+ * Returns nth Fibonacci number, starting from zero.
+ *
+ * So, fib(1) = 0 (The first number in the Fibonacci Sequence)
+ *
+ * ---
+ * Since apparently there's no consensus on whether the sequence starts with 0 or 1,
+ * both functions are supplied here. See also https://stackoverflow.com/questions/1451170/in-the-fibonacci-sequence-is-fib0-0-or-1
+ *
+ * ---
+ * @param {Number} nth N-th Fibonacci number desired
+ * @returns {Number} The N-th Fibonacci sequence
+ */
+export function findNthFibonacciNumberStartingFromZero(nth: number): number {
+  /*
+    TO-DO find the max fib that can accurately be calculated without BigInt
+    and add a guard clause
+  */
+  if (nth <= 0) throw new RangeError('Invalid number! Input should be > 0!')
+  if (nth === 1) return 0
+  const fibArray = [0, 1]
+  const indexOfNthFibonacciNumber = nth - 1
+
+  for (let i = 2; i <= nth; i++) {
+    const currentNumber = fibArray[fibArray.length - 1] + fibArray[fibArray.length - 2]
+    fibArray.push(currentNumber)
+  }
+  return fibArray[indexOfNthFibonacciNumber]
+}

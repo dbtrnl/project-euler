@@ -21,3 +21,6 @@
 //   }
 //   main()
 // })()
+export default function problem47(): number {
+  return 0
+}

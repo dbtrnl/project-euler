@@ -6,3 +6,6 @@
 
   What is the largest n-digit pandigital prime that exists?
 */
+export default function problem41(): number {
+  return 0
+}

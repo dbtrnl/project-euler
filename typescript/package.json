@@ -9,8 +9,10 @@
     "clean": "rm -rf coverage",
     "eslint:audit": "eslint .",
     "test": "jest --silent",
-    "test:cov": "jest --coverage --silent",
-    "test-single": "jest --silent -t"
+    "test:cov": "jest --coverage",
+    "test:cov:silent": "jest --coverage --silent",
+    "test:single": "jest -t",
+    "test:single:silent": "jest --silent -t"
   },
   "devDependencies": {
     "@types/eslint": "^7.2.13",

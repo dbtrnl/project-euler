@@ -115,4 +115,4 @@ export type NullMatrix = Array<null[] | number[]>
  */
 export type OrderEnum = 'ascending' | 'descending'
 
-export type PiGeneratorEnum = '' | '100' | '1000' | '10000' | '100000' | '1000000'
+export type PiGeneratorEnum = '10' | '100' | '1000' | '10000' | '100000' | '1000000'

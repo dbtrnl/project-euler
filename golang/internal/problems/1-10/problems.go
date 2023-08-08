@@ -76,6 +76,20 @@ func Problem4() int {
 			}
 		}
 	}
-
 	return currentLargestPalindrome
+}
+
+func Problem5() int {
+	min_div, max_div := 1, 20
+
+	currNum := 1
+	isDivisible := false
+
+	for !isDivisible {
+		isDivisible = utils.IsEvenlyDivisibleByEveryNumberInInterval(currNum, min_div, max_div, "desc")
+		if isDivisible {
+			break
+		} else { currNum++ }
+	}
+	return currNum
 }

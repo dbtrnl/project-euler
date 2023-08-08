@@ -39,3 +39,46 @@ func IsNumberPalindrome(inputNumber int) bool {
 	}
 	return number == inverseNum
 }
+
+func IsNumberEvenlyDivisibleBy(inputNum, divisor int) bool {
+	if inputNum <= 0 || divisor <= 0 {
+		// Refactor to return an error
+		panic("Both arguments must be greater than zero!")
+	}
+	if inputNum % divisor == 0 { return true }
+	return false
+}
+
+func IsEvenlyDivisibleByEveryNumberInInterval(num, interval_start, interval_end int, order string) bool {
+	result := false
+	var isDivisible bool
+	// Add error checking for invalid intervals
+
+	if (order == "asc") {
+		for i := interval_start; i <= interval_end; i++ {
+			isDivisible = IsNumberEvenlyDivisibleBy(num, i)
+			if (!isDivisible) { return false }
+		}
+		result = true
+	}
+	if (order == "desc") {
+		for i := interval_end; i >= interval_start; i-- {
+			isDivisible = IsNumberEvenlyDivisibleBy(num, i)
+			if (!isDivisible) { return false }
+		}
+		result = true
+	}
+	return result
+}
+
+/*
+  if (order === "descending") {
+    for (let i = intervalEnd; i >= intervalStart; i--) {
+      isDivisible = isNumberEvenlyDivisibleBy(number, i)
+      if (!isDivisible) return false
+    }
+    result = true
+  }
+
+  return result
+} */
